@@ -112,20 +112,41 @@
                                         <span class="sidebar-divider"></span>
                                     </li>
 
-                                    @canany(['administrar', 'clientes'])
+                                    @canany(['administrar', 'proyectos'])
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link " href="{{ url('admin/clientes') }}">
+                                            <a class="sidebar-link " href="{{ url('admin/proyectos') }}">
                                                 <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
-                                                <span class="hide-menu">Clientes</span>
+                                                <span class="hide-menu">Proyectos</span>
                                             </a>
                                         </li>
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link " href="{{ url('admin/reclamaciones') }}">
-                                                <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
-                                                <span class="hide-menu">Reclamaciones</span>
-                                            </a>
-                                        </li>
+
                                     @endcanany
+
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link " href="{{ url('admin/estados') }}">
+                                            <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
+                                            <span class="hide-menu">Estados</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link " href="{{ url('admin/redactores') }}">
+                                            <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
+                                            <span class="hide-menu">Redactores</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link " href="{{ url('admin/socio_comercial') }}">
+                                            <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
+                                            <span class="hide-menu">Socio Comercial</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link " href="{{ url('admin/clientes') }}">
+                                            <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
+                                            <span class="hide-menu">Clientes</span>
+                                        </a>
+                                    </li>
+                                    <hr>
                                     {{-- <li class="nav-small-cap">
                                         <span class="hide-menu">Módulos</span>
                                     </li> --}}
@@ -155,67 +176,9 @@
                                     @endcanany
 
 
-                                    <li class="sidebar-item">
-                                        <a class="sidebar-link has-arrow " href="javascript:void(0)"
-                                            aria-expanded="false">
-                                            <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
-                                            <span class="hide-menu">Secciones</span>
-                                        </a>
 
-                                        <ul aria-expanded="false" class="collapse first-level">
-                                            @canany(['administrar', 'secciones'])
-                                                <li class="sidebar-item">
-                                                    <a target="_blank" class="sidebar-link" href="{{ url('admin/secciones') }}">
-                                                        <span class="icon-small"></span> Secciones
-                                                    </a>
-                                                </li>
-                                            @endcanany
-                                            @canany(['administrar', 'editar_plantilla'])
-                                                <li class="sidebar-item">
-                                                    <a target="_blank" class="sidebar-link" href="{{ url('home_edit/plantilla') }}">
-                                                        <span class="icon-small"></span> Plantilla
-                                                    </a>
-                                                </li>
-                                            @endcanany
-                                            @canany(['administrar', 'editar_inicio'])
-                                                <li class="sidebar-item">
-                                                    <a target="_blank" class="sidebar-link" href="{{ url('home_edit/inicio') }}">
-                                                        <span class="icon-small"></span> Inicio
-                                                    </a>
-                                                </li>
-                                            @endcanany
-                                            @canany(['administrar', 'editar_nosotros'])
-                                                <li class="sidebar-item">
-                                                    <a target="_blank" class="sidebar-link" href="{{ url('home_edit/nosotros') }}">
-                                                        <span class="icon-small"></span>Nosotros
-                                                    </a>
-                                                </li>
-                                            @endcanany
-                                            @canany(['administrar', 'editar_proyectos'])
-                                                <li class="sidebar-item">
-                                                    <a target="_blank" class="sidebar-link" href="{{ url('home_edit/proyectos') }}">
-                                                        <span class="icon-small"></span>Proyectos
-                                                    </a>
-                                                </li>
-                                            @endcanany
-                                            @canany(['administrar', 'editar_blog'])
-                                                <li class="sidebar-item">
-                                                    <a target="_blank" class="sidebar-link" href="{{ url('home_edit/blog') }}">
-                                                        <span class="icon-small"></span>Blogs
-                                                    </a>
-                                                </li>
-                                            @endcanany
-                                            @canany(['administrar', 'editar_contactos'])
-                                                <li class="sidebar-item">
-                                                    <a target="_blank" class="sidebar-link" href="{{ url('home_edit/contacto') }}">
-                                                        <span class="icon-small"></span>Contáctos
-                                                    </a>
-                                                </li>
-                                            @endcanany
-                                        </ul>
-                                    </li>
 
-                                    @canany(['administrar', 'blogs'])
+                                    {{-- @canany(['administrar', 'blogs'])
                                         <li class="sidebar-item">
                                             <a class="sidebar-link has-arrow " href="javascript:void(0)"
                                                 aria-expanded="false">
@@ -235,23 +198,8 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                    @endcanany
-                                    @canany(['administrar', 'proyectos'])
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link has-arrow " href="javascript:void(0)"
-                                                aria-expanded="false">
-                                                <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
-                                                <span class="hide-menu">Proyectos</span>
-                                            </a>
-                                            <ul aria-expanded="false" class="collapse first-level">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link" href="{{ url('admin/proyectos') }}">
-                                                        <span class="icon-small"></span> Proyectos
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    @endcanany
+                                    @endcanany --}}
+
                                     @canany(['administrar', 'imagenes'])
                                         <li class="sidebar-item">
                                             <a class="sidebar-link has-arrow " href="javascript:void(0)"

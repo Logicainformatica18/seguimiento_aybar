@@ -5,12 +5,12 @@
                 <img width="20" src="https://cdn-icons-png.flaticon.com/512/6671/6671938.png" alt="">
             </th>
             <th>ID</th>
-            <th>Título</th>
-            <th>Ver</th>
-            <th>Departamento</th>
+
+
+
 
             <th>Descripción</th>
-            <th>url</th>
+
 
         </tr>
     </thead>
@@ -50,35 +50,16 @@
                 <td>{{ $Projects->id }}</td>
 
 
-                <td>{{ $Projects->title }}</td>
 
-                <td>
-                    <a href="../proyectos/{{ $Projects->detail }}"target="_blank">
-                        {{url('/proyectos/'.$Projects->detail )}}
-                    </a>
-                    </td>
 
-                <td>{{ $Projects->country }}</td>
+
+
                 <td>{{ $Projects->description }}</td>
-                <td>{{ $Projects->detail }}</td>
+
 
 
             </tr>
         @endforeach
     </tbody>
-    <tfoot>
-        <tr>
-            <th>
-                <img width="20" src="https://cdn-icons-png.flaticon.com/512/6671/6671938.png" alt="">
-            </th>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Ver</th>
-            <th>Departamento</th>
 
-            <th>Descripción</th>
-            <th>url</th>
-
-        </tr>
-    </tfoot>
 </table>

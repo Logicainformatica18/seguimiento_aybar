@@ -44,7 +44,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $Project = new Project;
-        
+
           // Asignación básica de campos
           $Project->title = Str::upper($request->title);
           $Project->description = $request->description;
@@ -52,15 +52,15 @@ class ProjectController extends Controller
           $Project->location = $request->location;
           $Project->land = $request->land;
           $Project->land_count = $request->land_count;
-  
+
           $Project->country = $request->country;
-  
-  
+
+
           // Manejo de la imagen principal
           if ($request->file('image_1') != null) {
               $Project->image_1 = fileStore($request->file('image_1'), "resource");
           }
-  
+
           // Manejo de fotos adicionales (photo_1 a photo_10)
           for ($i = 1; $i <= 20; $i++) {
               $photoField = "photo_$i";
@@ -68,7 +68,7 @@ class ProjectController extends Controller
                   $Project->$photoField = fileStore($request->file($photoField), "resource");
               }
           }
-  
+
           // Manejo de mapas (map_1 y map_2)
           for ($i = 1; $i <= 2; $i++) {
               $mapField = "map_$i";
@@ -76,43 +76,43 @@ class ProjectController extends Controller
                   $Project->$mapField = fileStore($request->file($mapField), "resource");
               }
           }
-  
+
           // Manejo de videos (video_1 a video_10)
           for ($i = 1; $i <= 10; $i++) {
               $videoField = "video_$i";
-  
+
               $Project->$videoField = $request->$videoField;
           }
-  
+
           // Manejo de subproyectos (subproject_1 a subproject_5)
           for ($i = 1; $i <= 20; $i++) {
               $subprojectField = "subproject_$i";
               $subProjectImageField = "subproject_image_$i";
               $Project->$subprojectField =Str::upper( $request->$subprojectField);
-  
+
               if ($request->file($subProjectImageField) != null) {
                   $Project->$subProjectImageField = fileStore($request->file($subProjectImageField), "resource");
               }
           }
-  
-  
-      
-  
-  
+
+
+
+
+
           // Manejo de turistas y sus imágenes (tourist_1 a tourist_6 y tourist_image_1 a tourist_image_6)
           for ($i = 1; $i <= 6; $i++) {
               $touristField = "tourist_$i";
               $touristImageField = "tourist_image_$i";
-  
+
               if ($request->$touristField) {
                   $Project->$touristField = Str::title($request->$touristField);
               }
-  
+
               if ($request->file($touristImageField) != null) {
                   $Project->$touristImageField = fileStore($request->file($touristImageField), "resource");
               }
           }
-  
+
           // Guardar en la base de datos
           $Project->save();
 
@@ -195,7 +195,7 @@ class ProjectController extends Controller
         }
 
 
-    
+
 
 
         // Manejo de turistas y sus imágenes (tourist_1 a tourist_6 y tourist_image_1 a tourist_image_6)
@@ -205,7 +205,7 @@ class ProjectController extends Controller
 
             if ($request->$touristField) {
                 $Project->$touristField = Str::title($request->$touristField);
-          
+
             }
 
             if ($request->file($touristImageField) != null) {

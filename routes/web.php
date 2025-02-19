@@ -17,19 +17,19 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+    return redirect("login");
+});
 
-Route::get('/siscitas/{id_usuario}', [App\Http\Controllers\CiteController::class, 'validate_user']);
 
-Route::get('/citas/{estado}', [App\Http\Controllers\CiteController::class, 'index'])->name('citas.index');
-Route::get('/citas/{estado}/', [App\Http\Controllers\CiteController::class, 'index'])->name('citas.index');
-
-Route::post('/citeEdit', [App\Http\Controllers\CiteController::class, 'edit']);
 
 
 
 Route::get('prueba', function () {
     return view("home.home");
 });
+
+
 Route::get('/ejecutar', [App\Http\Controllers\GenerateProductionController::class, 'generate']);
 
 
@@ -68,9 +68,7 @@ Auth::routes();
 
    Route::get('blog/topicPublic', [App\Http\Controllers\TopicPublicController::class, 'index']);
 
-//    Route::get('/', function () {
-//     return view("production.2");
-// });
+
 // Route::get('/nosotros', function () {
 //     return view("production.3");
 // });
