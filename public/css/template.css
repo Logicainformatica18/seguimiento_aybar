@@ -1,0 +1,253 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+}
+   body p{
+        font-family:Montserrat-Regular
+    }
+    body .navbar{
+        font-family:Montserrat-Bold
+    }
+    body h1, h2, h3, h4, h5, h6, b{
+        font-family:Montserrat-Bold
+    }
+    .card-title{
+      font-family:Montserrat-Bold !important
+    }
+    
+    @font-face {
+      font-family: "Montserrat-Bold";
+      src: url("../fuente_montserrat/Montserrat-Bold.ttf");
+      font-weight: 600;
+      font-style: bold;
+  }
+
+  @font-face {
+      font-family: 'Montserrat-Regular';
+      src: url("../fuente_montserrat/Montserrat-Regular.ttf") format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'Montserrat-BoldItalic';
+      src: url("../fuente_montserrat/Montserrat-BoldItalic.ttf") format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'Montserrat-Medium';
+      src: url("../fuente_montserrat/Montserrat-Medium.ttf") format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'Montserrat-SemiBold';
+      src: url("../fuente_montserrat/Montserrat-SemiBold.ttf") format('truetype');
+      font-weight: normal;
+      font-style: normal;
+  }
+.social-container {
+ 
+  position: fixed;
+  /* Siempre visible en el lado izquierdo */
+  top: 50%;
+  /* Posicionado verticalmente en el centro */
+  left: 0px;
+  /* Alineado a la izquierda */
+  transform: translateY(-50%);
+  /* Centrado verticalmente */
+  display: flex;
+  flex-direction: column;
+  /* Coloca los elementos uno debajo del otro */
+  gap: -0px;
+  /* Espaciado entre los botones */
+  height:150px;
+}
+
+.social-button img {
+  width: 40px;
+  height: 35px;
+  cursor: pointer;
+  margin-top:5px;
+  transition: transform 0.2s ease;
+}
+
+.social-button img:hover {
+  transform: scale(1.5);
+  /* Animación de agrandamiento al pasar el cursor */
+}
+.container-fluid {
+    background-color: #03424E;
+    /* Color de fondo similar */
+  }
+  
+  h4 {
+    color: #F6A42C;
+    /* Color de texto naranja */
+  }
+  
+  h1 {
+    color: #ffffff;
+    word-spacing: 5px;
+    letter-spacing: 3px;
+  }
+  
+  h2 {
+    color: #03424E;
+  }
+  
+  h3 {
+    color: #ffffff;
+  }
+  
+  h5 {
+    color: #ffffff;
+    font-size: 500px;
+  }
+  
+  .text-warning {
+    color: #F6A42C !important;
+   
+    /* Color de texto para "TUS HOGAR" */
+  }
+  
+  .btn-warning {
+    background-color: #F6A42C;
+    border-color: #F6A42C;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    border-radius: 0.25rem;
+  }
+  
+  .d-flex img {
+    border-radius: 50%;
+  }
+  .transparencia_pie {
+    width: 100%;
+    /* Ajuste opcional */
+    height: auto;
+    /* Ajuste opcional */
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+  .transparencia_left{
+    width: 100%;
+  
+    height: 100%;
+    /* Ajuste opcional */
+    mask-image: linear-gradient(to left, black 20%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, black 20%, transparent 100%);
+
+margin-left: 14px;
+   
+  }
+  
+  .text-overlay {
+    position: absolute;
+    left: 8%; /* Ajusta este valor para controlar cuánto se superpone */
+
+    
+    z-index: 0;
+
+    padding: 5px 10px;
+  }
+
+  .whatsapp-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.whatsapp-btn {
+    background-color: #25d366;
+    /* Color de fondo del botón */
+    border-radius: 50%;
+    /* Hace que el botón tenga forma circular */
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 0px rgba(233, 19, 19, 0.3);
+    /* Desenfoque negro adicional */
+    margin-right: 10px;
+    /* Espacio entre el botón y el mensaje */
+}
+
+
+.whatsapp-btn a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    color: #fff;
+    /* Color del ícono */
+    font-size: 30px;
+}
+
+.whatsapp-message {
+    background-color: #023039;
+    color: #fff;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    white-space: nowrap;
+    /* Evita que el texto se divida en varias líneas */
+}
+
+.degradado-centro {
+
+  background: radial-gradient(circle, #fffcfc31 -100%, #03424E 100%);
+
+}
+.card-body img{
+  border-radius: 0px !important;
+}
+
+#iti-0__country-listbox {
+  background-color: #055261; /* Fondo azul oscuro */
+  color: #fff; /* Texto blanco */
+  position: absolute; /* Necesario para z-index */
+  z-index: 9999; /* Valor alto para estar por encima de todo */
+}
+
+.iti--allow-dropdown{
+  width:100% !important
+}
+input::placeholder { /* Navegadores modernos */
+  color: white !important;
+  opacity: 1; /* Hace que el color sea totalmente visible */
+}
+
+input::-webkit-input-placeholder { /* Chrome, Safari, Opera */
+  color: white !important;
+  opacity: 1;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer */
+  color: white !important;
+}
+.borde-contenedor{
+  display: flex;
+  
+
+
+  background-color: #f0f0f0;
+}
+.borde-derecha{
+  border-right: solid 5px rgb(255, 255, 255);
+
+
+  border-radius: 5px;
+  
+}
