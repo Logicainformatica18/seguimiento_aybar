@@ -1,8 +1,8 @@
-function ProjectStore() {
-  var formData = new FormData(document.getElementById("Project"));
+function Business_partnerStore() {
+  var formData = new FormData(document.getElementById("Business_partner"));
   axios({
     method: "post",
-    url: "../ProjectStore",
+    url: "../Business_partnerStore",
     data: formData,
     headers: {
       "Content-Type": "multipart/form-data"
@@ -22,13 +22,13 @@ function ProjectStore() {
     });
 }
 
-function ProjectEdit(id) {
-  var formData = new FormData(document.getElementById("Project"));
+function Business_partnerEdit(id) {
+  var formData = new FormData(document.getElementById("Business_partner"));
   formData.append("id", id);
 
   axios({
     method: "post",
-    url: "../ProjectEdit",
+    url: "../Business_partnerEdit",
     data: formData,
     headers: {
       "Content-Type": "multipart/form-data"
@@ -36,9 +36,9 @@ function ProjectEdit(id) {
   })
     .then(function(response) {
       // Asignación de datos al formulario
-      Project.id.value = response.data["id"];
+      Business_partner.id.value = response.data["id"];
 
-      Project.description.value = response.data["description"];
+      Business_partner.description.value = response.data["description"];
 
 
 
@@ -50,11 +50,11 @@ function ProjectEdit(id) {
     });
 }
 
-function ProjectUpdate() {
-  var formData = new FormData(document.getElementById("Project"));
+function Business_partnerUpdate() {
+  var formData = new FormData(document.getElementById("Business_partner"));
   axios({
     method: "post",
-    url: "../ProjectUpdate",
+    url: "../Business_partnerUpdate",
     data: formData,
     headers: {
       "Content-Type": "multipart/form-data"
@@ -74,13 +74,13 @@ function ProjectUpdate() {
     });
 }
 
-function ProjectDestroy(id) {
+function Business_partnerDestroy(id) {
   if (confirm("¿Quieres eliminar este registro?")) {
-    var formData = new FormData(document.getElementById("Project"));
+    var formData = new FormData(document.getElementById("Business_partner"));
     formData.append("id", id);
     axios({
       method: "post",
-      url: "../ProjectDestroy",
+      url: "../Business_partnerDestroy",
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data"

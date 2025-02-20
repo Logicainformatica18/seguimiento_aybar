@@ -53,6 +53,25 @@
                             @include('Customer.Customertable')
 
                         </div>
+                        <style>
+                            .relative svg {
+                                width: 44px;
+                                /* Ajusta el tamaño del icono */
+                                height: 44px;
+                            }
+
+                            .hidden div p {
+                                display: none;
+
+                            }
+
+                            .hidden div {
+                                margin: 20px
+                            }
+                        </style>
+                        <div class="mt-5 d-flex justify-content-start" style="height:20px;width:100%">
+                            {{ $Customer->links() }}
+                        </div>
                     </div>
                 </div>
 

@@ -1,8 +1,8 @@
-function ProjectStore() {
-  var formData = new FormData(document.getElementById("Project"));
+function StatusStore() {
+  var formData = new FormData(document.getElementById("Status"));
   axios({
     method: "post",
-    url: "../ProjectStore",
+    url: "../StatusStore",
     data: formData,
     headers: {
       "Content-Type": "multipart/form-data"
@@ -22,13 +22,13 @@ function ProjectStore() {
     });
 }
 
-function ProjectEdit(id) {
-  var formData = new FormData(document.getElementById("Project"));
+function StatusEdit(id) {
+  var formData = new FormData(document.getElementById("Status"));
   formData.append("id", id);
 
   axios({
     method: "post",
-    url: "../ProjectEdit",
+    url: "../StatusEdit",
     data: formData,
     headers: {
       "Content-Type": "multipart/form-data"
@@ -36,9 +36,9 @@ function ProjectEdit(id) {
   })
     .then(function(response) {
       // Asignación de datos al formulario
-      Project.id.value = response.data["id"];
+      Status.id.value = response.data["id"];
 
-      Project.description.value = response.data["description"];
+      Status.description.value = response.data["description"];
 
 
 
@@ -50,11 +50,11 @@ function ProjectEdit(id) {
     });
 }
 
-function ProjectUpdate() {
-  var formData = new FormData(document.getElementById("Project"));
+function StatusUpdate() {
+  var formData = new FormData(document.getElementById("Status"));
   axios({
     method: "post",
-    url: "../ProjectUpdate",
+    url: "../StatusUpdate",
     data: formData,
     headers: {
       "Content-Type": "multipart/form-data"
@@ -74,13 +74,13 @@ function ProjectUpdate() {
     });
 }
 
-function ProjectDestroy(id) {
+function StatusDestroy(id) {
   if (confirm("¿Quieres eliminar este registro?")) {
-    var formData = new FormData(document.getElementById("Project"));
+    var formData = new FormData(document.getElementById("Status"));
     formData.append("id", id);
     axios({
       method: "post",
-      url: "../ProjectDestroy",
+      url: "../StatusDestroy",
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data"

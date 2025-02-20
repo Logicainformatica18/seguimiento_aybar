@@ -6,7 +6,7 @@
                 <div class="row align-items-center">
                     <div class="col-12">
                         <div class="d-sm-flex align-items-center justify-space-between">
-                            <h1 class="text-primary">Proyectos</h1>
+                            <h1 class="text-primary">Redactores</h1>
                             <nav aria-label="breadcrumb" class="ms-auto">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item d-flex align-items-center">
@@ -16,7 +16,7 @@
                                     </li>
                                     <li class="breadcrumb-item" aria-current="page">
                                         <span class="badge fw-medium fs-2 bg-primary-subtle text-primary">
-                                            Proyectos
+                                            Redactores
                                         </span>
                                     </li>
                                 </ol>
@@ -32,7 +32,7 @@
                         <p class="card-subtitle mb-3">
                             <button type="button" class="btn mb-1 me-1 btn-success" data-bs-toggle="modal"
                                 data-bs-target="#success-header-modal" fdprocessedid="cw61t3"
-                                onclick="New();$('#Project')[0].reset();Project.fotografia.src ='https://placehold.co/150';">
+                                onclick="New();$('#Editor')[0].reset();">
                                 Agregar
                             </button>
                         </p>
@@ -40,7 +40,7 @@
                             <h4 class="card-title mb-0">Exportar</h4>
                         </div>
                         <div class="table-responsive" id="mycontent">
-                            @include('Project.Projecttable')
+                            @include('Editor.Editortable')
                         </div>
                     </div>
                 </div>
@@ -48,18 +48,18 @@
         </div>
     </div>
 
-    <!-- Modal para Crear/Editar Proyectos -->
+    <!-- Modal para Crear/Editar Estados -->
     <div id="success-header-modal" class="modal fade" tabindex="-1" aria-labelledby="success-header-modalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header modal-colored-header bg-success text-white">
-                    <h4 class="modal-title text-white" id="success-header-modalLabel">Proyectos</h4>
+                    <h4 class="modal-title text-white" id="success-header-modalLabel">Estados</h4>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" role="form" id="Project" name="Project"
+                    <form action="" method="post" role="form" id="Editor" name="Editor"
                         enctype="multipart/form-data">
                         <input type="hidden" name="id" id="id">
                         {{ csrf_field() }}
@@ -81,10 +81,10 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     @canany(['administrar', 'agregar'])
                         <input type="button" value="Guardar" class="btn bg-success-subtle text-success"
-                            onclick="ProjectStore()" id="create">
+                            onclick="EditorStore()" id="create">
                     @endcanany
                     <input type="button" value="Modificar" class="btn bg-danger-subtle text-danger"
-                        onclick="ProjectUpdate();" id="update">
+                        onclick="EditorUpdate();" id="update">
                 </div>
             </div>
         </div>

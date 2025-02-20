@@ -1,3 +1,4 @@
+<div class="table-responsive-xl">
 <table id="file_export" class="text-center table table-hover table-bordered table-striped table-responsive">
     <thead>
         <!-- start row -->
@@ -9,15 +10,53 @@
             <th>ID</th>
 
 
-            <th>Dni</th>
-            <th>Paterno</th>
-            <th>Materno</th>
-            <th>Nombres</th>
-            <th> <i class="ti ti-brand-whatsapp fs-7"style="color:green;"></i></th>
-            <th>Celular </th>
             <th>Proyecto</th>
-            <th>Mensaje</th>
-            <th>Fecha</th>
+            <th>Lote</th>
+            <th>Aux</th>
+            <th>Cliente_1</th>
+            <th>Dni_1</th>
+            <th>Cliente_2</th>
+            <th>Dni_2</th>
+            <th>Cliente_3</th>
+            <th>Dni_3</th>
+            <th>Cliente_4</th>
+            <th>Dni_4</th>
+            <th>Cliente_5</th>
+            <th>Dni_5</th>
+            <th>Socio comercial</th>
+            <th>Nombres</th>
+            <th>Fecha de Separación</th>
+            <th>Precio de Lista de Inventario</th>
+            <th>Descuento %</th>
+            <th>Importe de Venta</th>
+            <th>Estado</th>
+            <th>Dias_1</th>
+            <th>Redactado Por</th>
+            <th>Ingreso a Operaciones</th>
+            <th>Redactado</th>
+            <th>Recogido no devuelto</th>
+            <th>Dias_2</th>
+            <th>Fecha Contrato Firmado Devueldo</th>
+            <th>Adenda Refinanciamiento</th>
+            <th>j2</th>
+            <th>Enviado a archivo</th>
+            <th>Virtual</th>
+            <th>Notaria</th>
+            <th>Chincha</th>
+            <th>Post Venta</th>
+            <th>Proceso de desistimiento</th>
+            <th>Proceso de Resolución</th>
+            <th>Cambio de Titular</th>
+            <th>Desistimiento</th>
+            <th>Comisiones</th>
+            <th>Cantidad de Letras</th>
+            <th>Letras Verificadas</th>
+            <th>Observaciones</th>
+            <th>Fecha de Creación</th>
+            <th>Fecha de Modificación</th>
+
+
+
 
 
         </tr>
@@ -34,7 +73,7 @@
                         <i class="ti ti-dots-vertical fs-6"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                       
+
                         @canany(['administrar', 'editar'])
                             <li>
                                 <a onclick="CustomerEdit('{{ $Customers->id }}'); Up();  return false" data-bs-toggle="modal"
@@ -56,38 +95,55 @@
                 </div>
 
             </td>
-          
 
 
-                <td>{{ $Customers->id }}</td>
 
+            <td>{{ $Customers->id }}</td>
+            <td>{{ $Customers->proyecto }}</td>
+            <td>{{ $Customers->lote }}</td>
+            <td>{{ $Customers->aux }}</td>
+            <td>{{ $Customers->cliente_1 }}</td>
+            <td>{{ $Customers->dni }}</td>
+            <td>{{ $Customers->cliente_2 }}</td>
+            <td>{{ $Customers->dni_2 }}</td>
+            <td>{{ $Customers->cliente_3 }}</td>
+            <td>{{ $Customers->dni_3 }}</td>
+            <td>{{ $Customers->cliente_4 }}</td>
+            <td>{{ $Customers->dni_4 }}</td>
+            <td>{{ $Customers->cliente_5 }}</td>
+            <td>{{ $Customers->dni_5 }}</td>
+            <td>{{ $Customers->socio_comercial }}</td>
+            <td>{{ $Customers->socio_comercial_ }}</td>
+            <td>{{ $Customers->fecha_de_separacion }}</td>
+            <td>{{ $Customers->precio_de_lista_inventario }}</td>
+            <td>{{ $Customers->descuento_porcentaje }}</td>
+            <td>{{ $Customers->importe_de_venta }}</td>
+            <td>{{ $Customers->estado }}</td>
+            <td>{{ $Customers->dias_1 }}</td>
+            <td>{{ $Customers->redactado_por }}</td>
+            <td>{{ $Customers->ingreso_a_operaciones }}</td>
+            <td>{{ $Customers->redactado }}</td>
+            <td>{{ $Customers->recogido_no_devuelto }}</td>
+            <td>{{ $Customers->dias_2 }}</td>
+            <td>{{ $Customers->fecha_contrato_firmado_devuelto }}</td>
+            <td>{{ $Customers->adenda_refinanciamiento }}</td>
+            <td>{{ $Customers->j2 }}</td>
+            <td>{{ $Customers->enviado_a_archivo }}</td>
+            <td>{{ $Customers->virtual }}</td>
+            <td>{{ $Customers->notaria }}</td>
+            <td>{{ $Customers->chincha }}</td>
+            <td>{{ $Customers->post_venta }}</td>
+            <td>{{ $Customers->proceso_de_desistimiento }}</td>
+            <td>{{ $Customers->proceso_de_resolucion }}</td>
+            <td>{{ $Customers->cambio_de_titular }}</td>
+            <td>{{ $Customers->desistimiento }}</td>
+            <td>{{ $Customers->comisiones }}</td>
+            <td>{{ $Customers->cantidad_de_letras }}</td>
+            <td>{{ $Customers->letras_verificadas }}</td>
+            <td>{{ $Customers->observaciones }}</td>
+            <td>{{ $Customers->created_at }}</td>
+            <td>{{ $Customers->updated_at }}</td>
 
-                <td>{{ $Customers->dni }}</td>
-
-                <td>{{ $Customers->firstname }}</td>
-                <td>{{ $Customers->lastname }}</td>
-                <td>{{ $Customers->names }}</td>
-                <td>
-                    @php
-                        $whatsapp = 'https://api.whatsapp.com/send?phone=' . $Customers->cellphone;
-                    @endphp
-                    <a target="_blank" href="{{ $whatsapp }}">
-                        <i class="ti ti-brand-whatsapp fs-7"style="color:green;"></i>
-
-                    </a>
-                </td>
-                <td>
-                    {{ $Customers->cellphone }}
-                </td>
-                <td>
-                    {{ $Customers->project->title }}</td>
-                </td>
-                <td>
-                    {{ $Customers->message }}
-                </td>
-                <td>
-                    {{ $Customers->created_at }}
-                </td>
 
 
 
@@ -97,9 +153,17 @@
     </tbody>
 
 </table>
+</div>
 
-
-
+<style>
+    .table-responsive-xl {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        /* Suaviza el scroll en dispositivos táctiles */
+        display: block;
+        /* Asegura que se comporta como un bloque */
+    }
+</style>
 
 
 

@@ -135,6 +135,36 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('ProjectUpdate', [App\Http\Controllers\ProjectController::class, 'update'])->middleware('permission:administrar|actualizar');
 
 
+    Route::get('admin/estados', [App\Http\Controllers\StatusController::class, 'index'])->middleware('permission:administrar|estados');
+    Route::post('StatusStore', [App\Http\Controllers\StatusController::class, 'store'])->middleware('permission:administrar|agregar');
+    Route::post('StatusDestroy', [App\Http\Controllers\StatusController::class, 'destroy'])->middleware('permission:administrar|eliminar');
+    Route::post('StatusEdit', [App\Http\Controllers\StatusController::class, 'edit'])->middleware('permission:administrar|editar');
+    Route::post('StatusUpdate', [App\Http\Controllers\StatusController::class, 'update'])->middleware('permission:administrar|actualizar');
+
+    Route::get('admin/redactores', [App\Http\Controllers\EditorController::class, 'index'])->middleware('permission:administrar|redactores');
+    Route::post('EditorStore', [App\Http\Controllers\EditorController::class, 'store'])->middleware('permission:administrar|agregar');
+    Route::post('EditorDestroy', [App\Http\Controllers\EditorController::class, 'destroy'])->middleware('permission:administrar|eliminar');
+    Route::post('EditorEdit', [App\Http\Controllers\EditorController::class, 'edit'])->middleware('permission:administrar|editar');
+    Route::post('EditorUpdate', [App\Http\Controllers\EditorController::class, 'update'])->middleware('permission:administrar|actualizar');
+
+
+    Route::get('admin/socio_comercial', [App\Http\Controllers\Business_partnerController::class, 'index'])->middleware('permission:administrar|socio_comercial');
+    Route::post('Business_partnerStore', [App\Http\Controllers\Business_partnerController::class, 'store'])->middleware('permission:administrar|agregar');
+    Route::post('Business_partnerDestroy', [App\Http\Controllers\Business_partnerController::class, 'destroy'])->middleware('permission:administrar|eliminar');
+    Route::post('Business_partnerEdit', [App\Http\Controllers\Business_partnerController::class, 'edit'])->middleware('permission:administrar|editar');
+    Route::post('Business_partnerUpdate', [App\Http\Controllers\Business_partnerController::class, 'update'])->middleware('permission:administrar|actualizar');
+
+
+
+
+
+
+
+
+
+
+
+
     Route::get('admin/proyectos_detalle', [App\Http\Controllers\ProjectDetailController::class, 'index'])->middleware('permission:administrar|proyectos');
     Route::post('ProjectDetailStore', [App\Http\Controllers\ProjectDetailController::class, 'store'])->middleware('permission:administrar|agregar');
     Route::post('ProjectDetailDestroy', [App\Http\Controllers\ProjectDetailController::class, 'destroy'])->middleware('permission:administrar|eliminar');

@@ -30,6 +30,10 @@
     <script src="{{ asset('js/image.js') }}"></script>
     <script src="{{ asset('js/role.js') }}"></script>
     <script src="{{ asset('js/customer.js') }}"></script>
+    <script src="{{ asset('js/status.js') }}"></script>
+    <script src="{{ asset('js/editor.js') }}"></script>
+    <script src="{{ asset('js/business_partner.js') }}"></script>
+
     <script src="{{ asset('js/function.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/Book.js') }}"></script>
@@ -200,25 +204,7 @@
                                         </li>
                                     @endcanany --}}
 
-                                    @canany(['administrar', 'imagenes'])
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link has-arrow " href="javascript:void(0)"
-                                                aria-expanded="false">
-                                                <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
-                                                <span class="hide-menu">Imágenes</span>
-                                            </a>
-                                            <ul aria-expanded="false" class="collapse first-level">
-                                                <li class="sidebar-item">
-                                                    <a class="sidebar-link" href="{{ url('admin/imagenes') }}">
-                                                        <span class="icon-small"></span> Imágenes
-                                                    </a>
-                                                </li>
 
-
-
-                                            </ul>
-                                        </li>
-                                    @endcanany
                                     <li class="sidebar-item">
                                         <a class="sidebar-link has-arrow " href="javascript:void(0)"
                                             aria-expanded="false">
