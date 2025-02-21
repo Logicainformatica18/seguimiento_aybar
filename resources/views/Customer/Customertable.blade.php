@@ -24,7 +24,7 @@
             <th>Cliente_5</th>
             <th>Dni_5</th>
             <th>Socio comercial</th>
-            <th>Nombres</th>
+
             <th>Fecha de Separación</th>
             <th>Precio de Lista de Inventario</th>
             <th>Descuento %</th>
@@ -33,7 +33,7 @@
             <th>Dias_1</th>
             <th>Redactado Por</th>
             <th>Ingreso a Operaciones</th>
-            <th>Redactado</th>
+
             <th>Recogido no devuelto</th>
             <th>Dias_2</th>
             <th>Fecha Contrato Firmado Devueldo</th>
@@ -99,7 +99,7 @@
 
 
             <td>{{ $Customers->id }}</td>
-            <td>{{ $Customers->proyecto }}</td>
+            <td>{{ $Customers->Project->description }}</td>
             <td>{{ $Customers->lote }}</td>
             <td>{{ $Customers->aux }}</td>
             <td>{{ $Customers->cliente_1 }}</td>
@@ -112,17 +112,16 @@
             <td>{{ $Customers->dni_4 }}</td>
             <td>{{ $Customers->cliente_5 }}</td>
             <td>{{ $Customers->dni_5 }}</td>
-            <td>{{ $Customers->socio_comercial }}</td>
-            <td>{{ $Customers->socio_comercial_ }}</td>
+            <td>{{ $Customers->Business_partner->description }}</td>
+
             <td>{{ $Customers->fecha_de_separacion }}</td>
             <td>{{ $Customers->precio_de_lista_inventario }}</td>
             <td>{{ $Customers->descuento_porcentaje }}</td>
             <td>{{ $Customers->importe_de_venta }}</td>
-            <td>{{ $Customers->estado }}</td>
+            <td>{{ $Customers->Status->description }}</td>
             <td>{{ $Customers->dias_1 }}</td>
-            <td>{{ $Customers->redactado_por }}</td>
+            <td>{{ $Customers->Editor->description }}</td>
             <td>{{ $Customers->ingreso_a_operaciones }}</td>
-            <td>{{ $Customers->redactado }}</td>
             <td>{{ $Customers->recogido_no_devuelto }}</td>
             <td>{{ $Customers->dias_2 }}</td>
             <td>{{ $Customers->fecha_contrato_firmado_devuelto }}</td>
