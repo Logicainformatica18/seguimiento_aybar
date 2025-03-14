@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Models\User;
+use App\Models\Status;
+use App\Models\Business_partner;
+use App\Models\Editor;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\CustomerNotification;
 class CustomerController extends Controller
@@ -20,7 +23,10 @@ class CustomerController extends Controller
     {
         $Customer = Customer::orderBy('id','DESC')->paginate("10");
         $Project = Project::orderBy('id','DESC')->get();
-        return view('Customer.Customer', compact('Customer',"Project"));
+        $state = Status::orderBy('id','DESC')->get();
+        $business_partner = Business_partner::orderBy('id','DESC')->get();
+        $editor = Editor::orderBy('id','DESC')->get();
+        return view('Customer.Customer', compact('Customer',"Project",'state','business_partner','editor'));
     }
 
     /**

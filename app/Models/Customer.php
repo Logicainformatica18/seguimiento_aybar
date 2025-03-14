@@ -18,7 +18,7 @@ class Customer extends Model
     }
     public function Status()
     {
-        return $this->belongsTo(Status::class, 'statuses_id', 'id');
+        return $this->belongsTo(Status::class, 'state_id', 'id');
     }
     public function Editor()
     {
