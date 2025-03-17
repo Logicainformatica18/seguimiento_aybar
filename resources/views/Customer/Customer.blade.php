@@ -107,9 +107,9 @@
                         <button type="button" class="text-end btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
 
-                        <form role="form" id="cite" name="customer"enctype="multipart/form-data">
+                        <form role="form" id="Customer" name="Customer"enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="customer_id" id="customer_id">
+                            <input type="hidden" name="id" id="id">
                             <p></p>
 
 
@@ -174,15 +174,15 @@
 
                                 <div class="col-12 col-sm-4 mt-2">
 
-                                    <label for="business_partner_id"
+                                    <label for="business_partners_id"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Socio Comercial</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <select name="state_id" id="state_id" class="form-control">
+                                        <select name="business_partners_id" id="business_partners_id" class="form-control">
                                             @foreach ($business_partner as $item)
                                                 <option value="{{$item->id}}">{{$item->description}}</option>
                                             @endforeach
                                         </select>
-                                       
+
 
                                     </li>
                                 </div>
@@ -192,7 +192,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha de Separación</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="fecha_de_separacion" name="fecha_de_separacion">
+                                        <input type="datetime-local" class="form-control" id="fecha_de_separacion" name="fecha_de_separacion">
 
                                     </li>
                                 </div>
@@ -203,7 +203,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Precio de Lista</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="number" class="form-control" id="precio_de_lista_inventario" name="precio_de_lista_inventario">
+                                        <input type="number" class="form-control" id="precio_de_lista_inventario" inputmode="decimal"min="0" step="0.01" name="precio_de_lista_inventario">
 
                                     </li>
                                 </div>
@@ -212,7 +212,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Descuento Porcentaje</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="number" class="form-control" id="descuento_porcentaje" name="descuento_porcentaje">
+                                        <input type="number" class="form-control" id="descuento_porcentaje" inputmode="decimal"min="0" step="0.01" name="descuento_porcentaje">
 
                                     </li>
                                 </div>
@@ -221,7 +221,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Importe De Venta</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="number" class="form-control" id="importe_de_venta" name="importe_de_venta">
+                                        <input type="number" class="form-control" id="importe_de_venta"min="0" inputmode="decimal" step="0.01" name="importe_de_venta">
 
                                     </li>
                                 </div>
@@ -234,7 +234,7 @@
                                                 <option value="{{$item->id}}">{{$item->description}}</option>
                                             @endforeach
                                         </select>
-                                     
+
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -246,7 +246,7 @@
                                                 <option value="{{$item->id}}">{{$item->description}}</option>
                                             @endforeach
                                         </select>
-                                     
+
                                     </li>
                                 </div>
 
@@ -264,23 +264,23 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Ingreso a Operaciones</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="ingreso_a_operaciones" name="ingreso_a_operaciones">
+                                        <input type="datetime-local" class="form-control" id="ingreso_a_operaciones" name="ingreso_a_operaciones">
 
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
-                                    
+
                                     <label for="recogido_no_devuelto"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Recogido No Devuelto</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="recogido_no_devuelto" name="recogido_no_devuelto">
+                                        <input type="datetime-local" class="form-control" id="recogido_no_devuelto" name="recogido_no_devuelto">
 
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
                                     {{-- si es diferente a nada entonces  restar  hoy - Recogido no devuelto, contrario devolver 0 --}}
-                                
+
                                     <label for="dias_2"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Dias 2</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
@@ -291,12 +291,12 @@
                                 </div>
 
                                 <div class="col-12 col-sm-4 mt-2">
-                                    
+
                                     <label for="fecha_contrato_firmado_devuelto"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Contrato Firmado Devuelto</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="fecha_contrato_firmado_devuelto" name="fecha_contrato_firmado_devuelto">
+                                        <input type="datetime-local" class="form-control" id="fecha_contrato_firmado_devuelto" name="fecha_contrato_firmado_devuelto">
 
                                     </li>
                                 </div>
@@ -305,7 +305,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Adenda Refinanciamiento</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="adenda_refinanciamiento" name="adenda_refinanciamiento">
+                                        <input type="datetime-local" class="form-control" id="adenda_refinanciamiento" name="adenda_refinanciamiento">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -313,7 +313,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha J2</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="j2" name="j2">
+                                        <input type="datetime-local" class="form-control" id="j2" name="j2">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -321,7 +321,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Enviado a Archivo</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="enviado_a_archivo" name="enviado_a_archivo">
+                                        <input type="datetime-local" class="form-control" id="enviado_a_archivo" name="enviado_a_archivo">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -329,7 +329,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Virtual</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="virtual" name="virtual">
+                                        <input type="datetime-local" class="form-control" id="virtual" name="virtual">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -337,7 +337,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Notaría</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="notaria" name="notaria">
+                                        <input type="datetime-local" class="form-control" id="notaria" name="notaria">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -345,7 +345,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Chincha</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="chincha" name="chincha">
+                                        <input type="datetime-local" class="form-control" id="chincha" name="chincha">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -353,7 +353,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Post Venta</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="post_venta" name="post_venta">
+                                        <input type="datetime-local" class="form-control" id="post_venta" name="post_venta">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -361,16 +361,16 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Proceso De Desistimiento</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="proceso_de_desistimiento" name="proceso_de_desistimiento">
+                                        <input type="datetime-local" class="form-control" id="proceso_de_desistimiento" name="proceso_de_desistimiento">
                                     </li>
                                 </div>
-                            
+
                                 <div class="col-12 col-sm-4 mt-2">
                                     <label for="proceso_de_resolucion"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Proceso De Resolucion</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="proceso_de_resolucion" name="proceso_de_resolucion">
+                                        <input type="datetime-local" class="form-control" id="proceso_de_resolucion" name="proceso_de_resolucion">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -378,7 +378,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Cambio De Titular</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="cambio_de_titular" name="cambio_de_titular">
+                                        <input type="datetime-local" class="form-control" id="cambio_de_titular" name="cambio_de_titular">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -386,7 +386,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Desistimiento</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="desistimiento" name="desistimiento">
+                                        <input type="datetime-local" class="form-control" id="desistimiento" name="desistimiento">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -394,7 +394,7 @@
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Comisiones</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="date" class="form-control" id="comisiones" name="comisiones">
+                                        <input type="datetime-local" class="form-control" id="comisiones" name="comisiones">
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
@@ -406,13 +406,14 @@
                                         <option value="36">36</option>
                                         <option value="48">48</option>
                                       </select>
-                                       
+
                                     </li>
                                 </div>
                                 <div class="col-12 col-sm-4 mt-2">
                                     <label for="letras_verificadas"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Letras Verificadas</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
+                                        <span id="letras_verificadas_2" name="letras_verificadas_2">ww</span>
                                         <select name="letras_verificadas" id="letras_verificadas" class="form-control">
                                             <option value="">Seleccione una opción</option>
                                             <option value="aprobada">Aprobada</option>
@@ -426,12 +427,12 @@
                                         </select>
                                     </li>
                                 </div>
-                              
+
                             </div>
                         </div>
 
 
-                     
+
 
 
 
@@ -442,7 +443,7 @@
                                 <p></p>
                                 <h4 class="mb-4 mb-md-0 card-title mt-2">Observaciones</h4>
                                 <div class="col-12 col-sm-12 mt-2">
-                                     
+
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <textarea name="observaciones" id="observaciones" class="form-control">
 
@@ -453,17 +454,25 @@
                             </div>
                         </div>
 
+                        <input type="button" value="Nuevo" class="btn btn-primary"
+                        onclick="New();$('#Customer')[0].reset();" name="new">
+                    @canany(['administrar', 'agregar'])<input type="button" value="Guardar" class="btn bg-success-subtle text-success "
+                        onclick="CustomerStore()" id="create">@endcanany
+                        @canany(['administrar', 'actualizar'])
+                    <input type="button" value="Modificar" class="btn bg-danger-subtle text-danger" onclick="CustomerUpdate();"
+                        id="update">
+                        @endcanany
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
-                       
-                      
+
                         </form>
-                     
 
 
 
-                       
-                        
-                    
+
+
+
+
                     </div>
 
 
@@ -479,7 +488,7 @@
 
 
 
- 
+
 
 
         <!-- /.modal -->
