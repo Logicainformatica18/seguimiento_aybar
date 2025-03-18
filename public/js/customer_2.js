@@ -38,6 +38,8 @@ headers: {
 //handle success
 // var contentdiv = document.getElementById("mycontent");
 // contentdiv.innerHTML = response.data["description"];
+document.getElementById('customer_id').innerHTML='EX-'+ response.data["id"];
+
 Customer.id.value=response.data["id"];
 Customer.cliente_1.value=response.data["cliente_1"];
 Customer.dni_1.value=response.data["dni"];
@@ -89,8 +91,10 @@ Customer.desistimiento.value = response.data["desistimiento"];
 Customer.comisiones.value = response.data["comisiones"];
 Customer.cantidad_de_letras.value = response.data["cantidad_de_letras"];
 Customer.letras_verificadas.value = response.data["letras_verificadas"];
-Customer.letras_verificadas_2.innerHTML = response.data["letras_verificadas"];
 
+    let letras = document.getElementById("letras_verificadas_2");
+ letras.innerHTML = response.data["letras_verificadas"];
+ Customer.observaciones.value = response.data["observaciones"];
 
 
 console.log(response.data);

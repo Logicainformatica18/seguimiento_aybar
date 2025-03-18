@@ -29,7 +29,7 @@
     <script src="{{ asset('js/project.js') }}"></script>
     <script src="{{ asset('js/image.js') }}"></script>
     <script src="{{ asset('js/role.js') }}"></script>
-    <script src="{{ asset('js/customer.js') }}"></script>
+    <script src="{{ asset('js/customer_2.js') }}"></script>
     <script src="{{ asset('js/status.js') }}"></script>
     <script src="{{ asset('js/editor.js') }}"></script>
     <script src="{{ asset('js/business_partner.js') }}"></script>
@@ -148,6 +148,12 @@
                                         <a class="sidebar-link " href="{{ url('admin/clientes') }}">
                                             <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
                                             <span class="hide-menu">Clientes</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link " href="{{ url('admin/clientes_dashboard') }}">
+                                            <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
+                                            <span class="hide-menu">Dashboard</span>
                                         </a>
                                     </li>
                                     <hr>

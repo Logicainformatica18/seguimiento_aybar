@@ -15,14 +15,7 @@
             <th>Aux</th>
             <th>Cliente_1</th>
             <th>Dni_1</th>
-            <th>Cliente_2</th>
-            <th>Dni_2</th>
-            <th>Cliente_3</th>
-            <th>Dni_3</th>
-            <th>Cliente_4</th>
-            <th>Dni_4</th>
-            <th>Cliente_5</th>
-            <th>Dni_5</th>
+
             <th>Socio comercial</th>
 
             <th>Fecha de Separación</th>
@@ -32,6 +25,7 @@
             <th>Estado</th>
             <th>Dias_1</th>
             <th>Redactado Por</th>
+            <th>Fecha Redactado</th>
             <th>Ingreso a Operaciones</th>
 
             <th>Recogido no devuelto</th>
@@ -52,8 +46,6 @@
             <th>Cantidad de Letras</th>
             <th>Letras Verificadas</th>
             <th>Observaciones</th>
-            <th>Fecha de Creación</th>
-            <th>Fecha de Modificación</th>
 
 
 
@@ -98,20 +90,13 @@
 
 
 
-            <td>{{ $Customers->id }}</td>
+            <td>EX-{{ $Customers->id }}</td>
             <td>{{ $Customers->Project->description }}</td>
             <td>{{ $Customers->lote }}</td>
             <td>{{ $Customers->aux }}</td>
             <td>{{ $Customers->cliente_1 }}</td>
             <td>{{ $Customers->dni }}</td>
-            <td>{{ $Customers->cliente_2 }}</td>
-            <td>{{ $Customers->dni_2 }}</td>
-            <td>{{ $Customers->cliente_3 }}</td>
-            <td>{{ $Customers->dni_3 }}</td>
-            <td>{{ $Customers->cliente_4 }}</td>
-            <td>{{ $Customers->dni_4 }}</td>
-            <td>{{ $Customers->cliente_5 }}</td>
-            <td>{{ $Customers->dni_5 }}</td>
+
             <td>{{ $Customers->Business_partner->description }}</td>
 
             <td>{{ $Customers->fecha_de_separacion }}</td>
@@ -121,6 +106,7 @@
             <td>{{ $Customers->Status->description }}</td>
             <td>{{ $Customers->dias_1 }}</td>
             <td>{{ $Customers->Editor->description }}</td>
+            <td>{{ $Customers->REDACTADO }}</td>
             <td>{{ $Customers->ingreso_a_operaciones }}</td>
             <td>{{ $Customers->recogido_no_devuelto }}</td>
             <td>{{ $Customers->dias_2 }}</td>
@@ -140,8 +126,7 @@
             <td>{{ $Customers->cantidad_de_letras }}</td>
             <td>{{ $Customers->letras_verificadas }}</td>
             <td>{{ $Customers->observaciones }}</td>
-            <td>{{ $Customers->created_at }}</td>
-            <td>{{ $Customers->updated_at }}</td>
+
 
 
 

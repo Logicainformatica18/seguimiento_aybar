@@ -3,6 +3,10 @@
     <div class="body-wrapper">
         <div class="">
             <div class="card card-body py-3">
+
+
+
+
                 <div class="row align-items-center">
                     <div class="col-12">
                         <div class="d-sm-flex align-items-center justify-space-between">
@@ -102,7 +106,7 @@
                     <div class="modal-header">
 
                         <h5 class="modal-title h4" id="exampleModalFullscreenLabel">
-                            Detalles de Expediente
+                            Detalles de Expediente <b class="text-primary" id="customer_id"> </b>
                         </h5>
                         <button type="button" class="text-end btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -128,8 +132,10 @@
                                             class="control-label border-bottom border-primary custom-cursor-default-hover">CLIENTE
                                             {{ $i }}</label>
                                         <li class="d-flex align-items-center gap-2 mb-4">
-                                            <span class="p-1 rounded-circle text-bg-primary"></span>
-                                            <input type="text" name="cliente_{{ $i }}"id="cliente_{{ $i }}" class="form-control">
+
+                                            <input type="text"
+                                                name="cliente_{{ $i }}"id="cliente_{{ $i }}"
+                                                class="form-control">
 
                                         </li>
                                     </div>
@@ -138,8 +144,10 @@
                                             class="control-label border-bottom border-primary custom-cursor-default-hover">DNI
                                             {{ $i }}</label>
                                         <li class="d-flex align-items-center gap-2 mb-4">
-                                            <span class="p-1 rounded-circle text-bg-primary"></span>
-                                            <input type="text" name="dni_{{ $i }}"id="dni_{{ $i }}"class="form-control">
+
+                                            <input type="text"
+                                                name="dni_{{ $i }}"id="dni_{{ $i }}"
+                                                class="form-control">
 
                                         </li>
                                     </div>
@@ -147,273 +155,358 @@
                             </div>
                         </div>
 
+
+
                         <div class="card bg-white"style="border: solid 1px #054988">
                             <div class="container  row">
+                                <h4 class="mb-4 mb-md-0 card-title mt-4">Datos Básicos</h4>
 
-                                <h4 class="mb-4 mb-md-0 card-title mt-4">Datos del Predio</h4>
-                                <div class="col-12 col-sm-4">
+                                <div class="col-12 col-sm-2 mt-2">
                                     <label for=""
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Lote</label>
                                     <li class="d-flex align-items-center gap-2">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
+
 
                                         <input type="text" id="lote"name="lote" class="form-control">
                                     </li>
                                 </div>
-
-
-                                <div class="col-12 col-sm-4">
+                                <div class="col-12 col-sm-1 mt-2">
                                     <label for="aux"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Aux</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
+
                                         <input type="text" id="aux"name="aux" class="form-control">
 
                                     </li>
                                 </div>
 
-                                <div class="col-12 col-sm-4 mt-2">
-
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="business_partners_id"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Socio Comercial</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Socio
+                                        Comercial</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <select name="business_partners_id" id="business_partners_id" class="form-control">
+                                        <select name="business_partners_id" id="business_partners_id"
+                                            class="form-control">
+
+                                            <option value=""disabled selected>Seleccione una opción</option>
                                             @foreach ($business_partner as $item)
-                                                <option value="{{$item->id}}">{{$item->description}}</option>
+                                                <option value="{{ $item->id }}">{{ $item->description }}</option>
+                                            @endforeach
+                                        </select>
+                                    </li>
+                                </div>
+
+
+                                <div class="col-12 col-sm-3 mt-2">
+                                    <label for="state_id"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Redactado
+                                        Por</label>
+                                    <li class="d-flex align-items-center gap-2 mb-4">
+                                        <select name="editors_id" id="editors_id" class="form-control">
+                                            <option value=""disabled selected>Seleccione una opción</option>
+
+                                            @foreach ($editor as $item)
+                                                <option value="{{ $item->id }}">{{ $item->description }}</option>
                                             @endforeach
                                         </select>
 
-
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
-
-                                    <label for="fecha_de_separacion"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha de Separación</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="fecha_de_separacion" name="fecha_de_separacion">
-
-                                    </li>
-                                </div>
-
-                                <div class="col-12 col-sm-4 mt-2">
-
-                                    <label for="precio_de_lista_inventario"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Precio de Lista</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="number" class="form-control" id="precio_de_lista_inventario" inputmode="decimal"min="0" step="0.01" name="precio_de_lista_inventario">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-4 mt-2">
-                                    <label for="descuento_porcentaje"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Descuento Porcentaje</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="number" class="form-control" id="descuento_porcentaje" inputmode="decimal"min="0" step="0.01" name="descuento_porcentaje">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-4 mt-2">
-                                    <label for="importe_de_venta"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Importe De Venta</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="number" class="form-control" id="importe_de_venta"min="0" inputmode="decimal" step="0.01" name="importe_de_venta">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="state_id"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Estado</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
                                         <select name="state_id" id="state_id" class="form-control">
+                                            <option value=""disabled selected>Seleccione una opción</option>
                                             @foreach ($state as $item)
-                                                <option value="{{$item->id}}">{{$item->description}}</option>
+                                                <option value="{{ $item->id }}">{{ $item->description }}</option>
                                             @endforeach
                                         </select>
 
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
-                                    <label for="state_id"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Redactado Por</label>
+                            </div>
+                        </div>
+
+                        <div class="card bg-white"style="border: solid 1px #054988">
+                            <div class="container  row">
+
+                                <h4 class="mb-4 mb-md-0 card-title mt-4">Datos de Venta</h4>
+                                <div class="col-12 col-sm-3 mt-2">
+
+                                    <label for="fecha_de_separacion"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        de Separación</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <select name="editors_id" id="editors_id" class="form-control">
-                                            @foreach ($editor as $item)
-                                                <option value="{{$item->id}}">{{$item->description}}</option>
-                                            @endforeach
-                                        </select>
+
+                                        <input type="datetime-local" class="form-control" id="fecha_de_separacion"
+                                            name="fecha_de_separacion">
 
                                     </li>
                                 </div>
-
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="dias_1"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Dias (Hoy - Fecha de Separación)</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Dias
+                                        (Hoy - Fecha de Separación)</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
+
                                         <input type="number" class="form-control" id="dias_1" name="dias_1">
 
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
-                                    <label for="ingreso_a_operaciones"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Ingreso a Operaciones</label>
+                                <div class="col-12 col-sm-2 mt-2">
+
+                                    <label for="precio_de_lista_inventario"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Precio
+                                        de Lista</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="ingreso_a_operaciones" name="ingreso_a_operaciones">
+
+                                        <input type="number" class="form-control" id="precio_de_lista_inventario"
+                                            inputmode="decimal"min="0" step="0.01" name="precio_de_lista_inventario">
 
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-2 mt-2">
+                                    <label for="descuento_porcentaje"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Descuento
+                                        %</label>
+                                    <li class="d-flex align-items-center gap-2 mb-4">
+
+                                        <input type="number" class="form-control" id="descuento_porcentaje"
+                                            inputmode="decimal"min="0" step="0.01" name="descuento_porcentaje">
+
+                                    </li>
+                                </div>
+                                <div class="col-12 col-sm-2 mt-2">
+                                    <label for="importe_de_venta"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Importe
+                                        De Venta</label>
+                                    <li class="d-flex align-items-center gap-2 mb-4">
+
+                                        <input type="number" class="form-control" id="importe_de_venta"min="0"
+                                            inputmode="decimal" step="0.01" name="importe_de_venta">
+
+                                    </li>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card bg-white"style="border: solid 1px #054988">
+                            <div class="container  row">
+
+                                <h4 class="mb-4 mb-md-0 card-title mt-4">Tiempos y Fechas Clave</h4>
+                                <div class="col-12 col-sm-3 mt-2">
+                                    <label for="ingreso_a_operaciones"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Ingreso
+                                        a Operaciones</label>
+                                    <li class="d-flex align-items-center gap-2 mb-4">
+
+                                        <input type="datetime-local" class="form-control" id="ingreso_a_operaciones"
+                                            name="ingreso_a_operaciones">
+
+                                    </li>
+                                </div>
+                                <div class="col-12 col-sm-3 mt-2">
 
                                     <label for="recogido_no_devuelto"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Recogido No Devuelto</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Recogido
+                                        No Devuelto</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="recogido_no_devuelto" name="recogido_no_devuelto">
+
+                                        <input type="datetime-local" class="form-control" id="recogido_no_devuelto"
+                                            name="recogido_no_devuelto">
 
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     {{-- si es diferente a nada entonces  restar  hoy - Recogido no devuelto, contrario devolver 0 --}}
 
                                     <label for="dias_2"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Dias 2</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Dias
+                                        2 (Hoy - Recogido)</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="number" class="form-control" id="dias_2" name="dias_2">
+
+                                        <input type="number" class="form-control" id="dias_2" name="dias_2"
+                                            value="0">
 
                                     </li>
                                 </div>
-
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
 
                                     <label for="fecha_contrato_firmado_devuelto"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Contrato Firmado Devuelto</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        Contrato Firmado Devuelto</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="fecha_contrato_firmado_devuelto" name="fecha_contrato_firmado_devuelto">
+
+                                        <input type="datetime-local" class="form-control"
+                                            id="fecha_contrato_firmado_devuelto" name="fecha_contrato_firmado_devuelto">
 
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="adenda_refinanciamiento"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Adenda Refinanciamiento</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        Adenda Refinanciamiento</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="adenda_refinanciamiento" name="adenda_refinanciamiento">
+
+                                        <input type="datetime-local" class="form-control" id="adenda_refinanciamiento"
+                                            name="adenda_refinanciamiento">
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
-                                    <label for="j2"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha J2</label>
+                                <div class="col-12 col-sm-3 mt-2">
+                                    <label for="enviado_a_archivo"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        Enviado a Archivo</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
+
+                                        <input type="datetime-local" class="form-control" id="enviado_a_archivo"
+                                            name="enviado_a_archivo">
+                                    </li>
+                                </div>
+                                <div class="col-12 col-sm-3 mt-2">
+                                    <label for="j2"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        J2</label>
+                                    <li class="d-flex align-items-center gap-2 mb-4">
+
                                         <input type="datetime-local" class="form-control" id="j2" name="j2">
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
-                                    <label for="enviado_a_archivo"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Enviado a Archivo</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="enviado_a_archivo" name="enviado_a_archivo">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-4 mt-2">
+
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="virtual"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Virtual</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        Virtual</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
+
                                         <input type="datetime-local" class="form-control" id="virtual" name="virtual">
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="notaria"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Notaría</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        Notaría</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
+
                                         <input type="datetime-local" class="form-control" id="notaria" name="notaria">
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="chincha"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Chincha</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        Chincha</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
+
                                         <input type="datetime-local" class="form-control" id="chincha" name="chincha">
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="post_venta"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha Post Venta</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
+                                        Post Venta</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="post_venta" name="post_venta">
+
+                                        <input type="datetime-local" class="form-control" id="post_venta"
+                                            name="post_venta">
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="proceso_de_desistimiento"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Proceso De Desistimiento</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover  ">Proceso
+                                        Desistimiento</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="proceso_de_desistimiento" name="proceso_de_desistimiento">
+
+                                        <input type="datetime-local" class="form-control" id="proceso_de_desistimiento"
+                                            name="proceso_de_desistimiento">
                                     </li>
                                 </div>
 
-                                <div class="col-12 col-sm-4 mt-2">
-                                    <label for="proceso_de_resolucion"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Proceso De Resolucion</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="proceso_de_resolucion" name="proceso_de_resolucion">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-4 mt-2">
-                                    <label for="cambio_de_titular"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Cambio De Titular</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="cambio_de_titular" name="cambio_de_titular">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-4 mt-2">
+
+
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="card bg-white"style="border: solid 1px #054988">
+                            <div class="container  row">
+
+                                <h4 class="mb-4 mb-md-0 card-title mt-4">Procesos</h4>
+
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="desistimiento"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Desistimiento</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="desistimiento" name="desistimiento">
+
+                                        <input type="datetime-local" class="form-control" id="desistimiento"
+                                            name="desistimiento">
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
+                                    <label for="proceso_de_resolucion"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Proceso
+                                        De Resolucion</label>
+                                    <li class="d-flex align-items-center gap-2 mb-4">
+
+                                        <input type="datetime-local" class="form-control" id="proceso_de_resolucion"
+                                            name="proceso_de_resolucion">
+                                    </li>
+                                </div>
+                                <div class="col-12 col-sm-3 mt-2">
+                                    <label for="cambio_de_titular"
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Cambio
+                                        De Titular</label>
+                                    <li class="d-flex align-items-center gap-2 mb-4">
+
+                                        <input type="datetime-local" class="form-control" id="cambio_de_titular"
+                                            name="cambio_de_titular">
+                                    </li>
+                                </div>
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="comisiones"
                                         class="control-label border-bottom border-primary custom-cursor-default-hover">Comisiones</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span class="p-1 rounded-circle text-bg-primary"></span>
-                                        <input type="datetime-local" class="form-control" id="comisiones" name="comisiones">
+
+                                        <input type="datetime-local" class="form-control" id="comisiones"
+                                            name="comisiones">
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="cantidad_de_letras"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Cantidad De Letras</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Cantidad
+                                        De Letras</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                      <select name="cantidad_de_letras" id="cantidad_de_letras" class="form-control">
-                                        <option value="24">24</option>
-                                        <option value="36">36</option>
-                                        <option value="48">48</option>
-                                      </select>
+                                        <select name="cantidad_de_letras" id="cantidad_de_letras" class="form-control">
+                                            <option value="24">24</option>
+                                            <option value="36">36</option>
+                                            <option value="48">48</option>
+                                        </select>
 
                                     </li>
                                 </div>
-                                <div class="col-12 col-sm-4 mt-2">
+                                <div class="col-12 col-sm-3 mt-2">
                                     <label for="letras_verificadas"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Letras Verificadas</label>
+                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Letras
+                                        Verificadas</label>
                                     <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span id="letras_verificadas_2" name="letras_verificadas_2">ww</span>
+                                        <span id="letras_verificadas_2" name="letras_verificadas_2"></span>
                                         <select name="letras_verificadas" id="letras_verificadas" class="form-control">
                                             <option value="">Seleccione una opción</option>
                                             <option value="aprobada">Aprobada</option>
@@ -422,7 +515,8 @@
                                             <option value="aceptada">Aceptada</option>
                                             <option value="corregidas">Corregidas</option>
                                             <option value="anulado">Anulado</option>
-                                            <option value="devolucion">Devolvieron contratos para aplazamiento de firma</option>
+                                            <option value="devolucion">Devolvieron contratos para aplazamiento de firma
+                                            </option>
                                             <option value="letras_verificadas">Letras Verificadas</option>
                                         </select>
                                     </li>
@@ -432,7 +526,27 @@
                         </div>
 
 
+                        <div class="row">
+                            <div class="col-3"> <input type="button" value="Nuevo" class="btn w-100 btn-primary"
+                                    onclick="New();$('#Customer')[0].reset();" name="new"></div>
+                            <div class="col-3">
+                                @canany(['administrar', 'agregar'])
+                                    <input type="button" value="Guardar" class="w-100 btn bg-success-subtle text-success "
+                                        onclick="CustomerStore()" id="create">
+                                @endcanany
+                            </div>
+                            <div class="col-3">
+                                @canany(['administrar', 'actualizar'])
+                                    <input type="button" value="Modificar" class="w-100 btn bg-danger-subtle text-danger"
+                                        onclick="CustomerUpdate();" id="update">
+                                @endcanany
+                            </div>
+                            <div class="col-3">
+                                <button type="button" class="w-100 btn btn-secondary"
+                                    data-bs-dismiss="modal">Cerrar</button>
 
+                            </div>
+                        </div>
 
 
 
@@ -454,15 +568,10 @@
                             </div>
                         </div>
 
-                        <input type="button" value="Nuevo" class="btn btn-primary"
-                        onclick="New();$('#Customer')[0].reset();" name="new">
-                    @canany(['administrar', 'agregar'])<input type="button" value="Guardar" class="btn bg-success-subtle text-success "
-                        onclick="CustomerStore()" id="create">@endcanany
-                        @canany(['administrar', 'actualizar'])
-                    <input type="button" value="Modificar" class="btn bg-danger-subtle text-danger" onclick="CustomerUpdate();"
-                        id="update">
-                        @endcanany
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+
+
+
 
 
                         </form>

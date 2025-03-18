@@ -13,28 +13,35 @@ use App\Models\Business_partner;
 use App\Models\Editor;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\CustomerNotification;
+use stdClass;
+use Carbon\Carbon;
 class CustomerController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $Customer = Customer::orderBy('id','DESC')->paginate("10");
-        $Project = Project::orderBy('id','DESC')->get();
-        $state = Status::orderBy('id','DESC')->get();
-        $business_partner = Business_partner::orderBy('id','DESC')->get();
-        $editor = Editor::orderBy('id','DESC')->get();
-        return view('Customer.Customer', compact('Customer',"Project",'state','business_partner','editor'));
-    }
+        $Customer = Customer::orderBy('id', 'DESC')->paginate('10');
+        $Project = Project::orderBy('id', 'DESC')->get();
+        $state = Status::orderBy('id', 'DESC')->get();
+        $business_partner = Business_partner::orderBy('id', 'DESC')->get();
+        $editor = Editor::orderBy('id', 'DESC')->get();
 
+        return view('Customer.Customer', compact('Customer', 'Project', 'state', 'business_partner', 'editor'));
+    }
+    public function dashboard()
+    {
+
+        $count = $this->count();
+        return view('Customer.Customer_dashboard', compact('count'));
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        $Customer = Customer::orderBy('id','DESC')->get();
+        $Customer = Customer::orderBy('id', 'DESC')->get();
         return view('Customer.Customertable', compact('Customer'));
     }
 
@@ -43,7 +50,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $Customer = new Customer;
+        $Customer = new Customer();
         $Customer->firstname = $request->firstname;
         $Customer->lastname = $request->lastname;
         $Customer->names = $request->names;
@@ -56,7 +63,7 @@ class CustomerController extends Controller
     }
     public function storePublic(StoreCustomerRequest $request)
     {
-    //      funciona localmente con hos
+        //      funciona localmente con hos
         // $user = User::find(3); // Encuentra al usuario que recibirá la notificación
         // $user->notify(new CustomerNotification());
         //  $name_ =$request->names;
@@ -70,23 +77,19 @@ class CustomerController extends Controller
 
         $data = $request->validated();
 
-
-       $Customer = new Customer;
+        $Customer = new Customer();
         //data es un array
-        $Customer->names = $data["names"];
-        $Customer->dni = $data["dni"];
-        $Customer->project_id = $data["project_id"];
-        $Customer->cellphone = $data["code_country"]. $data["cellphone"];
-        $Customer->message = $data["message"] ?? '';
+        $Customer->names = $data['names'];
+        $Customer->dni = $data['dni'];
+        $Customer->project_id = $data['project_id'];
+        $Customer->cellphone = $data['code_country'] . $data['cellphone'];
+        $Customer->message = $data['message'] ?? '';
 
         $Customer->save();
-
-
-
     }
     public function ProjectList()
     {
-        $Project = Project::orderBy('id','DESC')->get();
+        $Project = Project::orderBy('id', 'DESC')->get();
         return $Project;
     }
     /**
@@ -111,7 +114,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request)
     {
-        $Customer =  Customer::find($request->id);
+        $Customer = Customer::find($request->id);
         $Customer->firstname = $request->firstname;
         $Customer->lastname = $request->lastname;
         $Customer->names = $request->names;
@@ -131,4 +134,30 @@ class CustomerController extends Controller
         Customer::find($request->id)->delete();
         return $this->create();
     }
+    public function count()
+    {
+        $count = new stdClass();
+
+        $count->project_customer_count = Customer::join('projects', 'customers.project_id', '=', 'projects.id')
+        ->select('projects.id','projects.description', \DB::raw('count(*) as count'))
+        ->groupBy('projects.description','projects.id')
+        ->orderByDesc('count')
+        ->get(); // No usar `count()`, sino `get()` para obtener los datos agrupados
+
+        $count->project_editor_count = Customer::join('editors', 'customers.editors_id', '=', 'editors.id')
+        ->select('editors.id','editors.description', \DB::raw('count(*) as count'))
+        ->groupBy('editors.description','editors.id')
+        ->orderByDesc('count')
+        ->get();
+        $count->project_business_count = Customer::join('business_partners', 'customers.business_partners_id', '=', 'business_partners.id')
+        ->select('business_partners.id','business_partners.description', \DB::raw('count(*) as count'))
+        ->groupBy('business_partners.description','business_partners.id')
+        ->orderByDesc('count')
+        ->get();
+
+
+
+        return $count;
+    }
+
 }

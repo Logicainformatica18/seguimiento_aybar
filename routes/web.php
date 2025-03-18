@@ -69,18 +69,7 @@ Auth::routes();
    Route::get('blog/topicPublic', [App\Http\Controllers\TopicPublicController::class, 'index']);
 
 
-// Route::get('/nosotros', function () {
-//     return view("production.3");
-// });
-// Route::get('/proyectos', function () {
-//     return view("production.4");
-// });
-// Route::get('/blog', function () {
-//     return view("production.5");
-// });
-// Route::get('/contacto', function () {
-//     return view("production.6");
-// });
+
 
 
 
@@ -102,16 +91,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function () {
     //
-    Route::get('/sistema', [App\Http\Controllers\HomeController::class, 'sistema'])->name('sistema')->middleware('permission:administrar');
+    // Route::get('/sistema', [App\Http\Controllers\HomeController::class, 'sistema'])->name('sistema')->middleware('permission:administrar');
 
 
     Route::get('admin', [App\Http\Controllers\UserController::class, 'profile']);
 
-    Route::get('admin/clientes', [App\Http\Controllers\CustomerController::class, 'index'])->middleware('permission:administrar|clientes');
+    Route::get('clientes', [App\Http\Controllers\CustomerController::class, 'index'])->middleware('permission:administrar|clientes');
     Route::post('CustomerStore', [App\Http\Controllers\CustomerController::class, 'store'])->middleware('permission:administrar|agregar');
     Route::post('CustomerDestroy', [App\Http\Controllers\CustomerController::class, 'destroy'])->middleware('permission:administrar|eliminar');
     Route::post('CustomerEdit', [App\Http\Controllers\CustomerController::class, 'edit'])->middleware('permission:administrar|editar');
     Route::post('CustomerUpdate', [App\Http\Controllers\CustomerController::class, 'update'])->middleware('permission:administrar|actualizar');
+
+    Route::get('admin/clientes_dashboard', [App\Http\Controllers\CustomerController::class, 'dashboard'])->middleware('permission:administrar|dashboard');
+
+
 
     Route::get('admin/imagenes', [App\Http\Controllers\ImageController::class, 'index'])->middleware('permission:administrar|imagenes');
     Route::post('ImageStore', [App\Http\Controllers\ImageController::class, 'store'])->middleware('permission:administrar|agregar');
@@ -356,143 +349,4 @@ Route::get('google_sheet', [\App\Http\Controllers\GoogleSheetController::class, 
 
 //925680958 936158747
 
-
-
-
-
-
-use Illuminate\Support\Facades\Session;
-
-Route::get('/get-thread-id', function () {
-    $apiKey = env('OPENAI_API_KEY'); // Clave API de OpenAI
-    $url = 'https://api.openai.com/v1/threads/runs';
-
-    $data = [
-        "assistant_id" =>   "asst_4g8T8GyJPii6NDHcBUxfju9M", // Reemplaza con tu ID real
-        "thread" => [
-            "messages" => [
-                ["role" => "user", "content" => "Eres un experto en cursos de programación"]
-            ]
-        ]
-    ];
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "Authorization: Bearer $apiKey",
-        "Content-Type: application/json",
-        "OpenAI-Beta: assistants=v2",
-    ]);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-
-    $response = json_decode(curl_exec($ch), true);
-    curl_close($ch);
-
-    if (isset($response['thread_id'])) {
-        // Guardar el `thread_id` en la sesión
-        Session::put('thread_id', $response['thread_id']);
-        Session::put('expires_at', $response['expires_at']); // Almacenar la fecha de expiración si está disponible
-        return response()->json(['message' => 'Thread ID obtenido.', 'thread_id' => $response['thread_id']]);
-    }
-
-    return response()->json(['error' => 'No se pudo obtener el thread_id.'], 500);
-});
-
-Route::post('/send-message', function (\Illuminate\Http\Request $request) {
-    $apiKey = env('OPENAI_API_KEY'); // Tu clave API de OpenAI
-
-    // Recuperar el `thread_id` desde la sesión
-    $threadId = Session::get('thread_id');
-    if (!$threadId) {
-        return response()->json(['error' => 'No hay un thread_id activo. Por favor, obtén un nuevo hilo.'], 400);
-    }
-
-    // Construir la URL con el `thread_id`
-    $url = "https://api.openai.com/v1/threads/{$threadId}/messages";
-
-    // Cuerpo de la solicitud (mensaje del usuario)
-    $data = [
-        "role" => "user",
-        "content" => $request->input('message') // Mensaje enviado por el usuario desde el frontend
-    ];
-
-    // Configuración de cURL
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "Authorization: Bearer $apiKey",      // Clave de autorización
-        "Content-Type: application/json",    // Tipo de contenido
-        "OpenAI-Beta: assistants=v2"         // Cambiado a v2
-    ]);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data)); // Convertir datos a JSON
-
-    // Ejecutar la solicitud
-    $response = curl_exec($ch);
-    $error = curl_error($ch);
-    curl_close($ch);
-
-    // Manejar errores de cURL
-    if ($error) {
-        return response()->json(['error' => "cURL error: $error"], 500);
-    }
-
-    // Decodificar la respuesta JSON
-    $responseData = json_decode($response, true);
-
-    // Verificar si hay errores en la respuesta de OpenAI
-    if (isset($responseData['error'])) {
-        return response()->json(['error' => $responseData['error']], 500);
-    }
-
-    // Devolver la respuesta de OpenAI
-    return response()->json(['message' => 'Respuesta recibida.', 'response' => $responseData]);
-});
-
-
-
-Route::get('/get-thread-messages', function () {
-    $apiKey = env('OPENAI_API_KEY'); // Asegúrate de tener tu clave API en el archivo .env
-    $threadId = Session::get('thread_id'); // Recupera el thread_id de la sesión
-
-    if (!$threadId) {
-        return response()->json(['error' => 'No hay un thread_id activo. Por favor, obtén un nuevo hilo.'], 400);
-    }
-
-    // Construye la URL con el thread_id
-    $url = "https://api.openai.com/v1/threads/{$threadId}/messages";
-
-    // Configuración de cURL
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "Authorization: Bearer $apiKey",
-        "Content-Type: application/json",
-        "OpenAI-Beta: assistants=v2"
-    ]);
-
-    // Ejecuta la solicitud
-    $response = curl_exec($ch);
-    $error = curl_error($ch);
-    curl_close($ch);
-
-    // Manejo de errores de cURL
-    if ($error) {
-        return response()->json(['error' => "cURL error: $error"], 500);
-    }
-
-    $responseData = json_decode($response, true);
-
-    // Manejo de errores de OpenAI
-    if (isset($responseData['error'])) {
-        return response()->json(['error' => $responseData['error']], 500);
-    }
-
-    // Devuelve la respuesta de OpenAI
-    return response()->json(['messages' => $responseData]);
-});
 
