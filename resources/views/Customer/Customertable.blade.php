@@ -45,7 +45,7 @@
             <th>Comisiones</th>
             <th>Cantidad de Letras</th>
             <th>Letras Verificadas</th>
-            <th>Observaciones</th>
+
 
 
 
@@ -125,7 +125,7 @@
             <td>{{ $Customers->comisiones }}</td>
             <td>{{ $Customers->cantidad_de_letras }}</td>
             <td>{{ $Customers->letras_verificadas }}</td>
-            <td>{{ $Customers->observaciones }}</td>
+
 
 
 
@@ -135,7 +135,58 @@
             </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
 
+
+            <th><img width="20" src="https://cdn-icons-png.flaticon.com/512/6671/6671938.png" alt=""
+                    srcset=""></th>
+            <th>ID</th>
+
+
+            <th>Proyecto</th>
+            <th>Lote</th>
+            <th>Aux</th>
+            <th>Cliente_1</th>
+            <th>Dni_1</th>
+
+            <th>Socio comercial</th>
+
+            <th>Fecha de Separación</th>
+            <th>Precio de Lista de Inventario</th>
+            <th>Descuento %</th>
+            <th>Importe de Venta</th>
+            <th>Estado</th>
+            <th>Dias_1</th>
+            <th>Redactado Por</th>
+            <th>Fecha Redactado</th>
+            <th>Ingreso a Operaciones</th>
+
+            <th>Recogido no devuelto</th>
+            <th>Dias_2</th>
+            <th>Fecha Contrato Firmado Devueldo</th>
+            <th>Adenda Refinanciamiento</th>
+            <th>j2</th>
+            <th>Enviado a archivo</th>
+            <th>Virtual</th>
+            <th>Notaria</th>
+            <th>Chincha</th>
+            <th>Post Venta</th>
+            <th>Proceso de desistimiento</th>
+            <th>Proceso de Resolución</th>
+            <th>Cambio de Titular</th>
+            <th>Desistimiento</th>
+            <th>Comisiones</th>
+            <th>Cantidad de Letras</th>
+            <th>Letras Verificadas</th>
+
+
+
+
+
+
+        </tr>
+    </tfoot>
 </table>
 </div>
 

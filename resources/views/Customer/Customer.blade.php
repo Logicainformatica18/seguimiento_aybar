@@ -28,6 +28,185 @@
                         </div>
                     </div>
                 </div>
+
+                <span>* Elegir <b>Filtrar por Fecha</b> para aplicar el cambio</span>
+                <form action=""id="filter" name="filter">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button bg-dark text-white" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne">
+                                Filtros Avanzados (Expandible)
+                            </button>
+
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse  " data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <!-- Primera Fila -->
+                                <div class="row text-center">
+                                    <div class="col-6 mb-2">
+                                        <label for="proyecto" class="form-label fw-bold">Proyecto</label>
+                                        <select name="proyecto" id="proyecto" class="form-control">
+                                            <option value="%" {{ request('proyecto') == '' ? 'selected' : '' }}>Todos
+                                            @foreach ($Project as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ request('proyecto') == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->description }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-6 mb-2">
+                                        <label for="estado" class="form-label fw-bold">Estado</label>
+                                        <select name="estado" id="state_filter" class="form-control">
+                                            <option value="%" {{ request('estado') == '' ? 'selected' : '' }}>Todos
+                                            @foreach ($state as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ request('estado') == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->description }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <!-- Motivo -->
+                                    <!-- Botón Filtrar -->
+                                    <div class="col-4">
+                                        <label for="socio_comercial" class="form-label fw-bold">Socio Comercial</label>
+                                        <select name="socio_comercial" id="socio_comercial" class="form-control">
+
+                                                <option value="%" {{ request('socio_comerical') == '' ? 'selected' : '' }}>Todos
+                                            @foreach ($business_partner as $a)
+                                                <option value="{{ $a->id }}"
+                                                    {{ request('socio_comercial') == $a->id ? 'selected' : '' }}>
+                                                    {{ $a->description }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+
+
+
+
+
+                                    <div class="col-4">
+                                        <label for="letras_verificada" class="form-label fw-bold">Letras Verificadas</label>
+
+                                        <select name="letras_verificada" id="letras_verificada" class="form-control">
+                                            <option value="%" {{ request('letras_verificada') == '' ? 'selected' : '' }}>Todos
+                                            </option>
+                                            @foreach ($letras_verificadas as $item)
+                                                <option value="%{{$item->letras_verificadas}}%"
+                                                    {{ request('letras_verificada') == $item->letras_verificadas ? 'selected' : '' }}>
+                                                    {{ $item->letras_verificadas }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="editor_query" class="form-label fw-bold">Redactado por</label>
+
+                                        <select name="editor_query" id="editor_query" class="form-control">
+                                            <option value="%" {{ request('editor_query') == '' ? 'selected' : '' }}>Todos
+                                            </option>
+                                            @foreach ($editor as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ request('editor_query') == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->description }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="mt-3 row text-center align-items-center">
+                                    <div class="col-2 text-start">
+                                        <label class="fw-bold">Fecha de Separación</label>
+                                    </div>
+
+                                    <div class="col-1">
+
+                                        <input type="date" name="separacion_inicio"id="separacion_inicio" class="form-control"
+                                            value="{{ request('separacion_inicio') }}">
+                                    </div>
+                                    <div class="col-1">
+
+                                        <input type="date" name="separacion_fin"id="separacion_fin" class="form-control"
+                                            value="{{ request('separacion_fin') }}">
+                                    </div>
+
+
+                                    <div class="col-2 text-start">
+                                        <label class="fw-bold">Fecha Ingreso a Operaciones</label>
+                                    </div>
+                                    <div class="col-1">
+
+                                        <input type="date" name="date_start_gen" class="form-control"
+                                            value="{{ request('date_start_gen') }}">
+                                    </div>
+                                    <div class="col-1">
+
+                                        <input type="date" name="date_end_gen" class="form-control"
+                                            value="{{ request('date_end_gen') }}">
+                                    </div>
+
+                                    <div class="col-1 text-start">
+                                        <label class="fw-bold">Fecha Reprogramación</label>
+                                    </div>
+                                    <div class="col-1">
+                                        <select name="date_reprog" id="date_reprog"
+                                            class="form-control"onchange="activateInput_2();">
+                                            <option value="" {{ request('date_reprog') == '' ? 'selected' : '' }}>
+                                                Todo</option>
+                                            <option value="Vence_hoy"
+                                                {{ request('date_repro') == 'Vence_hoy' ? 'selected' : '' }}>Vence Hoy
+                                            </option>
+                                            <option value="Con Reprogramación"
+                                                {{ request('date_reprog') == 'Con Reprogramación' ? 'selected' : '' }}>
+                                                Con Reprogramación</option>
+                                            <option value="Sin Reprogramación"
+                                                {{ request('date_reprog') == 'Sin Reprogramación' ? 'selected' : '' }}>
+                                                Sin Reprogramación</option>
+                                            <option value="Segun_tramite"
+                                                {{ request('date_reprog') == 'Segun_tramite' ? 'selected' : '' }}>Según
+                                                el Trámite</option>
+                                            <option value="Filtrar por Fecha"
+                                                {{ request('date_reprog') == 'Filtrar por Fecha' ? 'selected' : '' }}>
+                                                Filtrar por Fecha</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-1">
+
+                                        <input type="date" name="date_start_reprog" id="date_start_reprog"
+                                            class="form-control" value="{{ request('date_start_reprog') }}" disabled>
+                                    </div>
+                                    <div class="col-1">
+
+                                        <input type="date" name="date_end_reprog"id="date_end_reprog"
+                                            class="form-control" value="{{ request('date_end_reprog') }}" disabled>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mt-3 row text-start align-items-center">
+
+                                    <div class="col-12">
+                                        <button type="submit" class="w-100 btn btn-success">Filtrar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                </form>
             </div>
 
             <div class="datatables">

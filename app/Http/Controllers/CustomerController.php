@@ -20,19 +20,53 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $Customer = Customer::orderBy('id', 'DESC')->paginate('10');
+        $motivo = $request->query('motivo', '');
+        $proyecto = $request->query('proyecto', '');
+        $estado = $request->query('estado', '');
+        $socio_comercial = $request->query('socio_comercial', '');
+        $letras_verificada = $request->query('letras_verificada', '');
+        $editor_query = $request->query('editor_query', ''); // Renombrado
+
         $Project = Project::orderBy('id', 'DESC')->get();
         $state = Status::orderBy('id', 'DESC')->get();
         $business_partner = Business_partner::orderBy('id', 'DESC')->get();
-        $editor = Editor::orderBy('id', 'DESC')->get();
+        $editor = Editor::orderBy('id', 'DESC')->get(); // No sobrescribe la variable del request
+        $letras_verificadas = Customer::select('letras_verificadas')
+            ->orderBy('letras_verificadas', 'asc')
+            ->where('letras_verificadas', '<>', '')
+            ->distinct()
+            ->get();
 
-        return view('Customer.Customer', compact('Customer', 'Project', 'state', 'business_partner', 'editor'));
+            $Customer = Customer::query()
+            ->join('projects', 'customers.project_id', '=', 'projects.id') // Unir la tabla projects
+            ->with('Project');
+
+        // Aplicar filtros si hay valores en la query
+        if (!empty($proyecto)) {
+            $Customer->where('customers.project_id',"like", $proyecto); // Convertimos en array si es necesario
+        }
+        if (!empty($estado)) {
+            $Customer->where('customers.state_id',"like", $estado); // Convertimos en array si es necesario
+        }
+        if (!empty($socio_comercial)) {
+            $Customer->where('customers.business_partners_id',"like", $socio_comercial); // Convertimos en array si es necesario
+        }
+        if (!empty($letras_verificada)) {
+            $Customer->where('customers.letras_verificadas',"like", $letras_verificada); // Convertimos en array si es necesario
+        }
+        if (!empty($editor_query)) {
+            $Customer->where('customers.editors_id',"like", $editor_query); // Convertimos en array si es necesario
+        }
+
+        $Customer = $Customer->orderBy('customers.id', 'DESC')->paginate(10)->appends($request->query());
+
+
+        return view('Customer.Customer', compact('Customer', 'Project', 'state', 'business_partner', 'editor', 'letras_verificadas'));
     }
     public function dashboard()
     {
-
         $count = $this->count();
         return view('Customer.Customer_dashboard', compact('count'));
     }
@@ -138,26 +172,11 @@ class CustomerController extends Controller
     {
         $count = new stdClass();
 
-        $count->project_customer_count = Customer::join('projects', 'customers.project_id', '=', 'projects.id')
-        ->select('projects.id','projects.description', \DB::raw('count(*) as count'))
-        ->groupBy('projects.description','projects.id')
-        ->orderByDesc('count')
-        ->get(); // No usar `count()`, sino `get()` para obtener los datos agrupados
+        $count->project_customer_count = Customer::join('projects', 'customers.project_id', '=', 'projects.id')->select('projects.id', 'projects.description', \DB::raw('count(*) as count'))->groupBy('projects.description', 'projects.id')->orderByDesc('count')->get(); // No usar `count()`, sino `get()` para obtener los datos agrupados
 
-        $count->project_editor_count = Customer::join('editors', 'customers.editors_id', '=', 'editors.id')
-        ->select('editors.id','editors.description', \DB::raw('count(*) as count'))
-        ->groupBy('editors.description','editors.id')
-        ->orderByDesc('count')
-        ->get();
-        $count->project_business_count = Customer::join('business_partners', 'customers.business_partners_id', '=', 'business_partners.id')
-        ->select('business_partners.id','business_partners.description', \DB::raw('count(*) as count'))
-        ->groupBy('business_partners.description','business_partners.id')
-        ->orderByDesc('count')
-        ->get();
-
-
+        $count->project_editor_count = Customer::join('editors', 'customers.editors_id', '=', 'editors.id')->select('editors.id', 'editors.description', \DB::raw('count(*) as count'))->groupBy('editors.description', 'editors.id')->orderByDesc('count')->get();
+        $count->project_business_count = Customer::join('business_partners', 'customers.business_partners_id', '=', 'business_partners.id')->select('business_partners.id', 'business_partners.description', \DB::raw('count(*) as count'))->groupBy('business_partners.description', 'business_partners.id')->orderByDesc('count')->get();
 
         return $count;
     }
-
 }
