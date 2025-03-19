@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <span>* Elegir <b>Filtrar por Fecha</b> para aplicar el cambio</span>
+
                 <form action=""id="filter" name="filter">
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
@@ -127,13 +127,13 @@
 
                                     <div class="col-1">
 
-                                        <input type="date" name="separacion_inicio"id="separacion_inicio" class="form-control"
-                                            value="{{ request('separacion_inicio') }}">
+                                        <input type="date" name="separation_start"id="separation_start" class="form-control"
+                                            value="{{ request('separation_start') }}">
                                     </div>
                                     <div class="col-1">
 
-                                        <input type="date" name="separacion_fin"id="separacion_fin" class="form-control"
-                                            value="{{ request('separacion_fin') }}">
+                                        <input type="date" name="separation_end"id="separation_end" class="form-control"
+                                            value="{{ request('separation_end') }}">
                                     </div>
 
 

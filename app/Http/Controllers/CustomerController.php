@@ -28,12 +28,17 @@ class CustomerController extends Controller
         $socio_comercial = $request->query('socio_comercial', '');
         $letras_verificada = $request->query('letras_verificada', '');
         $editor_query = $request->query('editor_query', ''); // Renombrado
+        $separation_start = $request->query('separation_start', '');
+        $separation_end = $request->query('separation_end', '');
 
         $Project = Project::orderBy('id', 'DESC')->get();
         $state = Status::orderBy('id', 'DESC')->get();
         $business_partner = Business_partner::orderBy('id', 'DESC')->get();
         $editor = Editor::orderBy('id', 'DESC')->get(); // No sobrescribe la variable del request
-        $letras_verificadas = Customer::select('letras_verificadas')->orderBy('letras_verificadas', 'asc')->where('letras_verificadas', '<>', '')->distinct()->get();
+        $letras_verificadas = Customer::select('letras_verificadas')
+            ->orderBy('letras_verificadas', 'asc')
+            ->where('letras_verificadas', '<>', '')
+            ->distinct()->get();
 
         $Customer = Customer::query();
 
@@ -52,6 +57,11 @@ class CustomerController extends Controller
         }
         if (!empty($editor_query)) {
             $Customer->where('customers.editors_id', 'like', $editor_query);
+        }
+
+        //////////////////// filtro de fechas//////////
+        if (!empty($separation_start) && !empty($separation_end)) {
+            $Customer->whereBetween('fecha_de_separacion', [$separation_start, $separation_end]);
         }
 
         $Customer = $Customer->orderBy('customers.id', 'DESC')->paginate(10)->appends($request->query());
@@ -81,9 +91,9 @@ class CustomerController extends Controller
                     ->orWhere('dni_4', 'like', "%$criterio%")
                     ->orWhere('cliente_5', 'like', "%$criterio%")
                     ->orWhere('dni_5', 'like', "%$criterio%");
-                    // ->orWhereHas('customer', function ($subquery) use ($criterio) {
-                    //     $subquery->where('razon_social', 'like', "%$criterio%");
-                    // });
+                // ->orWhereHas('customer', function ($subquery) use ($criterio) {
+                //     $subquery->where('razon_social', 'like', "%$criterio%");
+                // });
             })
             ->orderBy('customers.id', 'asc')
             ->paginate(10);
