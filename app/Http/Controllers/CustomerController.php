@@ -22,7 +22,7 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
-        $motivo = $request->query('motivo', '');
+
         $proyecto = $request->query('proyecto', '');
         $estado = $request->query('estado', '');
         $socio_comercial = $request->query('socio_comercial', '');
@@ -35,9 +35,7 @@ class CustomerController extends Controller
         $editor = Editor::orderBy('id', 'DESC')->get(); // No sobrescribe la variable del request
         $letras_verificadas = Customer::select('letras_verificadas')->orderBy('letras_verificadas', 'asc')->where('letras_verificadas', '<>', '')->distinct()->get();
 
-        $Customer = Customer::query()
-            ->join('projects', 'customers.project_id', '=', 'projects.id') // Unir la tabla projects
-            ->with('Project');
+        $Customer = Customer::query();
 
         // Aplicar filtros si hay valores en la query
         if (!empty($proyecto)) {
