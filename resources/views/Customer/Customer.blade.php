@@ -142,17 +142,17 @@
                                     </div>
                                     <div class="col-1">
 
-                                        <input type="date" name="date_start_gen" class="form-control"
-                                            value="{{ request('date_start_gen') }}">
+                                        <input type="date" name="operation_start" class="form-control"
+                                            value="{{ request('operation_start') }}">
                                     </div>
                                     <div class="col-1">
 
-                                        <input type="date" name="date_end_gen" class="form-control"
-                                            value="{{ request('date_end_gen') }}">
+                                        <input type="date" name="operation_end" class="form-control"
+                                            value="{{ request('operation_end') }}">
                                     </div>
 
-                                    <div class="col-1 text-start">
-                                        <label class="fw-bold">Fecha Reprogramación</label>
+                                    {{-- <div class="col-1 text-start">
+
                                     </div>
                                     <div class="col-1">
                                         <select name="date_reprog" id="date_reprog"
@@ -175,19 +175,114 @@
                                                 {{ request('date_reprog') == 'Filtrar por Fecha' ? 'selected' : '' }}>
                                                 Filtrar por Fecha</option>
                                         </select>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="col-1">
-
-                                        <input type="date" name="date_start_reprog" id="date_start_reprog"
-                                            class="form-control" value="{{ request('date_start_reprog') }}" disabled>
+                                    <div class="col-2 text-start">
+                                        <label class="fw-bold ">Fecha Redactado</label>
                                     </div>
                                     <div class="col-1">
 
-                                        <input type="date" name="date_end_reprog"id="date_end_reprog"
-                                            class="form-control" value="{{ request('date_end_reprog') }}" disabled>
+                                        <input type="date" name="rewritten_start" id="rewritten_start"
+                                            class="form-control" value="{{ request('rewritten_start') }}"  >
+                                    </div>
+                                    <div class="col-1">
+
+                                        <input type="date" name="rewritten_end"id="rewritten_end"
+                                            class="form-control" value="{{ request('rewritten_end') }}"  >
                                     </div>
 
+
+                                    <div class="col-2 mt-2 text-start">
+                                        <label class="fw-bold ">Recogido no devuelto</label>
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="recogido_no_devuelto_start" id="recogido_no_devuelto_start"
+                                            class="form-control" value="{{ request('recogido_no_devuelto_start') }}"  >
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="recogido_no_devuelto_end"id="recogido_no_devuelto_end"
+                                            class="form-control" value="{{ request('recogido_no_devuelto_end') }}"  >
+                                    </div>
+                                    <div class="col-2 mt-2 text-start">
+                                        <label class="fw-bold ">Fecha contrato firmado devuelto</label>
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="f_contrato_firmado_devuelto_start" id="f_contrato_firmado_devuelto_start"
+                                            class="form-control" value="{{ request('f_contrato_firmado_devuelto_start') }}"  >
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="f_contrato_firmado_devuelto_end"id="f_contrato_firmado_devuelto_end"
+                                            class="form-control" value="{{ request('f_contrato_firmado_devuelto_end') }}"  >
+                                    </div>
+                                    <div class="col-2 mt-2 text-start">
+                                        <label class="fw-bold ">Enviado a Archivo</label>
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="enviado_archivo_start" id="enviado_archivo_start"
+                                            class="form-control" value="{{ request('enviado_archivo_start') }}"  >
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="enviado_archivo_end"id="enviado_archivo_end"
+                                            class="form-control" value="{{ request('enviado_archivo_end') }}"  >
+                                    </div>
+                                    <div class="col-2 mt-2 text-start">
+                                        <label class="fw-bold ">Fecha Desistimiento</label>
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="f_desistimiento_start" id="f_desistimiento_start"
+                                            class="form-control" value="{{ request('f_desistimiento_start') }}"  >
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="f_desistimiento_end"id="f_desistimiento_end"
+                                            class="form-control" value="{{ request('f_desistimiento_end') }}"  >
+                                    </div>
+                                    <div class="col-2 mt-2 text-start">
+                                        <label class="fw-bold ">Fecha Notaría</label>
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="notaria_start" id="notaria_start"
+                                            class="form-control" value="{{ request('notaria_start') }}"  >
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="notaria_end"id="notaria_end"
+                                            class="form-control" value="{{ request('notaria_end') }}"  >
+                                    </div>
+                                    <div class="col-2 mt-2 text-start">
+                                        <label class="fw-bold ">Fecha Chincha</label>
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="chincha_start" id="chincha_start"
+                                            class="form-control" value="{{ request('chincha_start') }}"  >
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="chincha_end"id="chincha_end"
+                                            class="form-control" value="{{ request('chincha_end') }}"  >
+                                    </div>
+                                    <div class="col-2 mt-2 text-start">
+                                        <label class="fw-bold ">Fecha Post Venta</label>
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="post_venta_start" id="post_venta_start"
+                                            class="form-control" value="{{ request('post_venta_start') }}"  >
+                                    </div>
+                                    <div class="col-1 mt-2">
+
+                                        <input type="date" name="post_venta_end"id="post_venta_end"
+                                            class="form-control" value="{{ request('post_venta_end') }}"  >
+                                    </div>
                                 </div>
 
 

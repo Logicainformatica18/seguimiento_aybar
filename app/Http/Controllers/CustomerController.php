@@ -14,6 +14,7 @@ use App\Models\Editor;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\CustomerNotification;
 use stdClass;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 class CustomerController extends Controller
 {
@@ -30,6 +31,25 @@ class CustomerController extends Controller
         $editor_query = $request->query('editor_query', ''); // Renombrado
         $separation_start = $request->query('separation_start', '');
         $separation_end = $request->query('separation_end', '');
+        $operation_start = $request->query('operation_start', '');
+        $operation_end = $request->query('operation_end', '');
+        $rewritten_start = $request->query('rewritten_start', '');
+        $rewritten_end = $request->query('rewritten_end', '');
+        $recogido_no_devuelto_start = $request->query('recogido_no_devuelto_start', '');
+        $recogido_no_devuelto_end = $request->query('recogido_no_devuelto_end', '');
+        $f_contrato_firmado_devuelto_start = $request->query('f_contrato_firmado_devuelto_start', '');
+        $f_contrato_firmado_devuelto_end = $request->query('f_contrato_firmado_devuelto_end', '');
+        $enviado_archivo_start = $request->query('enviado_archivo_start', '');
+        $enviado_archivo_end = $request->query('enviado_archivo_end', '');
+        $f_desistimiento_start = $request->query('f_desistimiento_start', '');
+        $f_desistimiento_end = $request->query('f_desistimiento_end', '');
+
+        $notaria_start = $request->query('notaria_start', '');
+        $notaria_end = $request->query('notaria_end', '');
+        $chincha_start = $request->query('chincha_start', '');
+        $chincha_end = $request->query('chincha_end', '');
+        $post_venta_start = $request->query('post_venta_start', '');
+        $post_venta_end = $request->query('post_venta_end', '');
 
         $Project = Project::orderBy('id', 'DESC')->get();
         $state = Status::orderBy('id', 'DESC')->get();
@@ -61,7 +81,34 @@ class CustomerController extends Controller
 
         //////////////////// filtro de fechas//////////
         if (!empty($separation_start) && !empty($separation_end)) {
-            $Customer->whereBetween('fecha_de_separacion', [$separation_start, $separation_end]);
+            $Customer   ->whereBetween(DB::raw('CAST(fecha_de_separacion AS DATE)'), [$separation_start, $separation_end]);
+        }
+        if (!empty($operation_start) && !empty($operation_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(ingreso_a_operaciones AS DATE)'), [$operation_start, $operation_end]);
+        }
+        if (!empty($rewritten_start) && !empty($rewritten_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(redactado AS DATE)'), [$rewritten_start, $rewritten_end]);
+        }
+        if (!empty($recogido_no_devuelto_start) && !empty($recogido_no_devuelto_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(recogido_no_devuelto AS DATE)'), [$recogido_no_devuelto_start, $recogido_no_devuelto_end]);
+        }
+        if (!empty($f_contrato_firmado_devuelto_start) && !empty($f_contrato_firmado_devuelto_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(recogido_no_devuelto AS DATE)'), [$f_contrato_firmado_devuelto_start, $f_contrato_firmado_devuelto_end]);
+        }
+        if (!empty($enviado_archivo_start) && !empty($enviado_archivo_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(enviado_a_archivo AS DATE)'), [$enviado_archivo_start, $enviado_archivo_end]);
+        }
+        if (!empty($f_desistimiento_start) && !empty($f_desistimiento_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(desistimiento AS DATE)'), [$f_desistimiento_start, $f_desistimiento_end]);
+        }
+        if (!empty($notaria_start) && !empty($notaria_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(notaria AS DATE)'), [$notaria_start, $notaria_end]);
+        }
+        if (!empty($chincha_start) && !empty($chincha_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(chincha AS DATE)'), [$chincha_start, $chincha_end]);
+        }
+        if (!empty($post_venta_start) && !empty($post_venta_end)) {
+            $Customer   ->whereBetween(DB::raw('CAST(post_venta AS DATE)'), [$post_venta_start, $post_venta_end]);
         }
 
         $Customer = $Customer->orderBy('customers.id', 'DESC')->paginate(10)->appends($request->query());
