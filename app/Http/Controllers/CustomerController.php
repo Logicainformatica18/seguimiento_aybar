@@ -33,35 +33,30 @@ class CustomerController extends Controller
         $state = Status::orderBy('id', 'DESC')->get();
         $business_partner = Business_partner::orderBy('id', 'DESC')->get();
         $editor = Editor::orderBy('id', 'DESC')->get(); // No sobrescribe la variable del request
-        $letras_verificadas = Customer::select('letras_verificadas')
-            ->orderBy('letras_verificadas', 'asc')
-            ->where('letras_verificadas', '<>', '')
-            ->distinct()
-            ->get();
+        $letras_verificadas = Customer::select('letras_verificadas')->orderBy('letras_verificadas', 'asc')->where('letras_verificadas', '<>', '')->distinct()->get();
 
-            $Customer = Customer::query()
+        $Customer = Customer::query()
             ->join('projects', 'customers.project_id', '=', 'projects.id') // Unir la tabla projects
             ->with('Project');
 
         // Aplicar filtros si hay valores en la query
         if (!empty($proyecto)) {
-            $Customer->where('customers.project_id',"like", $proyecto); // Convertimos en array si es necesario
+            $Customer->where('customers.project_id', 'like', $proyecto);
         }
         if (!empty($estado)) {
-            $Customer->where('customers.state_id',"like", $estado); // Convertimos en array si es necesario
+            $Customer->where('customers.state_id', 'like', $estado);
         }
         if (!empty($socio_comercial)) {
-            $Customer->where('customers.business_partners_id',"like", $socio_comercial); // Convertimos en array si es necesario
+            $Customer->where('customers.business_partners_id', 'like', $socio_comercial);
         }
         if (!empty($letras_verificada)) {
-            $Customer->where('customers.letras_verificadas',"like", $letras_verificada); // Convertimos en array si es necesario
+            $Customer->where('customers.letras_verificadas', 'like', $letras_verificada);
         }
         if (!empty($editor_query)) {
-            $Customer->where('customers.editors_id',"like", $editor_query); // Convertimos en array si es necesario
+            $Customer->where('customers.editors_id', 'like', $editor_query);
         }
 
         $Customer = $Customer->orderBy('customers.id', 'DESC')->paginate(10)->appends($request->query());
-
 
         return view('Customer.Customer', compact('Customer', 'Project', 'state', 'business_partner', 'editor', 'letras_verificadas'));
     }
@@ -73,6 +68,32 @@ class CustomerController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    public function show(Request $request)
+    {
+        $Customer = Customer::with('Project') // Cargar la relación
+            ->when($request->criterio, function ($query, $criterio) {
+                $query
+                    ->orWhere('dni', 'like', "%$criterio%")
+                    ->orWhere('cliente_1', 'like', "%$criterio%")
+                    ->orWhere('cliente_2', 'like', "%$criterio%")
+                    ->orWhere('dni_2', 'like', "%$criterio%")
+                    ->orWhere('cliente_3', 'like', "%$criterio%")
+                    ->orWhere('dni_3', 'like', "%$criterio%")
+                    ->orWhere('cliente_4', 'like', "%$criterio%")
+                    ->orWhere('dni_4', 'like', "%$criterio%")
+                    ->orWhere('cliente_5', 'like', "%$criterio%")
+                    ->orWhere('dni_5', 'like', "%$criterio%");
+                    // ->orWhereHas('customer', function ($subquery) use ($criterio) {
+                    //     $subquery->where('razon_social', 'like', "%$criterio%");
+                    // });
+            })
+            ->orderBy('customers.id', 'asc')
+            ->paginate(10);
+
+        $crit = $request->criterio;
+
+        return view('Customer.Customertable', compact('Customer', 'crit'));
+    }
     public function create()
     {
         $Customer = Customer::orderBy('id', 'DESC')->get();
@@ -129,10 +150,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -103,7 +103,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('CustomerUpdate', [App\Http\Controllers\CustomerController::class, 'update'])->middleware('permission:administrar|actualizar');
 
     Route::get('admin/clientes_dashboard', [App\Http\Controllers\CustomerController::class, 'dashboard'])->middleware('permission:administrar|dashboard');
-
+    Route::post('CustomerShow', [App\Http\Controllers\CustomerController::class, 'show'])->middleware('permission:administrar|clientes');
 
 
     Route::get('admin/imagenes', [App\Http\Controllers\ImageController::class, 'index'])->middleware('permission:administrar|imagenes');

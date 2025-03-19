@@ -96,7 +96,7 @@
                                             <option value="%" {{ request('letras_verificada') == '' ? 'selected' : '' }}>Todos
                                             </option>
                                             @foreach ($letras_verificadas as $item)
-                                                <option value="%{{$item->letras_verificadas}}%"
+                                                <option value="{{$item->letras_verificadas}}"
                                                     {{ request('letras_verificada') == $item->letras_verificadas ? 'selected' : '' }}>
                                                     {{ $item->letras_verificadas }}
                                                 </option>
