@@ -1996,6 +1996,8 @@
             window.tabla_file_export = $("#file_export").DataTable({
                 dom: "Bfrtip",
                 buttons: ["copy", "csv", "excel", "pdf", "print"],
+                scrollX: false,
+                paging: false,
             });
             $(
                 ".buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel"
@@ -2006,7 +2008,8 @@
             //
 
             var table = $("#show_hide_col").DataTable({
-                scrollY: "200px",
+                scrollY: false,
+
                 paging: false,
             });
 
@@ -2205,6 +2208,52 @@
         }
         datatable_load();
     </script>
+    <script>
+        ///////////////////////////////////////////
+        function toggleEstado(element) {
+           const tr = $(element).closest('tr')[0];
+           const row = tabla_file_export.row(tr);
+
+           if (row.child.isShown()) {
+               row.child.hide();
+               $(tr).removeClass('shown');
+           } else {
+               // Obtener los datos directamente desde DataTables (incluye ocultos)
+               const data = row.data();
+
+               const estado = data[12] // Estado
+
+
+
+               // Armar la tabla expandible
+               const html = `
+               <div style="overflow-x:auto;">
+                   <table class="table table-bordered table-sm text-start mb-0 w-100">
+                       <thead class="table-light">
+                           <tr>
+
+           <th >Estado</th>
+
+
+                           </tr>
+                       </thead>
+                       <tbody>
+   <tr>
+
+       <td>${estado}</td>
+
+   </tr>
+   </tbody>
+
+                   </table>
+               </div>
+           `;
+
+               row.child(html).show();
+               $(tr).addClass('shown');
+           }
+       }
+   </script>
     <script defer>
         function toggleRedaccion(element) {
             const tr = $(element).closest('tr')[0];
@@ -2217,90 +2266,30 @@
                 // Obtener los datos directamente desde DataTables (incluye ocultos)
                 const data = row.data();
 
-                // Extraer valores por índice de columna
-                // Extrae los valores de las columnas visibles y del grupo redacción
-                const importeVenta = data[11] // Importe de Venta
-                const estado = data[12] // Estado
-                const dias1 = data[13] // Dias_1
-                const redactadoPor = data[14] // Redactado Por
-                const fechaRedactado = data[15] // Fecha Redactado
-                const ingresoOperaciones = data[16] // Ingreso a Operaciones
-                const recogidoNoDevuelto = data[17] // Recogido no devuelto
-                const dias2 = data[18] // Dias_2
-                const fechaContratoFirmado = data[19] // Fecha Contrato Firmado Devuelto
-                const adendaRefinanciamiento = data[20] // Adenda Refinanciamiento
-                const j2 = data[21] // j2
-                const enviadoArchivo = data[22] // Enviado a archivo
-                const virtual = data[23] // Virtual
-                const notaria = data[24] // Notaria
-                const chincha = data[25] // Chincha
-                const postVenta = data[26] // Post Venta
-                const procesoDesistimiento = data[27] // Proceso de desistimiento
-                const procesoResolucion = data[28] // Proceso de Resolución
-                const cambioTitular = data[29] // Cambio de Titular
-                const desistimiento = data[30] // Desistimiento
-                const comisiones = data[31] // Comisiones
-                const cantidadLetras = data[32] // Cantidad de Letras
-                const letrasVerificadas = data[33] // Letras Verificadas
-
-
                 // Armar la tabla expandible
                 const html = `
                 <div style="overflow-x:auto;">
-                    <table class="table table-bordered table-sm text-center mb-0 w-100">
+                    <table class="table table-bordered table-sm text-start mb-0 w-100">
                         <thead class="table-light">
                             <tr>
-                                <th class="grupo-redaccion">Importe de Venta</th>
-            <th >Estado</th>
-            <th >Dias_1</th>
-            <th >Redactado Por</th>
-            <th >Fecha Redactado</th>
-            <th >Ingreso a Operaciones</th>
-            <th >Recogido no devuelto</th>
-            <th >Dias_2</th>
-            <th >Fecha Contrato Firmado Devueldo</th>
-            <th >Adenda Refinanciamiento</th>
-            <th >j2</th>
-            <th >Enviado a archivo</th>
-            <th >Virtual</th>
-            <th >Notaria</th>
-            <th >Chincha</th>
-            <th >Post Venta</th>
-            <th >Proceso de desistimiento</th>
-            <th >Proceso de Resolución</th>
-            <th >Cambio de Titular</th>
-            <th >Desistimiento</th>
-            <th >Comisiones</th>
-            <th >Cantidad de Letras</th>
-            <th >Letras Verificadas</th>
+                                     <th >Redactor</th>
+                        <th >Ingreso a Operaciones</th>
+                        <th >Dias 1</th>
+                        <th >Redactado</th>
+                        <th>Fecha Emisión</th>
+                        <th >Observaciones</th>
 
                             </tr>
                         </thead>
                         <tbody>
     <tr>
-        <td>${importeVenta}</td>
-        <td>${estado}</td>
-        <td>${dias1}</td>
-        <td>${redactadoPor}</td>
-        <td>${fechaRedactado}</td>
-        <td>${ingresoOperaciones}</td>
-        <td>${recogidoNoDevuelto}</td>
-        <td>${dias2}</td>
-        <td>${fechaContratoFirmado}</td>
-        <td>${adendaRefinanciamiento}</td>
-        <td>${j2}</td>
-        <td>${enviadoArchivo}</td>
-        <td>${virtual}</td>
-        <td>${notaria}</td>
-        <td>${chincha}</td>
-        <td>${postVenta}</td>
-        <td>${procesoDesistimiento}</td>
-        <td>${procesoResolucion}</td>
-        <td>${cambioTitular}</td>
-        <td>${desistimiento}</td>
-        <td>${comisiones}</td>
-        <td>${cantidadLetras}</td>
-        <td>${letrasVerificadas}</td>
+        <td>${data[13]}</td>
+        <td>${data[14]}</td>
+        <td>${data[15]}</td>
+        <td>${data[16]}</td>
+        <td>${data[17]}</td>
+        <td>${data[18]}</td>
+
     </tr>
 </tbody>
 
@@ -2357,8 +2346,190 @@
             }
         }
     </script>
+  <script defer>
+    function toggleFedateador(element) {
+        const tr = $(element).closest('tr')[0];
+        const row = tabla_file_export.row(tr);
+
+        if (row.child.isShown()) {
+            row.child.hide();
+            $(tr).removeClass('shown');
+        } else {
+            // Obtener los datos directamente desde DataTables (incluye ocultos)
+            const data = row.data();
+
+            // Armar la tabla expandible
+            const html = `
+            <div style="overflow-x:auto;">
+                <table class="table table-bordered table-sm text-start mb-0 w-100">
+                    <thead class="table-light text-start">
+                        <tr>
+                                  <th >Fecha Retiro Contrato</th>
+                        <th >Días</th>
+                        <th >Letras Devueltas</th>
+                        <th >Fecha Devolución</th>
+                        <th >Tipo Contrato</th>
+                        <th >Observaciones a Regularizar</th>
+                        <th >Dias de entrega correción</th>
+                        <th >Dias estimado de entrega</th>
+                        <th >Fecha Entrega</th>
+                        <th >Fecha Contrato Regularizado</th>
+                        <th >Hora De La Devolución De Regularización</th>
+                        <th >Hora DE La recepción</th>
+                        <th >Hora de reporte</th>
+                        <th >Tiempo Transcurrido</th>
+                        <th >Indicador</th>
+                        <th >Entregado Operaciones 2</th>
+                        <th >Observaciones</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+<tr>
+    <td>${data[19]}</td>
+    <td>${data[20]}</td>
+    <td>${data[21]}</td>
+    <td>${data[22]}</td>
+    <td>${data[23]}</td>
+    <td>${data[24]}</td>
+    <td>${data[25]}</td>
+    <td>${data[26]}</td>
+    <td>${data[27]}</td>
+    <td>${data[28]}</td>
+    <td>${data[29]}</td>
+    <td>${data[30]}</td>
+    <td>${data[31]}</td>
+    <td>${data[32]}</td>
+    <td>${data[33]}</td>
+    <td>${data[34]}</td>
+    <td>${data[35]}</td>
+
+</tr>
+</tbody>
+
+                </table>
+            </div>
+        `;
+
+            row.child(html).show();
+            $(tr).addClass('shown');
+        }
+    }
 
 
+</script>
+<script>
+        ///////////////////////////////////////////
+        function toggleComision(element) {
+        const tr = $(element).closest('tr')[0];
+        const row = tabla_file_export.row(tr);
+
+        if (row.child.isShown()) {
+            row.child.hide();
+            $(tr).removeClass('shown');
+        } else {
+            // Obtener los datos directamente desde DataTables (incluye ocultos)
+            const data = row.data();
+
+
+
+
+
+            // Armar la tabla expandible
+            const html = `
+            <div style="overflow-x:auto;">
+                <table class="table table-bordered table-sm text-start mb-0 w-100">
+                    <thead class="table-light">
+                        <tr>
+
+        <th >Pago de Comisión</th>
+        <th >Ingreso a Cartera</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+<tr>
+
+    <td>${data[36]}</td>
+    <td>${data[37]}</td>
+
+</tr>
+</tbody>
+
+                </table>
+            </div>
+        `;
+
+            row.child(html).show();
+            $(tr).addClass('shown');
+        }
+    }
+</script>
+<script>
+    ///////////////////////////////////////////
+    function toggleDesistimiento(element) {
+    const tr = $(element).closest('tr')[0];
+    const row = tabla_file_export.row(tr);
+
+    if (row.child.isShown()) {
+        row.child.hide();
+        $(tr).removeClass('shown');
+    } else {
+        // Obtener los datos directamente desde DataTables (incluye ocultos)
+        const data = row.data();
+
+
+
+
+
+        // Armar la tabla expandible
+        const html = `
+        <div style="overflow-x:auto;">
+            <table class="table table-bordered table-sm text-start mb-0 w-100">
+                <thead class="table-light">
+                    <tr>
+
+    <th >Solicitud Desest. Resolución</th>
+                <th >Fecha</th>
+                <th >Desistido Por</th>
+                <th >Contrato Físico</th>
+                <th >Teléfono</th>
+                <th >Correo</th>
+                <th >Acuerdo Firmado</th>
+                <th >Boletas</th>
+                <th >Tipo Operación</th>
+                <th >Observaciones</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+<tr>
+
+<td>${data[38]}</td>
+<td>${data[39]}</td>
+<td>${data[40]}</td>
+<td>${data[41]}</td>
+<td>${data[42]}</td>
+<td>${data[43]}</td>
+<td>${data[44]}</td>
+<td>${data[45]}</td>
+<td>${data[46]}</td>
+<td>${data[47]}</td>
+
+</tr>
+</tbody>
+
+            </table>
+        </div>
+    `;
+
+        row.child(html).show();
+        $(tr).addClass('shown');
+    }
+}
+</script>
 
 
     <!-- jQuery -->
