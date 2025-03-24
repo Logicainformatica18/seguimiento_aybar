@@ -123,7 +123,6 @@
                                                 <span class="hide-menu">Proyectos</span>
                                             </a>
                                         </li>
-
                                     @endcanany
 
                                     <li class="sidebar-item">
@@ -246,8 +245,9 @@
 
             <!--  Header Start -->
             <header class="topbar">
-                <div class="progress" >
-                    <div class="progress-bar text-bg-danger"id="progress_bar" style="width: 0%; height: 6px" role="progressbar">
+                <div class="progress">
+                    <div class="progress-bar text-bg-danger"id="progress_bar" style="width: 0%; height: 6px"
+                        role="progressbar">
                     </div>
 
                 </div>
@@ -367,8 +367,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="message-body">
-                                                    <a href="admin"
-                                                        class="p-2 dropdown-item h6 rounded-1">
+                                                    <a href="admin" class="p-2 dropdown-item h6 rounded-1">
                                                         Mi Perfil
                                                     </a>
 
@@ -1988,61 +1987,378 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
     <script defer>
-        function datatable_load(criterio) {
+        function datatable_load() {
 
-            var table = $("#file_export").DataTable({
+
+            //
+            //    File export                              //
+            //
+            window.tabla_file_export = $("#file_export").DataTable({
                 dom: "Bfrtip",
                 buttons: ["copy", "csv", "excel", "pdf", "print"],
-                paging: false // Deshabilita la paginación
+            });
+            $(
+                ".buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel"
+            ).addClass("btn btn-primary");
+
+            //
+            //  Show / hide columns dynamically                 //
+            //
+
+            var table = $("#show_hide_col").DataTable({
+                scrollY: "200px",
+                paging: false,
             });
 
-            $(".buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel")
-                .addClass("btn btn-primary");
+            $("a.toggle-vis").on("click", function(e) {
+                e.preventDefault();
 
-            // Capturar búsqueda con debounce (esperar antes de ejecutar la petición)
-            let searchTimeout;
+                // Get the column API object
+                var column = $("#show_hide_col")
+                    .dataTable()
+                    .api()
+                    .column($(this).attr("data-column"));
+                // Toggle the visibility
+                column.visible(!column.visible());
+            });
 
-            // Ejecutar la búsqueda cuando se cambia el input (cuando el usuario sale)
-            $("#file_export_filter input").on("change", function() {
-                let searchValue = $(this).val().trim();
-                if (searchValue.length > 0) {
-                    fetchData(searchValue);
+            //
+            //    Column rendering                         //
+            //
+            $("#col_render").DataTable({
+                columnDefs: [{
+                        // The `data` parameter refers to the data for the cell (defined by the
+                        // `data` option, which defaults to the column being worked with, in
+                        // this case `data: 0`.
+                        render: function(data, type, row) {
+                            return data + " (" + row[3] + ")";
+                        },
+                        targets: 0,
+                    },
+                    {
+                        visible: false,
+                        targets: [3]
+                    },
+                ],
+            });
+
+            //
+            //     Row grouping                            //
+            //
+            var table = $("#row_group").DataTable({
+                pageLength: 10,
+                columnDefs: [{
+                    visible: false,
+                    targets: 2
+                }],
+                order: [
+                    [2, "asc"]
+                ],
+                displayLength: 25,
+                drawCallback: function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: "current"
+                    }).nodes();
+                    var last = null;
+
+                    api
+                        .column(2, {
+                            page: "current"
+                        })
+                        .data()
+                        .each(function(group, i) {
+                            if (last !== group) {
+                                $(rows)
+                                    .eq(i)
+                                    .before(
+                                        '<tr class="group"><td colspan="5">' + group + "</td></tr>"
+                                    );
+
+                                last = group;
+                            }
+                        });
+                },
+            });
+
+            //
+            // Order by the grouping
+            //
+            $("#row_group tbody").on("click", "tr.group", function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === "asc") {
+                    table.order([2, "desc"]).draw();
+                } else {
+                    table.order([2, "asc"]).draw();
                 }
             });
 
-            // Ejecutar la búsqueda cuando el usuario presiona Enter
-            $("#file_export_filter input").on("keyup", function(event) {
-                if (event.keyCode === 13) { // 13 = Enter
-                    let searchValue = $(this).val().trim();
-                    if (searchValue.length > 0) {
-                        fetchData(searchValue);
+            //
+            //    Multiple table control element           //
+            //
+            $("#multi_control").DataTable({
+                dom: '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>',
+            });
+
+            //
+            //    DOM/jquery events                        //
+            //
+            var table = $("#dom_jq_event").DataTable();
+
+            $("#dom_jq_event tbody").on("click", "tr", function() {
+                var data = table.row(this).data();
+                alert("You clicked on " + data[0] + "'s row");
+            });
+
+            //
+            //    Language File                            //
+            //
+            $("#lang_file").DataTable({
+                language: {
+                    url: "../../assets/js/datatable/German.json",
+                },
+            });
+
+            //
+            //    Complex headers with column visibility   //
+            //
+
+            $("#complex_head_col").DataTable({
+                columnDefs: [{
+                    visible: false,
+                    targets: -1,
+                }, ],
+            });
+
+            //
+            //    Setting defaults                         //
+            //
+            var defaults = {
+                searching: false,
+                ordering: false,
+            };
+
+            $("#setting_defaults").dataTable($.extend(true, {}, defaults, {}));
+
+            //
+            //    Footer callback                          //
+            //
+            $("#footer_callback").DataTable({
+                footerCallback: function(row, data, start, end, display) {
+                    var api = this.api(),
+                        data;
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function(i) {
+                        return typeof i === "string" ?
+                            i.replace(/[\$,]/g, "") * 1 :
+                            typeof i === "number" ?
+                            i :
+                            0;
+                    };
+
+                    // Total over all pages
+                    total = api
+                        .column(4)
+                        .data()
+                        .reduce(function(a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Total over this page
+                    pageTotal = api
+                        .column(4, {
+                            page: "current"
+                        })
+                        .data()
+                        .reduce(function(a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Update footer
+                    $(api.column(4).footer()).html(
+                        "$" + pageTotal + " ( $" + total + " total)"
+                    );
+                },
+            });
+
+            //
+            //    Custom toolbar elements                  //
+            //
+
+            $("#custom_tool_ele").DataTable({
+                dom: '<"toolbar">frtip',
+            });
+
+            $("div.toolbar").html("<b>Custom tool bar! Text/images etc.</b>");
+
+            //
+            //    Row created callback                     //
+            //
+            $("#row_create_call").DataTable({
+                createdRow: function(row, data, index) {
+                    if (data[5].replace(/[\$,]/g, "") * 1 > 150000) {
+                        $("td", row).eq(5).addClass("highlight");
                     }
-                }
+                },
             });
-
-            if (criterio !== "") {
-                table.search(criterio).draw(); // Aplicar el criterio al filtro de DataTables
-            }
-
         }
-
-        function fetchData(criterio) {
-            axios.post("/CustomerShow", {
-                    criterio: criterio
-                })
-                .then(function(response) {
-                    var contentdiv = document.getElementById("mycontent");
-                    contentdiv.innerHTML = response.data;
-                    //carga pdf- csv - excel
-                    datatable_load(criterio);
-                })
-                .catch(function(error) {
-                    console.error("Error en la búsqueda:", error);
-                });
-        }
-        // Cargar DataTable
-        datatable_load("");
+        datatable_load();
     </script>
+    <script defer>
+        function toggleRedaccion(element) {
+            const tr = $(element).closest('tr')[0];
+            const row = tabla_file_export.row(tr);
+
+            if (row.child.isShown()) {
+                row.child.hide();
+                $(tr).removeClass('shown');
+            } else {
+                // Obtener los datos directamente desde DataTables (incluye ocultos)
+                const data = row.data();
+
+                // Extraer valores por índice de columna
+                // Extrae los valores de las columnas visibles y del grupo redacción
+                const importeVenta = data[11] // Importe de Venta
+                const estado = data[12] // Estado
+                const dias1 = data[13] // Dias_1
+                const redactadoPor = data[14] // Redactado Por
+                const fechaRedactado = data[15] // Fecha Redactado
+                const ingresoOperaciones = data[16] // Ingreso a Operaciones
+                const recogidoNoDevuelto = data[17] // Recogido no devuelto
+                const dias2 = data[18] // Dias_2
+                const fechaContratoFirmado = data[19] // Fecha Contrato Firmado Devuelto
+                const adendaRefinanciamiento = data[20] // Adenda Refinanciamiento
+                const j2 = data[21] // j2
+                const enviadoArchivo = data[22] // Enviado a archivo
+                const virtual = data[23] // Virtual
+                const notaria = data[24] // Notaria
+                const chincha = data[25] // Chincha
+                const postVenta = data[26] // Post Venta
+                const procesoDesistimiento = data[27] // Proceso de desistimiento
+                const procesoResolucion = data[28] // Proceso de Resolución
+                const cambioTitular = data[29] // Cambio de Titular
+                const desistimiento = data[30] // Desistimiento
+                const comisiones = data[31] // Comisiones
+                const cantidadLetras = data[32] // Cantidad de Letras
+                const letrasVerificadas = data[33] // Letras Verificadas
+
+
+                // Armar la tabla expandible
+                const html = `
+                <div style="overflow-x:auto;">
+                    <table class="table table-bordered table-sm text-center mb-0 w-100">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="grupo-redaccion">Importe de Venta</th>
+            <th >Estado</th>
+            <th >Dias_1</th>
+            <th >Redactado Por</th>
+            <th >Fecha Redactado</th>
+            <th >Ingreso a Operaciones</th>
+            <th >Recogido no devuelto</th>
+            <th >Dias_2</th>
+            <th >Fecha Contrato Firmado Devueldo</th>
+            <th >Adenda Refinanciamiento</th>
+            <th >j2</th>
+            <th >Enviado a archivo</th>
+            <th >Virtual</th>
+            <th >Notaria</th>
+            <th >Chincha</th>
+            <th >Post Venta</th>
+            <th >Proceso de desistimiento</th>
+            <th >Proceso de Resolución</th>
+            <th >Cambio de Titular</th>
+            <th >Desistimiento</th>
+            <th >Comisiones</th>
+            <th >Cantidad de Letras</th>
+            <th >Letras Verificadas</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+    <tr>
+        <td>${importeVenta}</td>
+        <td>${estado}</td>
+        <td>${dias1}</td>
+        <td>${redactadoPor}</td>
+        <td>${fechaRedactado}</td>
+        <td>${ingresoOperaciones}</td>
+        <td>${recogidoNoDevuelto}</td>
+        <td>${dias2}</td>
+        <td>${fechaContratoFirmado}</td>
+        <td>${adendaRefinanciamiento}</td>
+        <td>${j2}</td>
+        <td>${enviadoArchivo}</td>
+        <td>${virtual}</td>
+        <td>${notaria}</td>
+        <td>${chincha}</td>
+        <td>${postVenta}</td>
+        <td>${procesoDesistimiento}</td>
+        <td>${procesoResolucion}</td>
+        <td>${cambioTitular}</td>
+        <td>${desistimiento}</td>
+        <td>${comisiones}</td>
+        <td>${cantidadLetras}</td>
+        <td>${letrasVerificadas}</td>
+    </tr>
+</tbody>
+
+                    </table>
+                </div>
+            `;
+
+                row.child(html).show();
+                $(tr).addClass('shown');
+            }
+        }
+        ///////////////////////////////////////////
+        function toggleEstado(element) {
+            const tr = $(element).closest('tr')[0];
+            const row = tabla_file_export.row(tr);
+
+            if (row.child.isShown()) {
+                row.child.hide();
+                $(tr).removeClass('shown');
+            } else {
+                // Obtener los datos directamente desde DataTables (incluye ocultos)
+                const data = row.data();
+
+                const estado = data[12] // Estado
+
+
+
+                // Armar la tabla expandible
+                const html = `
+                <div style="overflow-x:auto;">
+                    <table class="table table-bordered table-sm text-start mb-0 w-100">
+                        <thead class="table-light">
+                            <tr>
+
+            <th >Estado</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+    <tr>
+
+        <td>${estado}</td>
+
+    </tr>
+</tbody>
+
+                    </table>
+                </div>
+            `;
+
+                row.child(html).show();
+                $(tr).addClass('shown');
+            }
+        }
+    </script>
+
+
 
 
     <!-- jQuery -->
@@ -2105,7 +2421,31 @@
 
     {{-- <script src="{{ asset('assets/js/plugins/colorpicker-init.js') }}"defer></script> --}}
 
+    <script>
+        function ocultarColumnasPorClase(clase) {
+            $('#file_export thead th').each(function(index) {
+                if ($(this).hasClass(clase)) {
+                    tabla_file_export.column(index).visible(false);
+                }
+            });
+        }
 
+        function mostrarColumnasPorClase(clase) {
+            $('#file_export thead th').each(function(index) {
+                if ($(this).hasClass(clase)) {
+                    tabla_file_export.column(index).visible(true);
+                }
+            });
+        }
+
+        // Uso:
+        ocultarColumnasPorClase('redaccion');
+        ocultarColumnasPorClase('estado');
+        ocultarColumnasPorClase('desistimiento');
+        ocultarColumnasPorClase('comision');
+        ocultarColumnasPorClase('no_group');
+        //mostrarColumnasPorClase('grupo-fedeteador');
+    </script>
 </body>
 
 
