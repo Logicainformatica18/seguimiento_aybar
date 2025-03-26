@@ -221,8 +221,7 @@
                     <td class="d-none fedateador">{{ $Customers->tiempo_transcurrido }}</td> <!-- crear -->
                     <td class="d-none fedateador">{{ $Customers->indicador }}</td> <!-- crear -->
                     <td class="d-none fedateador">{{ $Customers->entregado_operaciones_2 }}</td> <!-- crear -->
-                    <td class="d-none fedateador">{{ $Cust
-                    omers->observaciones_2 }}</td> <!-- crear -->
+                    <td class="d-none fedateador">{{ $Customers->observaciones_2 }}</td> <!-- crear -->
 
                     <!-- comision   SIN GRUPO-->
                     <td class="d-none comision">{{ $Customers->pago_comision }}ggg</td> <!--si/no crear -->

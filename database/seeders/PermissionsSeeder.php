@@ -25,25 +25,32 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'blogs']);
         Permission::create(['name' => 'proyectos']);
         Permission::create(['name' => 'imagenes']);
-      
-        Permission::create(['name' => 'secciones']);
-        Permission::create(['name' => 'editar_plantilla']);
-        Permission::create(['name' => 'editar_inicio']);
-        Permission::create(['name' => 'editar_nosotros']);
-        Permission::create(['name' => 'editar_blog']);
-        Permission::create(['name' => 'editar_proyectos']);
-        Permission::create(['name' => 'editar_contactos']);
+
+        Permission::create(['name' => 'redaccion']);
+        Permission::create(['name' => 'comercial']);
+        Permission::create(['name' => 'fedateador']);
+        Permission::create(['name' => 'desistimiento']);
+        Permission::create(['name' => 'tesoreria-archivo']);
+
+
+        // Permission::create(['name' => 'secciones']);
+        // Permission::create(['name' => 'editar_plantilla']);
+        // Permission::create(['name' => 'editar_inicio']);
+        // Permission::create(['name' => 'editar_nosotros']);
+        // Permission::create(['name' => 'editar_blog']);
+        // Permission::create(['name' => 'editar_proyectos']);
+        // Permission::create(['name' => 'editar_contactos']);
 
         Permission::create(['name' => 'agregar']);
         Permission::create(['name' => 'editar']);
         Permission::create(['name' => 'actualizar']);
         Permission::create(['name' => 'eliminar']);
 
-        $role0 = Role::create(['name' => 'Asistente']);
+        // $role0 = Role::create(['name' => 'Asistente']);
 
         // Asignar todos los permisos menos "usuarios" y "administrar"
-        $permissions = Permission::whereNotIn('name', ['usuarios', 'administrar'])->get();
-        $role0->syncPermissions($permissions);
+        // $permissions = Permission::whereNotIn('name', ['usuarios', 'administrar'])->get();
+        // $role0->syncPermissions($permissions);
 
         Permission::create(['name' => 'administrar']);
         $role = Role::create(['name' => 'Administrador']);
@@ -74,7 +81,7 @@ class PermissionsSeeder extends Seeder
             'sex' => 'M',
             'email' => 'admin1@gmail.com',
         ]);
-        
+
 
     }
 
