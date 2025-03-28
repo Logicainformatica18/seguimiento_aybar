@@ -373,501 +373,208 @@
         <!-- /.modal -->
 
         <!-- /.modal -->
-        <div class="modal fade" id="success-header-modal" tabindex="-1" aria-labelledby="bs-example-modal-lg"
-            aria-hidden="true" style="display: none;">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h5 class="modal-title h4" id="exampleModalFullscreenLabel">
-                            Detalles de Expediente <b class="text-primary" id="customer_id"> </b>
-                        </h5>
-                        <button type="button" class="text-end btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-
-                        <form role="form" id="Customer" name="Customer"enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="id" id="id">
-                            <p></p>
+    <!-- Plantilla completamente adaptada con TODOS los campos de la migración -->
 
 
+    <div class="modal fade" id="success-header-modal" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title h4">Detalles de Expediente <b class="text-primary" id="customer_id"></b></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form role="form" id="Customer" name="Customer" enctype="multipart/form-data">
+              <input type="hidden" name="id" id="id">
 
+              <div class="modal-body">
+                <div class="accordion" id="accordionCustomer">
+
+                  <!-- Comercial -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingComercial">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComercial" aria-expanded="true" aria-controls="collapseComercial">
+                        Comercial
+                      </button>
+                    </h2>
+                    <div id="collapseComercial" class="accordion-collapse collapse show" aria-labelledby="headingComercial" data-bs-parent="#accordionCustomer">
+                      <div class="accordion-body row">
+                        <div class="col-md-6 mb-3">
+                          <label for="project_id" class="form-label">Proyecto</label>
+                          <select id="project_id" name="project_id" class="form-control"><option value="">Seleccione</option></select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="mz_lt" class="form-label">Mz - Lt</label>
+                          <input type="text" id="mz_lt" name="mz_lt" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="client_1" class="form-label">Cliente 1</label>
+                          <input type="text" id="client_1" name="client_1" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="dni_1" class="form-label">DNI 1</label>
+                          <input type="text" id="dni_1" name="dni_1" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="business_partners_id" class="form-label">Socio Comercial</label>
+                          <select id="business_partners_id" name="business_partners_id" class="form-control"><option value="">Seleccione</option></select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="separation_date" class="form-label">Fecha de Separación</label>
+                          <input type="date" id="separation_date" name="separation_date" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="separation_amount" class="form-label">Monto de Separación</label>
+                          <input type="number" step="0.01" id="separation_amount" name="separation_amount" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="assistant_id" class="form-label">Asistente</label>
+                          <select id="assistant_id" name="assistant_id" class="form-control"><option value="">Seleccione</option></select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="initial_paid" class="form-label">Inicial Pagada</label>
+                          <input type="number" step="0.01" id="initial_paid" name="initial_paid" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="initial_payment_date" class="form-label">Fecha de Inicial</label>
+                          <input type="date" id="initial_payment_date" name="initial_payment_date" class="form-control">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="initial_amount" class="form-label">Monto de Inicial</label>
+                          <input type="number" step="0.01" id="initial_amount" name="initial_amount" class="form-control">
+                        </div>
+                      </div>
                     </div>
-
-                    <div class="modal-body row container"
-                        style="margin-left: 0; margin-right: 0; border-right: 1px solid #ededed; box-shadow:0px 0px 5px -1px #a7a7a7; border-radius: 12px;">
-
-                        <div class="card bg-white"style="border: solid 1px #054988">
-                            <div class="container  row">
-                                <h4 class="mb-4 mt-4 mb-md-0 card-title">Datos de cliente</h4>
-                                @for ($i = 1; $i <= 5; $i++)
-                                    <div class="col-12 col-sm-6 mt-2">
-                                        <label for="cliente_{{ $i }}"
-                                            class="control-label border-bottom border-primary custom-cursor-default-hover">CLIENTE
-                                            {{ $i }}</label>
-                                        <li class="d-flex align-items-center gap-2 mb-4">
-
-                                            <input type="text"
-                                                name="cliente_{{ $i }}"id="cliente_{{ $i }}"
-                                                class="form-control">
-
-                                        </li>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <label for="dni_{{ $i }}"
-                                            class="control-label border-bottom border-primary custom-cursor-default-hover">DNI
-                                            {{ $i }}</label>
-                                        <li class="d-flex align-items-center gap-2 mb-4">
-
-                                            <input type="text"
-                                                name="dni_{{ $i }}"id="dni_{{ $i }}"
-                                                class="form-control">
-
-                                        </li>
-                                    </div>
-                                @endfor
-                            </div>
-                        </div>
-
-
-
-                        <div class="card bg-white"style="border: solid 1px #054988">
-                            <div class="container  row">
-                                <h4 class="mb-4 mb-md-0 card-title mt-4">Datos Básicos</h4>
-
-                                <div class="col-12 col-sm-2 mt-2">
-                                    <label for=""
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Lote</label>
-                                    <li class="d-flex align-items-center gap-2">
-
-
-                                        <input type="text" id="lote"name="lote" class="form-control">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-1 mt-2">
-                                    <label for="aux"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Aux</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="text" id="aux"name="aux" class="form-control">
-
-                                    </li>
-                                </div>
-
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="business_partners_id"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Socio
-                                        Comercial</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <select name="business_partners_id" id="business_partners_id"
-                                            class="form-control">
-
-                                            <option value=""disabled selected>Seleccione una opción</option>
-                                            @foreach ($business_partner as $item)
-                                                <option value="{{ $item->id }}">{{ $item->description }}</option>
-                                            @endforeach
-                                        </select>
-                                    </li>
-                                </div>
-
-
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="state_id"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Redactado
-                                        Por</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <select name="editors_id" id="editors_id" class="form-control">
-                                            <option value=""disabled selected>Seleccione una opción</option>
-
-                                            @foreach ($editor as $item)
-                                                <option value="{{ $item->id }}">{{ $item->description }}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="state_id"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Estado</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <select name="state_id" id="state_id" class="form-control">
-                                            <option value=""disabled selected>Seleccione una opción</option>
-                                            @foreach ($state as $item)
-                                                <option value="{{ $item->id }}">{{ $item->description }}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </li>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card bg-white"style="border: solid 1px #054988">
-                            <div class="container  row">
-
-                                <h4 class="mb-4 mb-md-0 card-title mt-4">Datos de Venta</h4>
-                                <div class="col-12 col-sm-3 mt-2">
-
-                                    <label for="fecha_de_separacion"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        de Separación</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="fecha_de_separacion"
-                                            name="fecha_de_separacion">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="dias_1"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Dias
-                                        (Hoy - Fecha de Separación)</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="number" class="form-control" id="dias_1" name="dias_1">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-2 mt-2">
-
-                                    <label for="precio_de_lista_inventario"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Precio
-                                        de Lista</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="number" class="form-control" id="precio_de_lista_inventario"
-                                            inputmode="decimal"min="0" step="0.01" name="precio_de_lista_inventario">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-2 mt-2">
-                                    <label for="descuento_porcentaje"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Descuento
-                                        %</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="number" class="form-control" id="descuento_porcentaje"
-                                            inputmode="decimal"min="0" step="0.01" name="descuento_porcentaje">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-2 mt-2">
-                                    <label for="importe_de_venta"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Importe
-                                        De Venta</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="number" class="form-control" id="importe_de_venta"min="0"
-                                            inputmode="decimal" step="0.01" name="importe_de_venta">
-
-                                    </li>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="card bg-white"style="border: solid 1px #054988">
-                            <div class="container  row">
-
-                                <h4 class="mb-4 mb-md-0 card-title mt-4">Tiempos y Fechas Clave</h4>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="ingreso_a_operaciones"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Ingreso
-                                        a Operaciones</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="ingreso_a_operaciones"
-                                            name="ingreso_a_operaciones">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-
-                                    <label for="recogido_no_devuelto"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Recogido
-                                        No Devuelto</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="recogido_no_devuelto"
-                                            name="recogido_no_devuelto">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    {{-- si es diferente a nada entonces  restar  hoy - Recogido no devuelto, contrario devolver 0 --}}
-
-                                    <label for="dias_2"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Dias
-                                        2 (Hoy - Recogido)</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="number" class="form-control" id="dias_2" name="dias_2"
-                                            value="0">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-
-                                    <label for="fecha_contrato_firmado_devuelto"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        Contrato Firmado Devuelto</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control"
-                                            id="fecha_contrato_firmado_devuelto" name="fecha_contrato_firmado_devuelto">
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="adenda_refinanciamiento"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        Adenda Refinanciamiento</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="adenda_refinanciamiento"
-                                            name="adenda_refinanciamiento">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="enviado_a_archivo"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        Enviado a Archivo</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="enviado_a_archivo"
-                                            name="enviado_a_archivo">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="j2"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        J2</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="j2" name="j2">
-                                    </li>
-                                </div>
-
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="virtual"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        Virtual</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="virtual" name="virtual">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="notaria"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        Notaría</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="notaria" name="notaria">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="chincha"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        Chincha</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="chincha" name="chincha">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="post_venta"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Fecha
-                                        Post Venta</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="post_venta"
-                                            name="post_venta">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="proceso_de_desistimiento"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover  ">Proceso
-                                        Desistimiento</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="proceso_de_desistimiento"
-                                            name="proceso_de_desistimiento">
-                                    </li>
-                                </div>
-
-
-
-
-
-                            </div>
-                        </div>
-
-
-                        <div class="card bg-white"style="border: solid 1px #054988">
-                            <div class="container  row">
-
-                                <h4 class="mb-4 mb-md-0 card-title mt-4">Procesos</h4>
-
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="desistimiento"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Desistimiento</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="desistimiento"
-                                            name="desistimiento">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="proceso_de_resolucion"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Proceso
-                                        De Resolucion</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="proceso_de_resolucion"
-                                            name="proceso_de_resolucion">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="cambio_de_titular"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Cambio
-                                        De Titular</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="cambio_de_titular"
-                                            name="cambio_de_titular">
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="comisiones"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Comisiones</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-
-                                        <input type="datetime-local" class="form-control" id="comisiones"
-                                            name="comisiones">
-                                    </li>
-                                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="cantidad_de_letras"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Cantidad
-                                        De Letras</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <select name="cantidad_de_letras" id="cantidad_de_letras" class="form-control">
-                                            <option value="24">24</option>
-                                            <option value="36">36</option>
-                                            <option value="48">48</option>
-                                        </select>
-
-                                    </li>
-                                </div>
-                                <div class="col-12 col-sm-3 mt-2">
-                                    <label for="letras_verificadas"
-                                        class="control-label border-bottom border-primary custom-cursor-default-hover">Letras
-                                        Verificadas</label>
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <span id="letras_verificadas_2" name="letras_verificadas_2"></span>
-                                        <select name="letras_verificadas" id="letras_verificadas" class="form-control">
-                                            <option value="">Seleccione una opción</option>
-                                            <option value="aprobada">Aprobada</option>
-                                            <option value="observadas">Observadas</option>
-                                            <option value="rechazadas">Rechazadas</option>
-                                            <option value="aceptada">Aceptada</option>
-                                            <option value="corregidas">Corregidas</option>
-                                            <option value="anulado">Anulado</option>
-                                            <option value="devolucion">Devolvieron contratos para aplazamiento de firma
-                                            </option>
-                                            <option value="letras_verificadas">Letras Verificadas</option>
-                                        </select>
-                                    </li>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-3"> <input type="button" value="Nuevo" class="btn w-100 btn-primary"
-                                    onclick="New();$('#Customer')[0].reset();" name="new"></div>
-                            <div class="col-3">
-                                @canany(['administrar', 'agregar'])
-                                    <input type="button" value="Guardar" class="w-100 btn bg-success-subtle text-success "
-                                        onclick="CustomerStore()" id="create">
-                                @endcanany
-                            </div>
-                            <div class="col-3">
-                                @canany(['administrar', 'actualizar'])
-                                    <input type="button" value="Modificar" class="w-100 btn bg-danger-subtle text-danger"
-                                        onclick="CustomerUpdate();" id="update">
-                                @endcanany
-                            </div>
-                            <div class="col-3">
-                                <button type="button" class="w-100 btn btn-secondary"
-                                    data-bs-dismiss="modal">Cerrar</button>
-
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div class="card bg-white"style="border: solid 1px #054988">
-                            <div class="container  row">
-                                <p></p>
-                                <h4 class="mb-4 mb-md-0 card-title mt-2">Observaciones</h4>
-                                <div class="col-12 col-sm-12 mt-2">
-
-                                    <li class="d-flex align-items-center gap-2 mb-4">
-                                        <textarea name="observaciones" id="observaciones" class="form-control">
-
-                                        </textarea>
-                                    </li>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-
-
-
-
-
-                        </form>
-
-
-
-
-
-
-
+                  </div>
+
+                  <!-- Redacción -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingRedaccion">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRedaccion" aria-expanded="false" aria-controls="collapseRedaccion">
+                        Redacción
+                      </button>
+                    </h2>
+                    <div id="collapseRedaccion" class="accordion-collapse collapse" aria-labelledby="headingRedaccion" data-bs-parent="#accordionCustomer">
+                      <div class="accordion-body row">
+                        <div class="col-md-6 mb-3"><label for="client_2" class="form-label">Cliente 2</label><input type="text" id="client_2" name="client_2" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="dni_2" class="form-label">DNI 2</label><input type="text" id="dni_2" name="dni_2" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="client_3" class="form-label">Cliente 3</label><input type="text" id="client_3" name="client_3" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="dni_3" class="form-label">DNI 3</label><input type="text" id="dni_3" name="dni_3" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="client_4" class="form-label">Cliente 4</label><input type="text" id="client_4" name="client_4" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="dni_4" class="form-label">DNI 4</label><input type="text" id="dni_4" name="dni_4" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="client_5" class="form-label">Cliente 5</label><input type="text" id="client_5" name="client_5" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="dni_5" class="form-label">DNI 5</label><input type="text" id="dni_5" name="dni_5" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="operations_entry" class="form-label">Ingreso a Operaciones</label><input type="date" id="operations_entry" name="operations_entry" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="days" class="form-label">Días</label><input type="number" id="days" name="days" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="drafted_by" class="form-label">Redactado Por</label><input type="text" id="drafted_by" name="drafted_by" class="form-control"></div>
+                        <div class="col-md-6 mb-3"><label for="issue_date" class="form-label">Fecha de Emisión</label><input type="date" id="issue_date" name="issue_date" class="form-control"></div>
+                        <div class="col-md-12 mb-3"><label for="redaction_observations" class="form-label">Observaciones de Redacción</label><textarea id="redaction_observations" name="redaction_observations" class="form-control"></textarea></div>
+                      </div>
                     </div>
+                  </div>
 
-
-
-
-
+                  <!-- Aquí seguirán los otros grupos -->
+  <!-- Fedateador -->
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFedateador">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFedateador" aria-expanded="false" aria-controls="collapseFedateador">
+        Fedateador
+      </button>
+    </h2>
+    <div id="collapseFedateador" class="accordion-collapse collapse" aria-labelledby="headingFedateador" data-bs-parent="#accordionCustomer">
+      <div class="accordion-body row">
+        <div class="col-md-6 mb-3"><label for="contract_withdrawal_date" class="form-label">Fecha Retiro Contrato</label><input type="date" id="contract_withdrawal_date" name="contract_withdrawal_date" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="elapsed_days" class="form-label">Días Transcurridos</label><input type="number" id="elapsed_days" name="elapsed_days" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="returned_letters" class="form-label">Letras Devueltas</label><input type="number" id="returned_letters" name="returned_letters" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="return_date" class="form-label">Fecha Devolución</label><input type="date" id="return_date" name="return_date" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="contract_type" class="form-label">Tipo Contrato</label><input type="text" id="contract_type" name="contract_type" class="form-control"></div>
+        <div class="col-md-12 mb-3"><label for="regularization_observations" class="form-label">Observaciones a Regularizar</label><textarea id="regularization_observations" name="regularization_observations" class="form-control"></textarea></div>
+        <div class="col-md-6 mb-3"><label for="correction_delivery_day" class="form-label">Día Entrega Correción</label><input type="date" id="correction_delivery_day" name="correction_delivery_day" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="estimated_delivery_day" class="form-label">Día Estimado Entrega</label><input type="date" id="estimated_delivery_day" name="estimated_delivery_day" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="actual_delivery_day" class="form-label">Fecha Entrega</label><input type="date" id="actual_delivery_day" name="actual_delivery_day" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="regularized_contract_date" class="form-label">Fecha Contrato Regularizado</label><input type="date" id="regularized_contract_date" name="regularized_contract_date" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="regularization_return_time" class="form-label">Hora Devolución Regularización</label><input type="time" id="regularization_return_time" name="regularization_return_time" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="reception_time" class="form-label">Hora Recepción</label><input type="time" id="reception_time" name="reception_time" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="report_time" class="form-label">Hora Reporte</label><input type="time" id="report_time" name="report_time" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="elapsed_time" class="form-label">Tiempo Transcurrido</label><input type="text" id="elapsed_time" name="elapsed_time" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="indicator" class="form-label">Indicador</label><input type="text" id="indicator" name="indicator" class="form-control"></div>
+        <div class="col-md-6 mb-3"><label for="delivered_to_operations_2" class="form-label">Entregado Operaciones 2</label><select id="delivered_to_operations_2" name="delivered_to_operations_2" class="form-control"><option value="">Seleccione</option><option value="1">Sí</option><option value="0">No</option></select></div>
+        <div class="col-md-12 mb-3"><label for="observations" class="form-label">Observaciones</label><textarea id="observations" name="observations" class="form-control"></textarea></div>
+      </div>
+    </div>
+  </div>
+    <!-- Desistimiento -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingDesistimiento">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDesistimiento" aria-expanded="false" aria-controls="collapseDesistimiento">
+            Desistimiento
+          </button>
+        </h2>
+        <div id="collapseDesistimiento" class="accordion-collapse collapse" aria-labelledby="headingDesistimiento" data-bs-parent="#accordionCustomer">
+          <div class="accordion-body row">
+            <div class="col-md-6 mb-3"><label for="cancellation_request_type" class="form-label">Tipo de Solicitud</label><input type="text" id="cancellation_request_type" name="cancellation_request_type" class="form-control"></div>
+            <div class="col-md-6 mb-3"><label for="cancellation_date" class="form-label">Fecha de Cancelación</label><input type="date" id="cancellation_date" name="cancellation_date" class="form-control"></div>
+            <div class="col-md-6 mb-3"><label for="cancelled_by" class="form-label">Cancelado por</label><input type="text" id="cancelled_by" name="cancelled_by" class="form-control"></div>
+            <div class="col-md-6 mb-3"><label for="physical_contract" class="form-label">Contrato Físico</label><select id="physical_contract" name="physical_contract" class="form-control"><option value="">Seleccione</option><option value="1">Sí</option><option value="0">No</option></select></div>
+            <div class="col-md-6 mb-3"><label for="phone" class="form-label">Teléfono</label><input type="text" id="phone" name="phone" class="form-control"></div>
+            <div class="col-md-6 mb-3"><label for="email" class="form-label">Correo</label><input type="email" id="email" name="email" class="form-control"></div>
+            <div class="col-md-6 mb-3"><label for="signed_agreement" class="form-label">Acuerdo Firmado</label><select id="signed_agreement" name="signed_agreement" class="form-control"><option value="">Seleccione</option><option value="1">Sí</option><option value="0">No</option></select></div>
+            <div class="col-md-6 mb-3"><label for="receipts" class="form-label">Boletas</label><select id="receipts" name="receipts" class="form-control"><option value="">Seleccione</option><option value="1">Sí</option><option value="0">No</option></select></div>
+            <div class="col-md-6 mb-3"><label for="operation_type" class="form-label">Tipo de Operación</label><input type="text" id="operation_type" name="operation_type" class="form-control"></div>
+            <div class="col-md-6 mb-3"><label for="observation" class="form-label">Observación</label><textarea id="observation" name="observation" class="form-control"></textarea></div>
+            <div class="col-md-6 mb-3"><label for="lot_status" class="form-label">Estado de Lote</label><input type="text" id="lot_status" name="lot_status" class="form-control"></div>
+          </div>
+        </div>
+      </div>
+          <!-- Tesorería - Archivo -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTesoreria">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTesoreria" aria-expanded="false" aria-controls="collapseTesoreria">
+                Tesorería - Archivo
+              </button>
+            </h2>
+            <div id="collapseTesoreria" class="accordion-collapse collapse" aria-labelledby="headingTesoreria" data-bs-parent="#accordionCustomer">
+              <div class="accordion-body row">
+                <div class="col-md-6 mb-3">
+                  <label for="commission_paid" class="form-label">Comisión Pagada</label>
+                  <select id="commission_paid" name="commission_paid" class="form-control">
+                    <option value="">Seleccione</option>
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="contract_scanned" class="form-label">Contrato Escaneado</label>
+                  <select id="contract_scanned" name="contract_scanned" class="form-control">
+                    <option value="">Seleccione</option>
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
                 </div>
 
-            </div>
-
-
+                <div class="row mt-4">
+                  <div class="col-3">
+                    <input type="button" value="Nuevo" class="btn w-100 btn-primary" onclick="New();$('#Customer')[0].reset();" name="new">
+                  </div>
+                  <div class="col-3">
+                    <input type="button" value="Guardar" class="w-100 btn bg-success-subtle text-success" onclick="CustomerStore()" id="create">
+                  </div>
+                  <div class="col-3">
+                    <input type="button" value="Modificar" class="w-100 btn bg-danger-subtle text-danger" onclick="CustomerUpdate();" id="update">
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="w-100 btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
+
 
 
 

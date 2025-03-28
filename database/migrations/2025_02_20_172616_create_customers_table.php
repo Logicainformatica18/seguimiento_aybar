@@ -12,62 +12,80 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->id(); // Clave primaria (BIGINT UNSIGNED AUTO_INCREMENT)
-            $table->string('proyecto_2', 255)->nullable();
-            $table->string('proyecto', 255)->nullable();
-            $table->unsignedBigInteger('project_id')->nullable();
-            $table->string('lote', 255)->nullable();
-            $table->double('aux')->nullable();
-            $table->string('dni', 255)->nullable();
-            $table->string('cliente_1', 255)->nullable();
-            $table->string('dni_2', 255)->nullable();
-            $table->string('cliente_2', 255)->nullable();
-            $table->string('dni_3', 255)->nullable();
-            $table->string('cliente_3', 255)->nullable();
-            $table->string('dni_4', 255)->nullable();
-            $table->string('cliente_4', 255)->nullable();
-            $table->string('dni_5', 255)->nullable();
-            $table->string('cliente_5', 255)->nullable();
-            $table->string('socio_comercial', 255)->nullable();
-            $table->string('socio_comercial_', 255)->nullable();
-            $table->unsignedBigInteger('business_partners_id')->nullable();
-            $table->dateTime('fecha_de_separacion')->nullable();
-            $table->string('precio_de_lista_inventario', 255)->nullable();
-            $table->string('descuento_porcentaje', 255)->nullable();
-            $table->double('importe_de_venta')->nullable();
-            $table->string('estado', 255)->nullable();
-            $table->string('estado_', 255)->nullable();
-            $table->unsignedBigInteger('statuses_id')->nullable();
-            $table->double('dias_1')->nullable();
-            $table->string('redactado_por', 255)->nullable();
-            $table->unsignedBigInteger('editors_id')->nullable();
-            $table->dateTime('ingreso_a_operaciones')->nullable();
-            $table->dateTime('redactado')->nullable();
-            $table->dateTime('recogido_no_devuelto')->nullable();
-            $table->double('dias_2')->nullable();
-            $table->dateTime('fecha_contrato_firmado_devuelto')->nullable();
-            $table->string('adenda_refinanciamiento', 255)->nullable();
-            $table->dateTime('j2')->nullable();
-            $table->dateTime('enviado_a_archivo')->nullable();
-            $table->dateTime('virtual')->nullable();
-            $table->dateTime('notaria')->nullable();
-            $table->dateTime('chincha')->nullable();
-            $table->dateTime('post_venta')->nullable();
-            $table->dateTime('proceso_de_desistimiento')->nullable();
-            $table->dateTime('proceso_de_resolucion')->nullable();
-            $table->dateTime('cambio_de_titular')->nullable();
-            $table->dateTime('desistimiento')->nullable();
-            $table->string('comisiones', 255)->nullable();
-            $table->double('cantidad_de_letras')->nullable();
-            $table->string('letras_verificadas', 255)->nullable();
-            $table->text('observaciones')->nullable();
-            $table->timestamps(); // created_at y updated_at
 
-            // Llaves foráneas
+                $table->id();
+                   // Llaves foráneas
+                   $table->bigInteger('project_id')->unsigned();
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('statuses_id')->references('id')->on('statuses')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('business_partners_id')->references('id')->on('business_partners')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('editors_id')->references('id')->on('editors')->onDelete('no action')->onUpdate('no action');
+
+            $table->string('mz_lt')->nullable();
+                $table->string('client_1')->nullable();
+                $table->string('dni_1')->nullable();
+                $table->string('client_2')->nullable();
+                $table->string('dni_2')->nullable();
+                $table->string('client_3')->nullable();
+                $table->string('dni_3')->nullable();
+                $table->string('client_4')->nullable();
+                $table->string('dni_4')->nullable();
+                $table->string('client_5')->nullable();
+                $table->string('dni_5')->nullable();
+                $table->bigInteger('business_partners_id')->unsigned();
+                $table->foreign('business_partners_id')->references('id')->on('business_partners')->onDelete('no action')->onUpdate('no action');
+                $table->date('separation_date')->nullable();
+
+                $table->decimal('separation_amount', 10, 2)->nullable();
+
+                $table->bigInteger('assistant_id')->unsigned();
+                $table->foreign('assistant_id')->references('id')->on('users')->onDelete('no action')->onUpdate('no action');
+                $table->decimal('initial_paid', 10, 2)->nullable();
+                $table->date('initial_payment_date')->nullable();
+                $table->decimal('initial_amount', 10, 2)->nullable();
+                $table->bigInteger('state_id')->unsigned();
+                $table->foreign('state_id')->references('id')->on('statuses')->onDelete('no action')->onUpdate('no action');
+
+                $table->bigInteger('editors_id')->unsigned();
+                $table->foreign('editors_id')->references('id')->on('editors')->onDelete('no action')->onUpdate('no action');
+                $table->date('operations_entry')->nullable();
+                $table->integer('days')->nullable();
+                $table->string('drafted_by')->nullable();
+                $table->date('issue_date')->nullable();
+                $table->text('redaction_observations')->nullable();
+                $table->date('contract_withdrawal_date')->nullable();
+                $table->integer('elapsed_days')->nullable();
+                $table->integer('returned_letters')->nullable();
+                $table->date('return_date')->nullable();
+                $table->string('contract_type')->nullable();
+                $table->text('regularization_observations')->nullable();
+                $table->date('correction_delivery_day')->nullable();
+                $table->date('estimated_delivery_day')->nullable();
+                $table->date('actual_delivery_day')->nullable();
+                $table->date('regularized_contract_date')->nullable();
+                $table->time('regularization_return_time')->nullable();
+                $table->time('reception_time')->nullable();
+                $table->time('report_time')->nullable();
+                $table->string('elapsed_time')->nullable();
+                $table->string('indicator')->nullable();
+                $table->boolean('delivered_to_operations_2')->nullable();
+                $table->text('observations')->nullable();
+                $table->boolean('commission_paid')->nullable();
+                $table->boolean('contract_scanned')->nullable();
+                $table->string('cancellation_request_type')->nullable();
+                $table->date('cancellation_date')->nullable();
+                $table->string('cancelled_by')->nullable();
+                $table->boolean('physical_contract')->nullable();
+                $table->string('phone')->nullable();
+                $table->string('email')->nullable();
+                $table->boolean('signed_agreement')->nullable();
+                $table->boolean('receipts')->nullable();
+                $table->string('operation_type')->nullable();
+                $table->text('observation')->nullable();
+                $table->string('lot_status')->nullable();
+                $table->timestamps();
+
+
+
+
+
         });
     }
 

@@ -29,7 +29,7 @@
     <script src="{{ asset('js/project.js') }}"></script>
     <script src="{{ asset('js/image.js') }}"></script>
     <script src="{{ asset('js/role.js') }}"></script>
-    <script src="{{ asset('js/customer_2.js') }}"></script>
+    <script src="{{ asset('js/customer_3.js') }}"></script>
     <script src="{{ asset('js/status.js') }}"></script>
     <script src="{{ asset('js/editor.js') }}"></script>
     <script src="{{ asset('js/business_partner.js') }}"></script>
@@ -2613,8 +2613,10 @@
         ocultarColumnasPorClase('redaccion');
         ocultarColumnasPorClase('estado');
         ocultarColumnasPorClase('desistimiento');
-        ocultarColumnasPorClase('comision');
-        ocultarColumnasPorClase('no_group');
+        ocultarColumnasPorClase('fedateador');
+        ocultarColumnasPorClase('tesoreria');
+
+
         //mostrarColumnasPorClase('grupo-fedeteador');
     </script>
 </body>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->id('id'); // Clave primaria autoincremental (BIGINT UNSIGNED)
             $table->string('description', 255)->nullable();
+            $table->string('detail', 255)->nullable();
             $table->timestamps(); // created_at y updated_at
         });
     }

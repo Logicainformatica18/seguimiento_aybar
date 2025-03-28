@@ -29,17 +29,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'redaccion']);
         Permission::create(['name' => 'comercial']);
         Permission::create(['name' => 'fedateador']);
+
         Permission::create(['name' => 'desistimiento']);
         Permission::create(['name' => 'tesoreria-archivo']);
 
 
-        // Permission::create(['name' => 'secciones']);
-        // Permission::create(['name' => 'editar_plantilla']);
-        // Permission::create(['name' => 'editar_inicio']);
-        // Permission::create(['name' => 'editar_nosotros']);
-        // Permission::create(['name' => 'editar_blog']);
-        // Permission::create(['name' => 'editar_proyectos']);
-        // Permission::create(['name' => 'editar_contactos']);
+
 
         Permission::create(['name' => 'agregar']);
         Permission::create(['name' => 'editar']);
