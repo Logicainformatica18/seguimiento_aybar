@@ -13,6 +13,24 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        Status::create(['description' => 'General','detail' =>'']);
+        $statuses = [
+            ['description' => 'SEPERADO', 'detail' => ''],
+            ['description' => 'REDACTADO', 'detail' => ''],
+            ['description' => 'RECOGIDO NO DEVUELTO', 'detail' => ''],
+            ['description' => 'APLAZAMIENTO DE FIRMA', 'detail' => ''],
+            ['description' => 'CAMBIO DE LOTE', 'detail' => ''],
+            ['description' => 'CAMBIO DE TITULAR', 'detail' => ''],
+            ['description' => 'COMISIONES', 'detail' => ''],
+            ['description' => 'DEVUELTO A OPERACIONES', 'detail' => ''],
+            ['description' => 'ENVIADO A ARCHIVOS', 'detail' => ''],
+            ['description' => 'NOTARIA', 'detail' => ''],
+            ['description' => 'OPERACIONES', 'detail' => ''],
+            ['description' => 'REDACTADO  NO PROGRAMADO', 'detail' => ''],
+            ['description' => 'REDACTADO PROGRAMADO', 'detail' => ''],
+        ];
+
+        foreach ($statuses as $status) {
+            Status::create($status);
+        }
     }
 }

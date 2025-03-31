@@ -4,20 +4,21 @@
         <thead>
             <tr>
                 <th><img width="20" src="https://cdn-icons-png.flaticon.com/512/6671/6671938.png" alt=""></th>
-                <th class="comercial">ID</th>
+                <th style="background-color: #a9d18e" class="comercial">ID</th>
+
 
                 <!-- Comercial -->
-                <th class="comercial">Proyecto</th>
-                <th class="comercial">Mz - LT</th>
-                <th class="comercial">Cliente 1</th>
-                <th class="comercial">DNI 1</th>
-                <th class="comercial">Socio Comercial</th>
-                <th class="comercial">Fecha de Separación</th>
-                <th class="comercial">Monto de Separación</th>
-                <th class="comercial">Asistente</th>
-                <th class="comercial">Inicial Pagada</th>
-                <th class="comercial">Fecha de Inicial</th>
-                <th class="comercial">Monto de Inicial</th>
+                <th style="background-color: #a9d18e" class="comercial">Proyecto</th>
+                <th style="background-color: #a9d18e" class="comercial">Mz - LT</th>
+                <th style="background-color: #a9d18e" class="comercial">Cliente 1</th>
+                <th style="background-color: #a9d18e" class="comercial">DNI 1</th>
+                <th style="background-color: #a9d18e" class="comercial">Socio Comercial</th>
+                <th style="background-color: #a9d18e" class="comercial">Fecha de Separación</th>
+                <th style="background-color: #a9d18e" class="comercial">Monto de Separación</th>
+                <th style="background-color: #a9d18e" class="comercial">Asistente</th>
+                <th style="background-color: #a9d18e" class="comercial">Inicial Pagada</th>
+                <th style="background-color: #a9d18e" class="comercial">Fecha de Inicial</th>
+                <th style="background-color: #a9d18e" class="comercial">Monto de Inicial</th>
 
                 <!-- Redacción -->
                 <th class="d-none redaccion">Cliente 2</th>
@@ -84,36 +85,48 @@
                                 <i class="ti ti-dots-vertical fs-6"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                <li>
+                                @canany(['administrar', 'estado'])
+                                <li style='background-color:#fff3cd'>
                                     <a href="javascript:void(0)" onclick="toggleEstado(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Estado
                                     </a>
                                 </li>
-                                <li>
+                                @endcanany
+                                @canany(['administrar', 'redaccion'])
+                                <li style="background-color: #c9d8ff">
                                     <a href="javascript:void(0)" onclick="toggleRedaccion(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Redacción
                                     </a>
                                 </li>
-                                <li>
+                                @endcanany
+
+                                @canany(['administrar', 'fedateador'])
+                                <li style="background-color: #d9d9d9">
                                     <a href="javascript:void(0)" onclick="toggleFedateador(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Fedateador
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="javascript:void(0)" onclick="toggleDesistimiento(this)"
-                                        class="dropdown-item d-flex align-items-center gap-3">
-                                        <i class="fs-4 ti ti-plus"></i> Desistimiento
-                                    </a>
-                                </li>
-                                <li>
+                                @endcanany
+                                @canany(['administrar', 'comision'])
+                                <li style="background-color: #ffe79e">
                                     <a href="javascript:void(0)" onclick="toggleComision(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Comisión
                                     </a>
                                 </li>
+                                @endcanany
+                                @canany(['administrar', 'desistimiento'])
+                                <li style="background-color: #90eea3">
+                                    <a href="javascript:void(0)" onclick="toggleDesistimiento(this)"
+                                        class="dropdown-item d-flex align-items-center gap-3">
+                                        <i class="fs-4 ti ti-plus"></i> Desistimiento
+                                    </a>
+                                </li>
+                                @endcanany
+
                                 @canany(['administrar', 'editar'])
                                     <li>
                                         <a onclick="CustomerEdit('{{ $Customers->id }}'); Up();  return false"

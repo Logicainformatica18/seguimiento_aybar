@@ -402,6 +402,7 @@
                             <div class="accordion" id="accordionCustomer">
 
                                 <!-- Comercial -->
+                                @canany(['administrar', 'comercial'])
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingComercial">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -493,7 +494,8 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                @endcanany
+                                @canany(['administrar', 'redaccion'])
                                 <!-- Redacción -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingRedaccion">
@@ -560,9 +562,10 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                @endcanany
                                 <!-- Aquí seguirán los otros grupos -->
                                 <!-- Fedateador -->
+                                @canany(['administrar', 'fedateador'])
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingFedateador">
                                         <button class="accordion-button collapsed" type="button"
@@ -643,7 +646,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcanany
                                 <!-- Desistimiento -->
+                                @canany(['administrar', 'desistimiento'])
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingDesistimiento">
                                         <button class="accordion-button collapsed" type="button"
@@ -664,14 +669,15 @@
                                                     id="cancellation_date" name="cancellation_date" class="form-control">
                                             </div>
                                             <div class="col-md-6 mb-3"><label for="cancelled_by"
-                                                    class="form-label">Cancelado por</label><input type="text"
+                                                    class="form-label">Desistido por</label><input type="text"
                                                     id="cancelled_by" name="cancelled_by" class="form-control"></div>
                                             <div class="col-md-6 mb-3"><label for="physical_contract"
                                                     class="form-label">Contrato Físico</label><select
                                                     id="physical_contract" name="physical_contract" class="form-control">
                                                     <option value="">Seleccione</option>
-                                                    <option value="1">Sí</option>
-                                                    <option value="0">No</option>
+                                                    <option value="CORREO EQUIPO COMERCIAL">CORREO EQUIPO COMERCIAL</option>
+                                                    <option value="DEVOLUCION DE CONTRATO">DEVOLUCION DE CONTRATO</option>
+                                                    <option value="FUERA DE FLUJO">FUERA DE FLUJO</option>
                                                 </select></div>
                                             <div class="col-md-6 mb-3"><label for="phone"
                                                     class="form-label">Teléfono</label><input type="text"
@@ -694,8 +700,16 @@
                                                     <option value="0">No</option>
                                                 </select></div>
                                             <div class="col-md-6 mb-3"><label for="operation_type"
-                                                    class="form-label">Tipo de Operación</label><input type="text"
-                                                    id="operation_type" name="operation_type" class="form-control"></div>
+                                                    class="form-label">Tipo de Operación</label>
+                                                <select name="" id="">
+                                                    <option value="SEPARACION">SEPARACION</option>
+                                                    <option value="SEPARACION + INICIAL">SEPARACION + INICIAL</option>
+                                                    <option value="INICIAL + BOLETA GRANDE">SEPARACION + INICIAL + BOLETA GRANDE</option>
+                                                    <option value="INICIAL + BOLETA GRANDE">INICIAL + BOLETA GRANDE</option>
+                                                </select>
+                                                    <input type="text"
+                                                    id="operation_type" name="operation_type" class="form-control">
+                                                </div>
                                             <div class="col-md-6 mb-3"><label for="observation"
                                                     class="form-label">Observación</label>
                                                 <textarea id="observation" name="observation" class="form-control"></textarea>
@@ -706,7 +720,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcanany
                                 <!-- Tesorería - Archivo -->
+                                @canany(['administrar', 'tesoreria-archivo'])
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingTesoreria">
                                         <button class="accordion-button collapsed" type="button"
@@ -739,7 +755,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcanany
                                   <!-- Estado -->
+                                  @canany(['administrar', 'estado'])
                                   <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingState">
                                         <button class="accordion-button collapsed" type="button"
@@ -764,23 +782,29 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endcanany
                             </div>
 
                             <div class="row mt-4">
+                                @canany(['administrar', 'agregar'])
                                 <div class="col-3">
                                     <input type="button" value="Nuevo" class="btn w-100 btn-primary"
                                         onclick="New();$('#Customer')[0].reset();" name="new">
                                 </div>
+
                                 <div class="col-3">
                                     <input type="button" value="Guardar"
                                         class="w-100 btn bg-success-subtle text-success" onclick="CustomerStore()"
                                         id="create">
                                 </div>
+                                @endcanany
+                                @canany(['administrar', 'actualizar'])
                                 <div class="col-3">
                                     <input type="button" value="Modificar"
                                         class="w-100 btn bg-danger-subtle text-danger" onclick="CustomerUpdate();"
                                         id="update">
                                 </div>
+                                @endcanany
                                 <div class="col-3">
                                     <button type="button" class="w-100 btn btn-secondary"
                                         data-bs-dismiss="modal">Cerrar</button>

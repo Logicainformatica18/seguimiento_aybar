@@ -36,87 +36,82 @@ function CustomerEdit(id) {
         "Content-Type": "multipart/form-data"
       }
     })
-      .then(function (response) {
-        document.getElementById("customer_id").innerHTML = "EX-" + response.data["id"];
-        const c = response.data;
-        Customer.project_id.value = c.project_id;
-  Customer.project_id.value = c.project_id;
+    .then(function (response) {
+      const c = response.data;
+      document.getElementById("customer_id").innerHTML = "EX-" + c["id"];
 
-        Customer.id.value = c.id;
-        Customer.client_1.value = c.client_1;
-        Customer.dni_1.value = c.dni_1;
-        Customer.client_2.value = c.client_2;
-        Customer.dni_2.value = c.dni_2;
-        Customer.client_3.value = c.client_3;
-        Customer.dni_3.value = c.dni_3;
-        Customer.client_4.value = c.client_4;
-        Customer.dni_4.value = c.dni_4;
-        Customer.client_5.value = c.client_5;
-        Customer.dni_5.value = c.dni_5;
+      // Función auxiliar para asignar valor si existe el input
+      const setValue = (field, value) => {
+        if (Customer[field]) {
+          Customer[field].value = value ?? '';
+        }
+      };
 
-        Customer.mz_lt.value = c.mz_lt;
+      // Asignaciones agrupadas
+      setValue('id', c.id);
+      setValue('project_id', c.project_id);
+      setValue('client_1', c.client_1);
+      setValue('dni_1', c.dni_1);
+      setValue('client_2', c.client_2);
+      setValue('dni_2', c.dni_2);
+      setValue('client_3', c.client_3);
+      setValue('dni_3', c.dni_3);
+      setValue('client_4', c.client_4);
+      setValue('dni_4', c.dni_4);
+      setValue('client_5', c.client_5);
+      setValue('dni_5', c.dni_5);
+      setValue('mz_lt', c.mz_lt);
+      setValue('business_partners_id', c.business_partners_id);
+      setValue('separation_date', c.separation_date);
+      setValue('separation_amount', c.separation_amount);
+      setValue('assistant_id', c.assistant_id);
+      setValue('initial_paid', c.initial_paid);
+      setValue('initial_payment_date', c.initial_payment_date);
+      setValue('initial_amount', c.initial_amount);
+      setValue('operations_entry', c.operations_entry);
+      setValue('editors_id', c.editors_id);
+      setValue('days', c.days);
+      setValue('issue_date', c.issue_date);
+      setValue('redaction_observations', c.redaction_observations);
+      setValue('contract_withdrawal_date', c.contract_withdrawal_date);
+      setValue('elapsed_days', c.elapsed_days);
+      setValue('returned_letters', c.returned_letters);
+      setValue('return_date', c.return_date);
+      setValue('contract_type', c.contract_type);
+      setValue('regularization_observations', c.regularization_observations);
+      setValue('correction_delivery_day', c.correction_delivery_day);
+      setValue('estimated_delivery_day', c.estimated_delivery_day);
+      setValue('actual_delivery_day', c.actual_delivery_day);
+      setValue('regularized_contract_date', c.regularized_contract_date);
+      setValue('regularization_return_time', c.regularization_return_time);
+      setValue('reception_time', c.reception_time);
+      setValue('report_time', c.report_time);
+      setValue('elapsed_time', c.elapsed_time);
+      setValue('indicator', c.indicator);
+      setValue('delivered_to_operations_2', c.delivered_to_operations_2);
+      setValue('observations', c.observations);
+      setValue('commission_paid', c.commission_paid);
+      setValue('contract_scanned', c.contract_scanned);
+      setValue('cancellation_request_type', c.cancellation_request_type);
+      setValue('cancellation_date', c.cancellation_date);
+      setValue('cancelled_by', c.cancelled_by);
+      setValue('physical_contract', c.physical_contract);
+      setValue('phone', c.phone);
+      setValue('email', c.email);
+      setValue('signed_agreement', c.signed_agreement);
+      setValue('receipts', c.receipts);
+      setValue('operation_type', c.operation_type);
+      setValue('observation', c.observation);
+      setValue('lot_status', c.lot_status);
+      setValue('state_id', c.state_id);
 
-        Customer.business_partners_id.value = c.business_partners_id;
-        Customer.separation_date.value = c.separation_date;
-        Customer.separation_amount.value = c.separation_amount;
-        Customer.assistant_id.value = c.assistant_id;
-        Customer.initial_paid.value = c.initial_paid;
-        Customer.initial_payment_date.value = c.initial_payment_date;
-        Customer.initial_amount.value = c.initial_amount;
 
-
-
-
-
-        Customer.operations_entry.value = c.operations_entry;
-        Customer.editors_id.value = c.editors_id;
-        Customer.days.value = c.days;
-
-        Customer.issue_date.value = c.issue_date;
-        Customer.redaction_observations.value = c.redaction_observations;
-
-        Customer.contract_withdrawal_date.value = c.contract_withdrawal_date;
-        Customer.elapsed_days.value = c.elapsed_days;
-        Customer.returned_letters.value = c.returned_letters;
-        Customer.return_date.value = c.return_date;
-        Customer.contract_type.value = c.contract_type;
-        Customer.regularization_observations.value = c.regularization_observations;
-        Customer.correction_delivery_day.value = c.correction_delivery_day;
-        Customer.estimated_delivery_day.value = c.estimated_delivery_day;
-        Customer.actual_delivery_day.value = c.actual_delivery_day;
-        Customer.regularized_contract_date.value = c.regularized_contract_date;
-        Customer.regularization_return_time.value = c.regularization_return_time;
-        Customer.reception_time.value = c.reception_time;
-        Customer.report_time.value = c.report_time;
-        Customer.elapsed_time.value = c.elapsed_time;
-        Customer.indicator.value = c.indicator;
-
-        Customer.delivered_to_operations_2.value = c.delivered_to_operations_2;
-
-        Customer.observations.value = c.observations;
-
-        Customer.commission_paid.value = c.commission_paid;
-        Customer.contract_scanned.value = c.contract_scanned;
-
-        Customer.cancellation_request_type.value = c.cancellation_request_type;
-        Customer.cancellation_date.value = c.cancellation_date;
-        Customer.cancelled_by.value = c.cancelled_by;
-        Customer.physical_contract.value = c.physical_contract;
-        Customer.phone.value = c.phone;
-        Customer.email.value = c.email;
-        Customer.signed_agreement.value = c.signed_agreement;
-        Customer.receipts.value = c.receipts;
-        Customer.operation_type.value = c.operation_type;
-        Customer.observation.value = c.observation;
-        Customer.lot_status.value = c.lot_status;
-        Customer.state_id.value = c.state_id;
-
-        console.log(response.data);
-      })
-      .catch(function (response) {
-        console.log(response);
-      });
+    })
+    .catch(function (response) {
+      console.log(response);
+    });
   }
+
 
 function CustomerUpdate() {
   var formData = new FormData(document.getElementById("Customer"));

@@ -116,45 +116,46 @@
                                         <span class="sidebar-divider"></span>
                                     </li>
 
-                                    @canany(['administrar', 'proyectos'])
-                                        <li class="sidebar-item">
-                                            <a class="sidebar-link " href="{{ url('admin/proyectos') }}">
-                                                <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
-                                                <span class="hide-menu">Proyectos</span>
-                                            </a>
-                                        </li>
-                                    @endcanany
-
+                                    @canany(['administrar', 'estado'])
                                     <li class="sidebar-item">
                                         <a class="sidebar-link " href="{{ url('admin/estados') }}">
                                             <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
                                             <span class="hide-menu">Estados</span>
                                         </a>
                                     </li>
+                                    @endcanany
+                                    @canany(['administrar', 'redaccion'])
                                     <li class="sidebar-item">
                                         <a class="sidebar-link " href="{{ url('admin/redactores') }}">
                                             <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
                                             <span class="hide-menu">Redactores</span>
                                         </a>
                                     </li>
+                                    @endcanany
+                                    @canany(['administrar', 'socio_comercial'])
                                     <li class="sidebar-item">
                                         <a class="sidebar-link " href="{{ url('admin/socio_comercial') }}">
                                             <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
                                             <span class="hide-menu">Socio Comercial</span>
                                         </a>
                                     </li>
+                                    @endcanany
+                                    @canany(['administrar', 'clientes'])
                                     <li class="sidebar-item">
                                         <a class="sidebar-link " href="{{ url('clientes') }}">
                                             <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
                                             <span class="hide-menu">Clientes</span>
                                         </a>
                                     </li>
+                                    @endcanany
+                                    @canany(['administrar', 'dashboard'])
                                     <li class="sidebar-item">
                                         <a class="sidebar-link " href="{{ url('admin/clientes_dashboard') }}">
                                             <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
                                             <span class="hide-menu">Dashboard</span>
                                         </a>
                                     </li>
+                                    @endcanany
                                     <hr>
                                     {{-- <li class="nav-small-cap">
                                         <span class="hide-menu">Módulos</span>
@@ -2211,30 +2212,23 @@
     <script>
         ///////////////////////////////////////////
         function toggleEstado(element) {
-           const tr = $(element).closest('tr')[0];
-           const row = tabla_file_export.row(tr);
+            const tr = $(element).closest('tr')[0];
+            const row = tabla_file_export.row(tr);
 
-           if (row.child.isShown()) {
-               row.child.hide();
-               $(tr).removeClass('shown');
-           } else {
-               // Obtener los datos directamente desde DataTables (incluye ocultos)
-               const data = row.data();
-
-               const estado = data[12] // Estado
-
-
-
-               // Armar la tabla expandible
-               const html = `
-               <div style="overflow-x:auto;">
+            if (row.child.isShown()) {
+                row.child.hide();
+                $(tr).removeClass('shown');
+            } else {
+                // Obtener los datos directamente desde DataTables (incluye ocultos)
+                const data = row.data();
+                const estado = data[24] // Estado
+                // Armar la tabla expandible
+                const html = `
+               <div style="overflow-x:auto;" class="bg-warning">
                    <table class="table table-bordered table-sm text-start mb-0 w-100">
                        <thead class="table-light">
                            <tr>
-
-           <th >Estado</th>
-
-
+           <th style='background-color:#fff3cd'>Estado</th>
                            </tr>
                        </thead>
                        <tbody>
@@ -2249,11 +2243,11 @@
                </div>
            `;
 
-               row.child(html).show();
-               $(tr).addClass('shown');
-           }
-       }
-   </script>
+                row.child(html).show();
+                $(tr).addClass('shown');
+            }
+        }
+    </script>
     <script defer>
         function toggleRedaccion(element) {
             const tr = $(element).closest('tr')[0];
@@ -2271,13 +2265,18 @@
                 <div style="overflow-x:auto;">
                     <table class="table table-bordered table-sm text-start mb-0 w-100">
                         <thead class="table-light">
-                            <tr>
-                                     <th >Redactor</th>
-                        <th >Ingreso a Operaciones</th>
-                        <th >Dias 1</th>
-                        <th >Redactado</th>
-                        <th>Fecha Emisión</th>
-                        <th >Observaciones</th>
+                            <tr >
+                                     <th style='background-color:#c9d8ff's>Cliente 2</th>
+                <th style='background-color:#c9d8ff's>DNI 2</th>
+                <th style='background-color:#c9d8ff's>Cliente 3</th>
+                <th style='background-color:#c9d8ff's>DNI 3</th>
+                <th style='background-color:#c9d8ff's>Cliente 4</th>
+                <th style='background-color:#c9d8ff's>DNI 4</th>
+                <th style='background-color:#c9d8ff's>Ingreso a Operaciones</th>
+                <th style='background-color:#c9d8ff's>Días</th>
+                <th style='background-color:#c9d8ff's>Redactado Por</th>
+                <th style='background-color:#c9d8ff's>Fecha de Emisión</th>
+                <th style='background-color:#c9d8ff's>Observaciones Redacción</th>
 
                             </tr>
                         </thead>
@@ -2289,6 +2288,11 @@
         <td>${data[16]}</td>
         <td>${data[17]}</td>
         <td>${data[18]}</td>
+        <td>${data[19]}</td>
+        <td>${data[20]}</td>
+        <td>${data[21]}</td>
+        <td>${data[22]}</td>
+        <td>${data[23]}</td>
 
     </tr>
 </tbody>
@@ -2302,7 +2306,9 @@
             }
         }
         ///////////////////////////////////////////
-        function toggleEstado(element) {
+    </script>
+    <script defer>
+        function toggleFedateador(element) {
             const tr = $(element).closest('tr')[0];
             const row = tabla_file_export.row(tr);
 
@@ -2313,85 +2319,36 @@
                 // Obtener los datos directamente desde DataTables (incluye ocultos)
                 const data = row.data();
 
-                const estado = data[12] // Estado
-
-
-
                 // Armar la tabla expandible
                 const html = `
-                <div style="overflow-x:auto;">
-                    <table class="table table-bordered table-sm text-start mb-0 w-100">
-                        <thead class="table-light">
-                            <tr>
-
-            <th >Estado</th>
-
-
-                            </tr>
-                        </thead>
-                        <tbody>
-    <tr>
-
-        <td>${estado}</td>
-
-    </tr>
-</tbody>
-
-                    </table>
-                </div>
-            `;
-
-                row.child(html).show();
-                $(tr).addClass('shown');
-            }
-        }
-    </script>
-  <script defer>
-    function toggleFedateador(element) {
-        const tr = $(element).closest('tr')[0];
-        const row = tabla_file_export.row(tr);
-
-        if (row.child.isShown()) {
-            row.child.hide();
-            $(tr).removeClass('shown');
-        } else {
-            // Obtener los datos directamente desde DataTables (incluye ocultos)
-            const data = row.data();
-
-            // Armar la tabla expandible
-            const html = `
             <div style="overflow-x:auto;">
                 <table class="table table-bordered table-sm text-start mb-0 w-100">
                     <thead class="table-light text-start">
                         <tr>
-                                  <th >Fecha Retiro Contrato</th>
-                        <th >Días</th>
-                        <th >Letras Devueltas</th>
-                        <th >Fecha Devolución</th>
-                        <th >Tipo Contrato</th>
-                        <th >Observaciones a Regularizar</th>
-                        <th >Dias de entrega correción</th>
-                        <th >Dias estimado de entrega</th>
-                        <th >Fecha Entrega</th>
-                        <th >Fecha Contrato Regularizado</th>
-                        <th >Hora De La Devolución De Regularización</th>
-                        <th >Hora DE La recepción</th>
-                        <th >Hora de reporte</th>
-                        <th >Tiempo Transcurrido</th>
-                        <th >Indicador</th>
-                        <th >Entregado Operaciones 2</th>
-                        <th >Observaciones</th>
+
+                           <th style="background-color: #d9d9d9">Fecha de Retiro de Contrato</th>
+                <th style="background-color: #d9d9d9">Días Transcurridos</th>
+                <th style="background-color: #d9d9d9">Letras Devueltas</th>
+                <th style="background-color: #d9d9d9">Fecha de Devolución</th>
+                <th style="background-color: #d9d9d9">Tipo de Contrato</th>
+                <th style="background-color: #d9d9d9">Observaciones a Regularizar</th>
+                <th style="background-color: #d9d9d9">Día de Entrega para Corrección</th>
+                <th style="background-color: #d9d9d9">Día Estimado de Entrega</th>
+                <th style="background-color: #d9d9d9">Día Real de la Entrega</th>
+                <th style="background-color: #d9d9d9">Fecha de Contrato Regularizado</th>
+                <th style="background-color: #d9d9d9">Hora de Devolución de Regularización</th>
+                <th style="background-color: #d9d9d9">Hora de Recepción</th>
+                <th style="background-color: #d9d9d9">Hora de Reporte</th>
+                <th style="background-color: #d9d9d9">Tiempo Transcurrido</th>
+                <th style="background-color: #d9d9d9">Indicador</th>
+                <th style="background-color: #d9d9d9">Entregado a Operaciones 2</th>
+                <th style="background-color: #d9d9d9">Observaciones</th>
 
                         </tr>
                     </thead>
                     <tbody>
 <tr>
-    <td>${data[19]}</td>
-    <td>${data[20]}</td>
-    <td>${data[21]}</td>
-    <td>${data[22]}</td>
-    <td>${data[23]}</td>
-    <td>${data[24]}</td>
+
     <td>${data[25]}</td>
     <td>${data[26]}</td>
     <td>${data[27]}</td>
@@ -2403,6 +2360,12 @@
     <td>${data[33]}</td>
     <td>${data[34]}</td>
     <td>${data[35]}</td>
+    <td>${data[36]}</td>
+    <td>${data[37]}</td>
+    <td>${data[38]}</td>
+    <td>${data[39]}</td>
+    <td>${data[40]}</td>
+    <td>${data[41]}</td>
 
 </tr>
 </tbody>
@@ -2411,39 +2374,33 @@
             </div>
         `;
 
-            row.child(html).show();
-            $(tr).addClass('shown');
+                row.child(html).show();
+                $(tr).addClass('shown');
+            }
         }
-    }
-
-
-</script>
-<script>
+    </script>
+    <script>
         ///////////////////////////////////////////
         function toggleComision(element) {
-        const tr = $(element).closest('tr')[0];
-        const row = tabla_file_export.row(tr);
+            const tr = $(element).closest('tr')[0];
+            const row = tabla_file_export.row(tr);
 
-        if (row.child.isShown()) {
-            row.child.hide();
-            $(tr).removeClass('shown');
-        } else {
-            // Obtener los datos directamente desde DataTables (incluye ocultos)
-            const data = row.data();
+            if (row.child.isShown()) {
+                row.child.hide();
+                $(tr).removeClass('shown');
+            } else {
+                // Obtener los datos directamente desde DataTables (incluye ocultos)
+                const data = row.data();
 
-
-
-
-
-            // Armar la tabla expandible
-            const html = `
+                // Armar la tabla expandible
+                const html = `
             <div style="overflow-x:auto;">
                 <table class="table table-bordered table-sm text-start mb-0 w-100">
                     <thead class="table-light">
                         <tr>
 
-        <th >Pago de Comisión</th>
-        <th >Ingreso a Cartera</th>
+          <th style="background-color: #ffe79e">Comisión Pagada</th>
+                <th style="background-color: #ffe79e">Escaneo de Contrato</th>
 
 
                         </tr>
@@ -2451,8 +2408,8 @@
                     <tbody>
 <tr>
 
-    <td>${data[36]}</td>
-    <td>${data[37]}</td>
+    <td>${data[42]}</td>
+    <td>${data[43]}</td>
 
 </tr>
 </tbody>
@@ -2461,45 +2418,47 @@
             </div>
         `;
 
-            row.child(html).show();
-            $(tr).addClass('shown');
+                row.child(html).show();
+                $(tr).addClass('shown');
+            }
         }
-    }
-</script>
-<script>
-    ///////////////////////////////////////////
-    function toggleDesistimiento(element) {
-    const tr = $(element).closest('tr')[0];
-    const row = tabla_file_export.row(tr);
+    </script>
+    <script>
+        ///////////////////////////////////////////
+        function toggleDesistimiento(element) {
+            const tr = $(element).closest('tr')[0];
+            const row = tabla_file_export.row(tr);
 
-    if (row.child.isShown()) {
-        row.child.hide();
-        $(tr).removeClass('shown');
-    } else {
-        // Obtener los datos directamente desde DataTables (incluye ocultos)
-        const data = row.data();
-
+            if (row.child.isShown()) {
+                row.child.hide();
+                $(tr).removeClass('shown');
+            } else {
+                // Obtener los datos directamente desde DataTables (incluye ocultos)
+                const data = row.data();
 
 
 
 
-        // Armar la tabla expandible
-        const html = `
+
+                // Armar la tabla expandible
+                const html = `
         <div style="overflow-x:auto;">
             <table class="table table-bordered table-sm text-start mb-0 w-100">
                 <thead class="table-light">
                     <tr>
 
-    <th >Solicitud Desest. Resolución</th>
-                <th >Fecha</th>
-                <th >Desistido Por</th>
-                <th >Contrato Físico</th>
-                <th >Teléfono</th>
-                <th >Correo</th>
-                <th >Acuerdo Firmado</th>
-                <th >Boletas</th>
-                <th >Tipo Operación</th>
-                <th >Observaciones</th>
+
+            <th style="background-color: #90eea3">Tipo de Solicitud</th>
+                <th style="background-color: #90eea3" >Fecha de Desistimiento</th>
+                <th style="background-color: #90eea3" >Cancelado Por</th>
+                <th style="background-color: #90eea3" >Contrato Físico</th>
+                <th style="background-color: #90eea3" >Teléfono</th>
+                <th style="background-color: #90eea3" >Correo</th>
+                <th style="background-color: #90eea3" >Acuerdo Firmado</th>
+                <th style="background-color: #90eea3" >Boletas</th>
+                <th style="background-color: #90eea3" >Tipo de Operación</th>
+                <th style="background-color: #90eea3" >Observación</th>
+                <th style="background-color: #90eea3" >Estado del Lote</th>
 
 
                     </tr>
@@ -2507,16 +2466,17 @@
                 <tbody>
 <tr>
 
-<td>${data[38]}</td>
-<td>${data[39]}</td>
-<td>${data[40]}</td>
-<td>${data[41]}</td>
-<td>${data[42]}</td>
-<td>${data[43]}</td>
 <td>${data[44]}</td>
 <td>${data[45]}</td>
 <td>${data[46]}</td>
 <td>${data[47]}</td>
+<td>${data[48]}</td>
+<td>${data[49]}</td>
+<td>${data[50]}</td>
+<td>${data[51]}</td>
+<td>${data[52]}</td>
+<td>${data[53]}</td>
+<td>${data[54]}</td>
 
 </tr>
 </tbody>
@@ -2525,11 +2485,11 @@
         </div>
     `;
 
-        row.child(html).show();
-        $(tr).addClass('shown');
-    }
-}
-</script>
+                row.child(html).show();
+                $(tr).addClass('shown');
+            }
+        }
+    </script>
 
 
     <!-- jQuery -->
