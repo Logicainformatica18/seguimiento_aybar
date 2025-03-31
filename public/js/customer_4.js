@@ -53,7 +53,7 @@ function CustomerEdit(id) {
         Customer.dni_4.value = c.dni_4;
         Customer.client_5.value = c.client_5;
         Customer.dni_5.value = c.dni_5;
-        alert(c.mz_lt);
+
         Customer.mz_lt.value = c.mz_lt;
 
         Customer.business_partners_id.value = c.business_partners_id;
@@ -63,16 +63,15 @@ function CustomerEdit(id) {
         Customer.initial_paid.value = c.initial_paid;
         Customer.initial_payment_date.value = c.initial_payment_date;
         Customer.initial_amount.value = c.initial_amount;
-        Customer.statuses_id.value = c.statuses_id;
 
-       // Customer.editor_id.value = c.editors_id;
 
 
 
 
         Customer.operations_entry.value = c.operations_entry;
+        Customer.editors_id.value = c.editors_id;
         Customer.days.value = c.days;
-        Customer.drafted_by.value = c.drafted_by;
+
         Customer.issue_date.value = c.issue_date;
         Customer.redaction_observations.value = c.redaction_observations;
 
@@ -91,23 +90,26 @@ function CustomerEdit(id) {
         Customer.report_time.value = c.report_time;
         Customer.elapsed_time.value = c.elapsed_time;
         Customer.indicator.value = c.indicator;
-        Customer.delivered_to_operations_2.checked = c.delivered_to_operations_2;
+
+        Customer.delivered_to_operations_2.value = c.delivered_to_operations_2;
+
         Customer.observations.value = c.observations;
 
-        Customer.commission_paid.checked = c.commission_paid;
-        Customer.contract_scanned.checked = c.contract_scanned;
+        Customer.commission_paid.value = c.commission_paid;
+        Customer.contract_scanned.value = c.contract_scanned;
 
         Customer.cancellation_request_type.value = c.cancellation_request_type;
         Customer.cancellation_date.value = c.cancellation_date;
         Customer.cancelled_by.value = c.cancelled_by;
-        Customer.physical_contract.checked = c.physical_contract;
+        Customer.physical_contract.value = c.physical_contract;
         Customer.phone.value = c.phone;
         Customer.email.value = c.email;
-        Customer.signed_agreement.checked = c.signed_agreement;
-        Customer.receipts.checked = c.receipts;
+        Customer.signed_agreement.value = c.signed_agreement;
+        Customer.receipts.value = c.receipts;
         Customer.operation_type.value = c.operation_type;
         Customer.observation.value = c.observation;
         Customer.lot_status.value = c.lot_status;
+        Customer.state_id.value = c.state_id;
 
         console.log(response.data);
       })
