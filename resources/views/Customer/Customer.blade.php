@@ -701,14 +701,13 @@
                                                 </select></div>
                                             <div class="col-md-6 mb-3"><label for="operation_type"
                                                     class="form-label">Tipo de Operación</label>
-                                                <select name="" id="">
+                                                <select name="operation_type" id="operation_type" class="form-control">
                                                     <option value="SEPARACION">SEPARACION</option>
                                                     <option value="SEPARACION + INICIAL">SEPARACION + INICIAL</option>
                                                     <option value="INICIAL + BOLETA GRANDE">SEPARACION + INICIAL + BOLETA GRANDE</option>
                                                     <option value="INICIAL + BOLETA GRANDE">INICIAL + BOLETA GRANDE</option>
                                                 </select>
-                                                    <input type="text"
-                                                    id="operation_type" name="operation_type" class="form-control">
+
                                                 </div>
                                             <div class="col-md-6 mb-3"><label for="observation"
                                                     class="form-label">Observación</label>

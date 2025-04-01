@@ -45,6 +45,10 @@ return new class extends Migration
 
                 $table->bigInteger('editors_id')->unsigned();
                 $table->foreign('editors_id')->references('id')->on('editors')->onDelete('no action')->onUpdate('no action');
+                $table->bigInteger('created_by')->unsigned();
+                $table->foreign('created_by')->references('id')->on('users')->onDelete('no action')->onUpdate('no action');
+                $table->bigInteger('updated_by')->unsigned();
+                $table->foreign('updated_by')->references('id')->on('users')->onDelete('no action')->onUpdate('no action');
                 $table->date('operations_entry')->nullable();
                 $table->integer('days')->nullable();
                 $table->string('drafted_by')->nullable();
@@ -65,18 +69,18 @@ return new class extends Migration
                 $table->time('report_time')->nullable();
                 $table->string('elapsed_time')->nullable();
                 $table->string('indicator')->nullable();
-                $table->boolean('delivered_to_operations_2')->nullable();
+                $table->string('delivered_to_operations_2')->nullable();
                 $table->text('observations')->nullable();
-                $table->boolean('commission_paid')->nullable();
-                $table->boolean('contract_scanned')->nullable();
+                $table->string('commission_paid')->nullable();
+                $table->string('contract_scanned')->nullable();
                 $table->string('cancellation_request_type')->nullable();
                 $table->date('cancellation_date')->nullable();
                 $table->string('cancelled_by')->nullable();
-                $table->boolean('physical_contract')->nullable();
+                $table->string('physical_contract')->nullable();
                 $table->string('phone')->nullable();
                 $table->string('email')->nullable();
-                $table->boolean('signed_agreement')->nullable();
-                $table->boolean('receipts')->nullable();
+                $table->string('signed_agreement')->nullable();
+                $table->string('receipts')->nullable();
                 $table->string('operation_type')->nullable();
                 $table->text('observation')->nullable();
                 $table->string('lot_status')->nullable();

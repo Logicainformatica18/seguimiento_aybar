@@ -115,7 +115,14 @@
                                     <li>
                                         <span class="sidebar-divider"></span>
                                     </li>
-
+                                    @canany(['administrar', 'proyecto'])
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link " href="{{ url('admin/proyectos') }}">
+                                            <iconify-icon icon="solar:shield-user-line-duotone"></iconify-icon>
+                                            <span class="hide-menu">Proyectos</span>
+                                        </a>
+                                    </li>
+                                    @endcanany
                                     @canany(['administrar', 'estado'])
                                     <li class="sidebar-item">
                                         <a class="sidebar-link " href="{{ url('admin/estados') }}">

@@ -26,6 +26,7 @@ class PermissionsSeeder extends Seeder
             Permission::create(['name' => 'eliminar']);
             Permission::create(['name' => 'usuarios']);
             Permission::create(['name' => 'estado']);
+            Permission::create(['name' => 'proyecto']);
             Permission::create(['name' => 'comision']);
             Permission::create(['name' => 'clientes']);
             Permission::create(['name' => 'socio_comercial']);

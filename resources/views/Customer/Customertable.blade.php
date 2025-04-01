@@ -158,7 +158,7 @@
                     <td class="comercial">{{ $Customers->Business_partner->description ?? '' }}</td>
                     <td class="comercial">{{ $Customers->separation_date }}</td>
                     <td class="comercial">{{ $Customers->separation_amount }}</td>
-                    <td class="comercial">{{ $Customers->Assistant->name ?? '' }}</td>
+                    <td class="comercial">{{ $Customers->Assistant->names ?? '' }}</td>
                     <td class="comercial">{{ $Customers->initial_paid }}</td>
                     <td class="comercial">{{ $Customers->initial_payment_date }}</td>
                     <td class="comercial">{{ $Customers->initial_amount }}</td>

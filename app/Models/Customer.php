@@ -16,6 +16,18 @@ class Customer extends Model
     {
         return $this->belongsTo(Business_partner::class, 'business_partners_id', 'id');
     }
+    public function Assistant()
+    {
+        return $this->belongsTo(User::class, 'assistant_id', 'id');
+    }
+    public function Created_by()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+    public function Updated_by()
+    {
+        return $this->belongsTo(User::class, 'updated_by', 'id');
+    }
     public function Status()
     {
         return $this->belongsTo(Status::class, 'state_id', 'id');

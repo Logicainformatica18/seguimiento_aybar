@@ -71,6 +71,8 @@ class CustomerSeeder extends Seeder
                 'lot_status' => 'Reservado',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'created_by' => 1,
+                'updated_by' => 1,
             ]);
         }
     }
