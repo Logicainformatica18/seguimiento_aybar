@@ -81,7 +81,7 @@ class PermissionsSeeder extends Seeder
                             'firstname' => $firstname,
                             'lastname' => $lastname,
                             'names' => "$firstname $lastname",
-                            'password' => Hash::make('sdc123456'),
+                            'password' => Hash::make('aYb4r123456'),
                             'datebirth' => '1990-01-01',
                             'cellphone' => '900000000',
                             'sex' => 'M',

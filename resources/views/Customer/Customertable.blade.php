@@ -85,49 +85,42 @@
                                 <i class="ti ti-dots-vertical fs-6"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                @canany(['administrar', 'estado'])
+
                                 <li style='background-color:#fff3cd'>
                                     <a href="javascript:void(0)" onclick="toggleEstado(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Estado
                                     </a>
                                 </li>
-                                @endcanany
-                                @canany(['administrar', 'redaccion'])
+
                                 <li style="background-color: #c9d8ff">
                                     <a href="javascript:void(0)" onclick="toggleRedaccion(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Redacción
                                     </a>
                                 </li>
-                                @endcanany
 
-                                @canany(['administrar', 'fedateador'])
                                 <li style="background-color: #d9d9d9">
                                     <a href="javascript:void(0)" onclick="toggleFedateador(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Fedateador
                                     </a>
                                 </li>
-                                @endcanany
-                                @canany(['administrar', 'comision'])
+
                                 <li style="background-color: #ffe79e">
                                     <a href="javascript:void(0)" onclick="toggleComision(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Comisión
                                     </a>
                                 </li>
-                                @endcanany
-                                @canany(['administrar', 'desistimiento'])
+
                                 <li style="background-color: #90eea3">
                                     <a href="javascript:void(0)" onclick="toggleDesistimiento(this)"
                                         class="dropdown-item d-flex align-items-center gap-3">
                                         <i class="fs-4 ti ti-plus"></i> Desistimiento
                                     </a>
                                 </li>
-                                @endcanany
 
-                                @canany(['administrar', 'editar'])
                                     <li>
                                         <a onclick="CustomerEdit('{{ $Customers->id }}'); Up();  return false"
                                             data-bs-toggle="modal" data-bs-target="#success-header-modal"
@@ -136,15 +129,14 @@
                                             <i class="fs-4 ti ti-edit"></i>Editar
                                         </a>
                                     </li>
-                                @endcanany
-                                @canany(['administrar', 'eliminar'])
+
                                     <li>
                                         <a class="dropdown-item d-flex align-items-center gap-3" href="javascript:void(0)"
                                             onclick="CustomerDestroy('{{ $Customers->id }}'); return false">
                                             <i class="fs-4 ti ti-trash"></i>Delete
                                         </a>
                                     </li>
-                                @endcanany
+
                             </ul>
                         </div>
 

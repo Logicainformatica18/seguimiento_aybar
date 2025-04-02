@@ -46,7 +46,7 @@
                                     <div class="row text-center">
                                         <div class="col-6 mb-2">
                                             <label for="proyecto" class="form-label fw-bold">Proyecto</label>
-                                            <select name="proyecto" id="proyecto" class="form-control">
+                                            <select name="proyecto" id="proyecto" class="form-control form-control-sm">
                                                 <option value="%" {{ request('proyecto') == '' ? 'selected' : '' }}>
                                                     Todos
                                                     @foreach ($Project as $item)
@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="col-6 mb-2">
                                             <label for="estado" class="form-label fw-bold">Estado</label>
-                                            <select name="estado" id="state_filter" class="form-control">
+                                            <select name="estado" id="state_filter" class="form-control form-control-sm">
                                                 <option value="%" {{ request('estado') == '' ? 'selected' : '' }}>Todos
                                                     @foreach ($state as $item)
                                                 <option value="{{ $item->id }}"
@@ -73,7 +73,7 @@
                                         <!-- Botón Filtrar -->
                                         <div class="col-4">
                                             <label for="socio_comercial" class="form-label fw-bold">Socio Comercial</label>
-                                            <select name="socio_comercial" id="socio_comercial" class="form-control">
+                                            <select name="socio_comercial" id="socio_comercial" class="form-control form-control-sm">
 
                                                 <option value="%"
                                                     {{ request('socio_comerical') == '' ? 'selected' : '' }}>Todos
@@ -95,7 +95,7 @@
                                             <label for="letras_verificada" class="form-label fw-bold">Letras
                                                 Verificadas</label>
 
-                                            <select name="letras_verificada" id="letras_verificada" class="form-control">
+                                            <select name="letras_verificada" id="letras_verificada" class="form-control form-control-sm">
                                                 <option value="%"
                                                     {{ request('letras_verificada') == '' ? 'selected' : '' }}>Todos
                                                 </option>
@@ -110,7 +110,7 @@
                                         <div class="col-4">
                                             <label for="editor_query" class="form-label fw-bold">Redactado por</label>
 
-                                            <select name="editor_query" id="editor_query" class="form-control">
+                                            <select name="editor_query" id="editor_query" class="form-control form-control-sm">
                                                 <option value="%"
                                                     {{ request('editor_query') == '' ? 'selected' : '' }}>Todos
                                                 </option>
@@ -133,12 +133,12 @@
                                         <div class="col-1">
 
                                             <input type="date" name="separation_start"id="separation_start"
-                                                class="form-control" value="{{ request('separation_start') }}">
+                                                class="form-control form-control-sm" value="{{ request('separation_start') }}">
                                         </div>
                                         <div class="col-1">
 
                                             <input type="date" name="separation_end"id="separation_end"
-                                                class="form-control" value="{{ request('separation_end') }}">
+                                                class="form-control form-control-sm" value="{{ request('separation_end') }}">
                                         </div>
 
 
@@ -147,12 +147,12 @@
                                         </div>
                                         <div class="col-1">
 
-                                            <input type="date" name="operation_start" class="form-control"
+                                            <input type="date" name="operation_start" class="form-control form-control-sm"
                                                 value="{{ request('operation_start') }}">
                                         </div>
                                         <div class="col-1">
 
-                                            <input type="date" name="operation_end" class="form-control"
+                                            <input type="date" name="operation_end" class="form-control form-control-sm"
                                                 value="{{ request('operation_end') }}">
                                         </div>
 
@@ -161,7 +161,7 @@
                                     </div>
                                     <div class="col-1">
                                         <select name="date_reprog" id="date_reprog"
-                                            class="form-control"onchange="activateInput_2();">
+                                            class="form-control form-control-sm"onchange="activateInput_2();">
                                             <option value="" {{ request('date_reprog') == '' ? 'selected' : '' }}>
                                                 Todo</option>
                                             <option value="Vence_hoy"
@@ -188,12 +188,12 @@
                                         <div class="col-1">
 
                                             <input type="date" name="rewritten_start" id="rewritten_start"
-                                                class="form-control" value="{{ request('rewritten_start') }}">
+                                                class="form-control form-control-sm" value="{{ request('rewritten_start') }}">
                                         </div>
                                         <div class="col-1">
 
                                             <input type="date" name="rewritten_end"id="rewritten_end"
-                                                class="form-control" value="{{ request('rewritten_end') }}">
+                                                class="form-control form-control-sm" value="{{ request('rewritten_end') }}">
                                         </div>
 
 
@@ -203,14 +203,14 @@
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="recogido_no_devuelto_start"
-                                                id="recogido_no_devuelto_start" class="form-control"
+                                                id="recogido_no_devuelto_start" class="form-control form-control-sm"
                                                 value="{{ request('recogido_no_devuelto_start') }}">
                                         </div>
                                         <div class="col-1 mt-2">
 
                                             <input type="date"
                                                 name="recogido_no_devuelto_end"id="recogido_no_devuelto_end"
-                                                class="form-control" value="{{ request('recogido_no_devuelto_end') }}">
+                                                class="form-control form-control-sm" value="{{ request('recogido_no_devuelto_end') }}">
                                         </div>
                                         <div class="col-2 mt-2 text-start">
                                             <label class="fw-bold ">Fecha contrato firmado devuelto</label>
@@ -218,14 +218,14 @@
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="f_contrato_firmado_devuelto_start"
-                                                id="f_contrato_firmado_devuelto_start" class="form-control"
+                                                id="f_contrato_firmado_devuelto_start" class="form-control form-control-sm"
                                                 value="{{ request('f_contrato_firmado_devuelto_start') }}">
                                         </div>
                                         <div class="col-1 mt-2">
 
                                             <input type="date"
                                                 name="f_contrato_firmado_devuelto_end"id="f_contrato_firmado_devuelto_end"
-                                                class="form-control"
+                                                class="form-control form-control-sm"
                                                 value="{{ request('f_contrato_firmado_devuelto_end') }}">
                                         </div>
                                         <div class="col-2 mt-2 text-start">
@@ -234,12 +234,12 @@
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="enviado_archivo_start" id="enviado_archivo_start"
-                                                class="form-control" value="{{ request('enviado_archivo_start') }}">
+                                                class="form-control form-control-sm" value="{{ request('enviado_archivo_start') }}">
                                         </div>
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="enviado_archivo_end"id="enviado_archivo_end"
-                                                class="form-control" value="{{ request('enviado_archivo_end') }}">
+                                                class="form-control form-control-sm" value="{{ request('enviado_archivo_end') }}">
                                         </div>
                                         <div class="col-2 mt-2 text-start">
                                             <label class="fw-bold ">Fecha Desistimiento</label>
@@ -247,12 +247,12 @@
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="f_desistimiento_start" id="f_desistimiento_start"
-                                                class="form-control" value="{{ request('f_desistimiento_start') }}">
+                                                class="form-control form-control-sm" value="{{ request('f_desistimiento_start') }}">
                                         </div>
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="f_desistimiento_end"id="f_desistimiento_end"
-                                                class="form-control" value="{{ request('f_desistimiento_end') }}">
+                                                class="form-control form-control-sm" value="{{ request('f_desistimiento_end') }}">
                                         </div>
                                         <div class="col-2 mt-2 text-start">
                                             <label class="fw-bold ">Fecha Notaría</label>
@@ -260,11 +260,11 @@
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="notaria_start" id="notaria_start"
-                                                class="form-control" value="{{ request('notaria_start') }}">
+                                                class="form-control form-control-sm" value="{{ request('notaria_start') }}">
                                         </div>
                                         <div class="col-1 mt-2">
 
-                                            <input type="date" name="notaria_end"id="notaria_end" class="form-control"
+                                            <input type="date" name="notaria_end"id="notaria_end" class="form-control form-control-sm"
                                                 value="{{ request('notaria_end') }}">
                                         </div>
                                         <div class="col-2 mt-2 text-start">
@@ -273,11 +273,11 @@
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="chincha_start" id="chincha_start"
-                                                class="form-control" value="{{ request('chincha_start') }}">
+                                                class="form-control form-control-sm" value="{{ request('chincha_start') }}">
                                         </div>
                                         <div class="col-1 mt-2">
 
-                                            <input type="date" name="chincha_end"id="chincha_end" class="form-control"
+                                            <input type="date" name="chincha_end"id="chincha_end" class="form-control form-control-sm"
                                                 value="{{ request('chincha_end') }}">
                                         </div>
                                         <div class="col-2 mt-2 text-start">
@@ -286,12 +286,12 @@
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="post_venta_start" id="post_venta_start"
-                                                class="form-control" value="{{ request('post_venta_start') }}">
+                                                class="form-control form-control-sm" value="{{ request('post_venta_start') }}">
                                         </div>
                                         <div class="col-1 mt-2">
 
                                             <input type="date" name="post_venta_end"id="post_venta_end"
-                                                class="form-control" value="{{ request('post_venta_end') }}">
+                                                class="form-control form-control-sm" value="{{ request('post_venta_end') }}">
                                         </div>
                                     </div>
 
@@ -416,7 +416,7 @@
                                         <div class="accordion-body row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="project_id" class="form-label">Proyecto</label>
-                                                <select id="project_id" name="project_id" class="form-control">
+                                                <select id="project_id" name="project_id" class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     @foreach ($Project as $item)
                                                         <option value="{{ $item->id }}">{{ $item->description }}
@@ -428,23 +428,23 @@
                                             <div class="col-md-6 mb-3">
                                                 <label for="mz_lt" class="form-label">Mz - Lt</label>
                                                 <input type="text" id="mz_lt" name="mz_lt"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="client_1" class="form-label">Cliente 1</label>
                                                 <input type="text" id="client_1" name="client_1"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="dni_1" class="form-label">DNI 1</label>
                                                 <input type="text" id="dni_1" name="dni_1"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="business_partners_id" class="form-label">Socio
                                                     Comercial</label>
                                                 <select id="business_partners_id" name="business_partners_id"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     @foreach ($business_partner as $item)
                                                         <option value="{{ $item->id }}">{{ $item->description }}
@@ -456,17 +456,17 @@
                                                 <label for="separation_date" class="form-label">Fecha de
                                                     Separación</label>
                                                 <input type="date" id="separation_date" name="separation_date"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="separation_amount" class="form-label">Monto de
                                                     Separación</label>
                                                 <input type="number" step="0.01" id="separation_amount"
-                                                    name="separation_amount" class="form-control">
+                                                    name="separation_amount" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="assistant_id" class="form-label">Asistente</label>
-                                                <select id="assistant_id" name="assistant_id" class="form-control">
+                                                <select id="assistant_id" name="assistant_id" class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     @foreach ($users as $item)
                                                         <option value="{{ $item->id }}">{{ $item->firstname }}
@@ -478,18 +478,18 @@
                                             <div class="col-md-6 mb-3">
                                                 <label for="initial_paid" class="form-label">Inicial Pagada</label>
                                                 <input type="number" step="0.01" id="initial_paid"
-                                                    name="initial_paid" class="form-control">
+                                                    name="initial_paid" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="initial_payment_date" class="form-label">Fecha de
                                                     Inicial</label>
                                                 <input type="date" id="initial_payment_date"
-                                                    name="initial_payment_date" class="form-control">
+                                                    name="initial_payment_date" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="initial_amount" class="form-label">Monto de Inicial</label>
                                                 <input type="number" step="0.01" id="initial_amount"
-                                                    name="initial_amount" class="form-control">
+                                                    name="initial_amount" class="form-control form-control-sm">
                                             </div>
                                         </div>
                                     </div>
@@ -510,40 +510,40 @@
                                         <div class="accordion-body row">
                                             <div class="col-md-6 mb-3"><label for="client_2" class="form-label">Cliente
                                                     2</label><input type="text" id="client_2" name="client_2"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="dni_2" class="form-label">DNI
                                                     2</label><input type="text" id="dni_2" name="dni_2"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="client_3" class="form-label">Cliente
                                                     3</label><input type="text" id="client_3" name="client_3"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="dni_3" class="form-label">DNI
                                                     3</label><input type="text" id="dni_3" name="dni_3"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="client_4" class="form-label">Cliente
                                                     4</label><input type="text" id="client_4" name="client_4"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="dni_4" class="form-label">DNI
                                                     4</label><input type="text" id="dni_4" name="dni_4"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="client_5" class="form-label">Cliente
                                                     5</label><input type="text" id="client_5" name="client_5"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="dni_5" class="form-label">DNI
                                                     5</label><input type="text" id="dni_5" name="dni_5"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
 
                                             <div class="col-md-6 mb-3"><label for="operations_entry"
                                                     class="form-label">Ingreso a Operaciones</label>
                                                     <input type="date"
-                                                    id="operations_entry" name="operations_entry" class="form-control">
+                                                    id="operations_entry" name="operations_entry" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3"><label for="days"
                                                     class="form-label">Días</label><input type="number" id="days"
-                                                    name="days" class="form-control"></div>
+                                                    name="days" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="editors_id" class="form-label">Redactado Por</label>
-                                                <select name="editors_id" id="editors_id" class="form-control">
+                                                <select name="editors_id" id="editors_id" class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     @foreach ($editor as $item)
                                                         <option value="{{ $item->id }}">{{ $item->description }}
@@ -554,10 +554,10 @@
                                             </div>
                                             <div class="col-md-6 mb-3"><label for="issue_date" class="form-label">Fecha
                                                     de Emisión</label><input type="date" id="issue_date"
-                                                    name="issue_date" class="form-control"></div>
+                                                    name="issue_date" class="form-control form-control-sm"></div>
                                             <div class="col-md-12 mb-3"><label for="redaction_observations"
                                                     class="form-label">Observaciones de Redacción</label>
-                                                <textarea id="redaction_observations" name="redaction_observations" class="form-control"></textarea>
+                                                <textarea id="redaction_observations" name="redaction_observations" class="form-control form-control-sm"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -580,68 +580,68 @@
                                             <div class="col-md-6 mb-3"><label for="contract_withdrawal_date"
                                                     class="form-label">Fecha Retiro Contrato</label><input type="date"
                                                     id="contract_withdrawal_date" name="contract_withdrawal_date"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="elapsed_days" class="form-label">Días
                                                     Transcurridos</label><input type="number" id="elapsed_days"
-                                                    name="elapsed_days" class="form-control"></div>
+                                                    name="elapsed_days" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="returned_letters"
                                                     class="form-label">Letras Devueltas</label><input type="number"
-                                                    id="returned_letters" name="returned_letters" class="form-control">
+                                                    id="returned_letters" name="returned_letters" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3"><label for="return_date" class="form-label">Fecha
                                                     Devolución</label><input type="date" id="return_date"
-                                                    name="return_date" class="form-control"></div>
+                                                    name="return_date" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="contract_type" class="form-label">Tipo
                                                     Contrato</label><input type="text" id="contract_type"
-                                                    name="contract_type" class="form-control"></div>
+                                                    name="contract_type" class="form-control form-control-sm"></div>
                                             <div class="col-md-12 mb-3"><label for="regularization_observations"
                                                     class="form-label">Observaciones a Regularizar</label>
-                                                <textarea id="regularization_observations" name="regularization_observations" class="form-control"></textarea>
+                                                <textarea id="regularization_observations" name="regularization_observations" class="form-control form-control-sm"></textarea>
                                             </div>
                                             <div class="col-md-6 mb-3"><label for="correction_delivery_day"
                                                     class="form-label">Día Entrega Correción</label><input type="date"
                                                     id="correction_delivery_day" name="correction_delivery_day"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="estimated_delivery_day"
                                                     class="form-label">Día Estimado Entrega</label><input type="date"
                                                     id="estimated_delivery_day" name="estimated_delivery_day"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="actual_delivery_day"
                                                     class="form-label">Fecha Entrega</label><input type="date"
                                                     id="actual_delivery_day" name="actual_delivery_day"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="regularized_contract_date"
                                                     class="form-label">Fecha Contrato Regularizado</label><input
                                                     type="date" id="regularized_contract_date"
-                                                    name="regularized_contract_date" class="form-control"></div>
+                                                    name="regularized_contract_date" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="regularization_return_time"
                                                     class="form-label">Hora Devolución Regularización</label><input
                                                     type="time" id="regularization_return_time"
-                                                    name="regularization_return_time" class="form-control"></div>
+                                                    name="regularization_return_time" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="reception_time"
                                                     class="form-label">Hora Recepción</label><input type="time"
-                                                    id="reception_time" name="reception_time" class="form-control"></div>
+                                                    id="reception_time" name="reception_time" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="report_time" class="form-label">Hora
                                                     Reporte</label><input type="time" id="report_time"
-                                                    name="report_time" class="form-control"></div>
+                                                    name="report_time" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="elapsed_time"
                                                     class="form-label">Tiempo Transcurrido</label><input type="text"
-                                                    id="elapsed_time" name="elapsed_time" class="form-control"></div>
+                                                    id="elapsed_time" name="elapsed_time" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="indicator"
                                                     class="form-label">Indicador</label><input type="text"
-                                                    id="indicator" name="indicator" class="form-control"></div>
+                                                    id="indicator" name="indicator" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="delivered_to_operations_2"
                                                     class="form-label">Entregado Operaciones 2</label>
                                                     <select
                                                     id="delivered_to_operations_2" name="delivered_to_operations_2"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     <option value="1">Sí</option>
                                                     <option value="0">No</option>
                                                 </select></div>
                                             <div class="col-md-12 mb-3"><label for="observations"
                                                     class="form-label">Observaciones</label>
-                                                <textarea id="observations" name="observations" class="form-control"></textarea>
+                                                <textarea id="observations" name="observations" class="form-control form-control-sm"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -663,17 +663,17 @@
                                             <div class="col-md-6 mb-3"><label for="cancellation_request_type"
                                                     class="form-label">Tipo de Solicitud</label><input type="text"
                                                     id="cancellation_request_type" name="cancellation_request_type"
-                                                    class="form-control"></div>
+                                                    class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="cancellation_date"
                                                     class="form-label">Fecha de Cancelación</label><input type="date"
-                                                    id="cancellation_date" name="cancellation_date" class="form-control">
+                                                    id="cancellation_date" name="cancellation_date" class="form-control form-control-sm">
                                             </div>
                                             <div class="col-md-6 mb-3"><label for="cancelled_by"
                                                     class="form-label">Desistido por</label><input type="text"
-                                                    id="cancelled_by" name="cancelled_by" class="form-control"></div>
+                                                    id="cancelled_by" name="cancelled_by" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="physical_contract"
                                                     class="form-label">Contrato Físico</label><select
-                                                    id="physical_contract" name="physical_contract" class="form-control">
+                                                    id="physical_contract" name="physical_contract" class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     <option value="CORREO EQUIPO COMERCIAL">CORREO EQUIPO COMERCIAL</option>
                                                     <option value="DEVOLUCION DE CONTRATO">DEVOLUCION DE CONTRATO</option>
@@ -681,27 +681,27 @@
                                                 </select></div>
                                             <div class="col-md-6 mb-3"><label for="phone"
                                                     class="form-label">Teléfono</label><input type="text"
-                                                    id="phone" name="phone" class="form-control"></div>
+                                                    id="phone" name="phone" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="email"
                                                     class="form-label">Correo</label><input type="email" id="email"
-                                                    name="email" class="form-control"></div>
+                                                    name="email" class="form-control form-control-sm"></div>
                                             <div class="col-md-6 mb-3"><label for="signed_agreement"
                                                     class="form-label">Acuerdo Firmado</label><select
-                                                    id="signed_agreement" name="signed_agreement" class="form-control">
+                                                    id="signed_agreement" name="signed_agreement" class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     <option value="1">Sí</option>
                                                     <option value="0">No</option>
                                                 </select></div>
                                             <div class="col-md-6 mb-3"><label for="receipts"
                                                     class="form-label">Boletas</label><select id="receipts"
-                                                    name="receipts" class="form-control">
+                                                    name="receipts" class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     <option value="1">Sí</option>
                                                     <option value="0">No</option>
                                                 </select></div>
                                             <div class="col-md-6 mb-3"><label for="operation_type"
                                                     class="form-label">Tipo de Operación</label>
-                                                <select name="operation_type" id="operation_type" class="form-control">
+                                                <select name="operation_type" id="operation_type" class="form-control form-control-sm">
                                                     <option value="SEPARACION">SEPARACION</option>
                                                     <option value="SEPARACION + INICIAL">SEPARACION + INICIAL</option>
                                                     <option value="INICIAL + BOLETA GRANDE">SEPARACION + INICIAL + BOLETA GRANDE</option>
@@ -711,11 +711,11 @@
                                                 </div>
                                             <div class="col-md-6 mb-3"><label for="observation"
                                                     class="form-label">Observación</label>
-                                                <textarea id="observation" name="observation" class="form-control"></textarea>
+                                                <textarea id="observation" name="observation" class="form-control form-control-sm"></textarea>
                                             </div>
                                             <div class="col-md-6 mb-3"><label for="lot_status" class="form-label">Estado
                                                     de Lote</label><input type="text" id="lot_status"
-                                                    name="lot_status" class="form-control"></div>
+                                                    name="lot_status" class="form-control form-control-sm"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -735,7 +735,7 @@
                                         <div class="accordion-body row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="commission_paid" class="form-label">Comisión Pagada</label>
-                                                <select id="commission_paid" name="commission_paid" class="form-control">
+                                                <select id="commission_paid" name="commission_paid" class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     <option value="1">Sí</option>
                                                     <option value="0">No</option>
@@ -745,7 +745,7 @@
                                                 <label for="contract_scanned" class="form-label">Contrato
                                                     Escaneado</label>
                                                 <select id="contract_scanned" name="contract_scanned"
-                                                    class="form-control">
+                                                    class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                     <option value="1">Sí</option>
                                                     <option value="0">No</option>
@@ -770,7 +770,7 @@
                                         <div class="accordion-body row">
                                             <div class="col-md-12 mb-3">
                                                 <label for="state_id" class="form-label">Estado</label>
-                                                <select id="state_id" name="state_id" class="form-control">
+                                                <select id="state_id" name="state_id" class="form-control form-control-sm">
                                                     <option value="">Seleccione</option>
                                                   @foreach ($state as $item)
                                                   <option value="{{$item->id}}">{{$item->description}}</option>

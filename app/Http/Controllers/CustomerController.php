@@ -180,7 +180,7 @@ class CustomerController extends Controller
             $customer->operation_type = $request->operation_type;
             $customer->observation = $request->observation;
             $customer->lot_status = $request->lot_status;
-
+            // sin grupo
             $customer->created_by = Auth::user()->id;
             $customer->updated_by = Auth::user()->id;
 
@@ -223,14 +223,46 @@ class CustomerController extends Controller
 
     public function update(Request $request)
     {
-        $Customer = Customer::find($request->id);
-        $Customer->client_1 = $request->client_1;
-        $Customer->dni_1 = $request->dni_1;
-        $Customer->project_id = $request->project_id;
-        $Customer->phone = $request->phone;
-        $Customer->email = $request->email;
-        $Customer->message = $request->message;
-        $Customer->save();
+        $customer=Customer::find($request->id);
+        $grupos = [
+            'comercial' => [
+                'project_id', 'mz_lt', 'client_1', 'dni_1', 'business_partners_id',
+                'separation_date', 'separation_amount', 'assistant_id',
+                'initial_paid', 'initial_payment_date', 'initial_amount'
+            ],
+            'socio_comercial' => [
+                // Puedes agregar campos específicos si este grupo incluye otros distintos
+            ],
+            'redaccion' => [
+                'client_2', 'dni_2', 'client_3', 'dni_3', 'client_4', 'dni_4',
+                'operations_entry', 'editors_id', 'days', 'issue_date', 'redaction_observations'
+            ],
+            'estado' => ['state_id'],
+            'fedateador' => [
+                'contract_withdrawal_date', 'elapsed_days', 'returned_letters', 'return_date',
+                'contract_type', 'regularization_observations', 'correction_delivery_day',
+                'estimated_delivery_day', 'actual_delivery_day', 'regularized_contract_date',
+                'regularization_return_time', 'reception_time', 'report_time', 'elapsed_time',
+                'indicator', 'delivered_to_operations_2', 'observations'
+            ],
+            'desistimiento' => [
+                'cancellation_request_type', 'cancellation_date', 'cancelled_by', 'physical_contract',
+                'phone', 'email', 'signed_agreement', 'receipts', 'operation_type', 'observation',
+                'lot_status'
+            ],
+        ];
+        foreach ($grupos as $permiso => $campos) {
+            if (Auth::user()->hasPermissionTo($permiso) || Auth::user()->hasPermissionTo('administrar')) {
+                foreach ($campos as $campo) {
+                    if ($request->has($campo)) {
+                        $customer->$campo = $request->$campo;
+                    }
+                }
+            }
+        }
+        $customer->updated_by = Auth::id();
+        $customer->save();
+
         return $this->create();
     }
 
