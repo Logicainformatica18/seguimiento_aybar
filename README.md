@@ -1,5 +1,5 @@
 
-# PROYECTO APLICACIÓN LARAVEL
+# PROYECTO APLICACIÓN SEGUIMIENTO
 
 Este repositorio contiene una aplicación basada en Laravel 10, diseñada para gestionar clientes con autenticación segura, usuarios, roles, permisos, reportes en PDF/Excel, códigos QR y comunicación con APIs externas como Google.
 
